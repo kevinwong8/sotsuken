@@ -1,0 +1,212 @@
+[
+  {
+    "kanji": "日",
+    "reading": "ひ / にち",
+    "romaji": "hi / nichi",
+    "meaning": "day; sun",
+    "level": "5"
+  },
+  {
+    "kanji": "人",
+    "reading": "ひと",
+    "romaji": "hito",
+    "meaning": "person",
+    "level": "5"
+  },
+  {
+    "kanji": "学校",
+    "reading": "がっこう",
+    "romaji": "gakkou",
+    "meaning": "school",
+    "level": "5"
+  },
+  {
+    "kanji": "先生",
+    "reading": "せんせい",
+    "romaji": "sensei",
+    "meaning": "teacher",
+    "level": "5"
+  },
+  {
+    "kanji": "食べる",
+    "reading": "たべる",
+    "romaji": "taberu",
+    "meaning": "to eat",
+    "level": "5"
+  },
+  {
+    "kanji": "飲む",
+    "reading": "のむ",
+    "romaji": "nomu",
+    "meaning": "to drink",
+    "level": "5"
+  },
+  {
+    "kanji": "行く",
+    "reading": "いく",
+    "romaji": "iku",
+    "meaning": "to go",
+    "level": "5"
+  },
+  {
+    "kanji": "来る",
+    "reading": "くる",
+    "romaji": "kuru",
+    "meaning": "to come",
+    "level": "5"
+  },
+  {
+    "kanji": "見る",
+    "reading": "みる",
+    "romaji": "miru",
+    "meaning": "to see; to watch",
+    "level": "5"
+  },
+  {
+    "kanji": "言う",
+    "reading": "いう",
+    "romaji": "iu",
+    "meaning": "to say",
+    "level": "5"
+  },
+  {
+    "kanji": "新しい",
+    "reading": "あたらしい",
+    "romaji": "atarashii",
+    "meaning": "new",
+    "level": "5"
+  },
+  {
+    "kanji": "古い",
+    "reading": "ふるい",
+    "romaji": "furui",
+    "meaning": "old (not for people)",
+    "level": "5"
+  },
+  {
+    "kanji": "高い",
+    "reading": "たかい",
+    "romaji": "takai",
+    "meaning": "tall; expensive",
+    "level": "5"
+  },
+  {
+    "kanji": "安い",
+    "reading": "やすい",
+    "romaji": "yasui",
+    "meaning": "cheap",
+    "level": "5"
+  },
+  {
+    "kanji": "友達",
+    "reading": "ともだち",
+    "romaji": "tomodachi",
+    "meaning": "friend",
+    "level": "5"
+  },
+  {
+    "kanji": "会社",
+    "reading": "かいしゃ",
+    "romaji": "kaisha",
+    "meaning": "company",
+    "level": "4"
+  },
+  {
+    "kanji": "自分",
+    "reading": "じぶん",
+    "romaji": "jibun",
+    "meaning": "oneself",
+    "level": "4"
+  },
+  {
+    "kanji": "勉強",
+    "reading": "べんきょう",
+    "romaji": "benkyou",
+    "meaning": "study",
+    "level": "4"
+  },
+  {
+    "kanji": "仕事",
+    "reading": "しごと",
+    "romaji": "shigoto",
+    "meaning": "work; job",
+    "level": "4"
+  },
+  {
+    "kanji": "使う",
+    "reading": "つかう",
+    "romaji": "tsukau",
+    "meaning": "to use",
+    "level": "4"
+  },
+  {
+    "kanji": "始める",
+    "reading": "はじめる",
+    "romaji": "hajimeru",
+    "meaning": "to start; to begin",
+    "level": "4"
+  },
+  {
+    "kanji": "終わる",
+    "reading": "おわる",
+    "romaji": "owaru",
+    "meaning": "to finish; to end",
+    "level": "4"
+  },
+  {
+    "kanji": "考える",
+    "reading": "かんがえる",
+    "romaji": "kangaeru",
+    "meaning": "to think; to consider",
+    "level": "4"
+  },
+  {
+    "kanji": "住む",
+    "reading": "すむ",
+    "romaji": "sumu",
+    "meaning": "to live; to reside",
+    "level": "4"
+  },
+  {
+    "kanji": "走る",
+    "reading": "はしる",
+    "romaji": "hashiru",
+    "meaning": "to run",
+    "level": "4"
+  },
+  {
+    "kanji": "作る",
+    "reading": "つくる",
+    "romaji": "tsukuru",
+    "meaning": "to make; to create",
+    "level": "4"
+  },
+  {
+    "kanji": "待つ",
+    "reading": "まつ",
+    "romaji": "matsu",
+    "meaning": "to wait",
+    "level": "4"
+  },
+  {
+    "kanji": "教える",
+    "reading": "おしえる",
+    "romaji": "oshieru",
+    "meaning": "to teach; to tell",
+    "level": "4"
+  },
+  {
+    "kanji": "世界",
+    "reading": "せかい",
+    "romaji": "sekai",
+    "meaning": "world",
+    "level": "4"
+  },
+  {
+    "kanji": "自由",
+    "reading": "じゆう",
+    "romaji": "jiyuu",
+    "meaning": "freedom; liberty",
+    "level": "4"
+  }
+]
