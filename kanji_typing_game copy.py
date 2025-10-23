@@ -47,7 +47,7 @@ submit = ''
 word_objects = []
 new_level = True
 letters = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'あ']
 
 
 # N5-N1 Level
@@ -173,7 +173,11 @@ def generate_level():
     vertical_spacing = (HEIGHT - 150) // level
 
     # convert dictionary keys to list so we can randomly pick from them
-    available_words = [w for w in words if w["level"] in ["4"]]
+    selected_levels = [str(5 - i) for i, chosen in enumerate(choices) if chosen]
+    available_words = [w for w in words if w["level"] in selected_levels]
+
+    # if not available_words:
+    #     available_words = words
 
     for i in range(level):
         speed = random.randint(1, level+1)
