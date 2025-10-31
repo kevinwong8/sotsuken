@@ -1379,13 +1379,6 @@
     "level": "5"
   },
   {
-    "kanji": "テスト",
-    "reading": null,
-    "romaji": "tesuto",
-    "meaning": "examination; quiz; test",
-    "level": "5"
-  },
-  {
     "kanji": "飛ぶ",
     "reading": "とぶ",
     "romaji": "tobu",
@@ -1397,6 +1390,125 @@
     "reading": "とまる",
     "romaji": "tomaru",
     "meaning": "to stop; to come to a halt",
+    "level": "5"
+  },
+  {
+    "kanji": "丁度",
+    "reading": "ちょうど",
+    "romaji": "choudo",
+    "meaning": "exactly",
+    "level": "5"
+  },
+  {
+    "kanji": "大丈夫",
+    "reading": "だいじょうぶ",
+    "romaji": "daijoubu",
+    "meaning": "OK; okay; alright; problem free",
+    "level": "5"
+  },
+  {
+    "kanji": "初めて",
+    "reading": "はじめて",
+    "romaji": "hajimete",
+    "meaning": "for the first time",
+    "level": "5"
+  },
+  {
+    "kanji": "一人",
+    "reading": "ひとり",
+    "romaji": "hitori",
+    "meaning": "one person; alone; single",
+    "level": "5"
+  },
+  {
+    "kanji": "一番",
+    "reading": "いちばん",
+    "romaji": "ichiban",
+    "meaning": "number one; first; 1st, first place; best; most",
+    "level": "5"
+  },
+  {
+    "kanji": "色々",
+    "reading": "いろいろ",
+    "romaji": "iroiro",
+    "meaning": "various",
+    "level": "5"
+  },
+  {
+    "kanji": "一緒に",
+    "reading": "いっしょに",
+    "romaji": "issho ni",
+    "meaning": "together",
+    "level": "5"
+  },
+  {
+    "kanji": "結構",
+    "reading": "けっこう",
+    "romaji": "kekkou",
+    "meaning": "splendid, enough",
+    "level": "5"
+  },
+  {
+    "kanji": "前に",
+    "reading": "まえに",
+    "romaji": "mae ni",
+    "meaning": "before; in front of ~",
+    "level": "5"
+  },
+  {
+    "kanji": "真っ直ぐ",
+    "reading": "まっすぐ",
+    "romaji": "massugu",
+    "meaning": "straight ahead,direct",
+    "level": "5"
+  },
+  {
+    "kanji": "何故",
+    "reading": "なぜ",
+    "romaji": "naze",
+    "meaning": "why; how",
+    "level": "5"
+  },
+  {
+    "kanji": "同じ",
+    "reading": "おなじ",
+    "romaji": "onaji",
+    "meaning": "same",
+    "level": "5"
+  },
+  {
+    "kanji": "直ぐに",
+    "reading": "すぐに",
+    "romaji": "sugu ni",
+    "meaning": "immediately; right away; instantly",
+    "level": "5"
+  },
+  {
+    "kanji": "少し",
+    "reading": "すこし",
+    "romaji": "sukoshi",
+    "meaning": "a little (bit); small quantity; few; short distance",
+    "level": "5"
+  },
+  {
+    "kanji": "多分",
+    "reading": "たぶん",
+    "romaji": "tabun",
+    "meaning": "perhaps; probably",
+    "level": "5"
+  },
+  {
+    "kanji": "大変",
+    "reading": "たいへん",
+    "romaji": "taihen",
+    "meaning": "very; greatly; terribly; serious; difficult",
+    "level": "5"
+  },
+  {
+    "kanji": "時々",
+    "reading": "ときどき",
+    "romaji": "tokidoki",
+    "meaning": "sometimes; at times",
     "level": "5"
   },
   {

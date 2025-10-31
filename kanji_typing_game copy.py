@@ -1,5 +1,8 @@
-
-import pygame, random, copy, string, nltk, json
+#list to do:
+#timer dan tingkat kesusahan level
+#review word yang ngga berhasil diketik
+#ui dan character
+import pygame, random, copy, string, nltk, json, time
 pygame.init()
 
 with open("assets/data/words.json", encoding="utf-8") as f:
@@ -8,8 +11,8 @@ with open("assets/data/words.json", encoding="utf-8") as f:
 print(words[0]["kanji"], words[0]["reading"], words[0]["meaning"])
 
 #game initalization things
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1000
+HEIGHT = 800
 screen = pygame.display.set_mode([WIDTH,HEIGHT])
 pygame.display.set_caption('Typing Racer in Python')
 surface = pygame.Surface((WIDTH, HEIGHT),pygame.SRCALPHA)
