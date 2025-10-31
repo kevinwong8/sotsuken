@@ -51,7 +51,8 @@ word_objects = []
 new_level = True
 letters = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'あ']
-
+level_up_time = 0
+show_levelup = False
 
 # N5-N1 Level
 choices = [False, True, False, False, False]
@@ -183,9 +184,9 @@ def generate_level():
     #     available_words = words
 
     for i in range(level):
-        speed = random.randint(1, level+1)
+        speed = level
         y_pos = random.randint(10 + (i * vertical_spacing), (i + 1) * vertical_spacing)
-        x_pos = random.randint(WIDTH, WIDTH + 1000)
+        x_pos = random.randint(WIDTH, WIDTH )
 
         # pick a random Japanese word from dictionary
         word_data = random.choice(available_words)
@@ -210,16 +211,29 @@ def check_high_score():
         file.write(str(int(high_score)))
         file.close()
 
+start_time = time.time()
+interval = 30  # 1 minute per hardness increase
 run = True
 while run:
     screen.fill('gray')
     timer.tick(fps)
+
+    # ⏱ Time-based difficulty increase
+    elapsed_time = time.time() - start_time
+    if elapsed_time >= interval and not paused:
+        level += 1
+        new_level = True
+        start_time = time.time()  
+        level_up_time = time.time()
+        show_levelup = True
+
     #draw background screen stuff and statuses and get pause button status
     pause_btn = draw_screen()
     if paused:
         resume_butt, changes, quit_butt = draw_pause()
         if resume_butt:
             paused = False
+            start_time = time.time()  # reset timer when resuming
         if quit_butt:
             check_high_score()
             run = False
@@ -237,7 +251,7 @@ while run:
                 lives -= 1
     
     if len(word_objects)<=0 and not paused:
-        level += 1
+        
         new_level = True
     
     if submit != '':
@@ -287,6 +301,15 @@ while run:
         check_high_score()
         score = 0
 
+    if show_levelup:
+        elapsed = time.time() - level_up_time
+        if elapsed < 2:  # show for 2 seconds
+            alpha = max(0, 255 - int((elapsed / 2) * 255))  # fade out
+            msg_surface = header_font.render(f'レベルアップ！', True, (255, 255, 255))
+            msg_surface.set_alpha(alpha)
+            screen.blit(msg_surface, (WIDTH//2 - 150, HEIGHT//2 - 50))
+        else:
+            show_levelup = False
     pygame.display.flip()
 
 pygame.quit()
