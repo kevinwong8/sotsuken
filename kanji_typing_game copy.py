@@ -25,11 +25,12 @@ header_font = pygame.font.Font('assets/fonts/Bold.ttf', 50)
 pause_font= pygame.font.Font('assets/fonts/Bold.ttf', 38)
 banner_font = pygame.font.Font('assets/fonts/Bold.ttf', 28)
 font= pygame.font.Font('assets/fonts/Bold.ttf', 48)
+kusukusuame = pygame.font.Font('assets/fonts/kusukusuame.otf', 25)
 romaji_font= pygame.font.Font('assets/fonts/Square.ttf', 25)
-
+notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
 #sound effect
 pygame.mixer.init()
-pygame.mixer.music.load('assets/sound/music.mp3')
+pygame.mixer.music.load('assets/sound/natsunoyoru.mp3')
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 click = pygame.mixer.Sound('assets/sound/click.mp3')
@@ -53,6 +54,7 @@ letters = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'あ']
 level_up_time = 0
 show_levelup = False
+missed_words = []
 
 # N5-N1 Level
 choices = [False, True, False, False, False]
@@ -162,6 +164,42 @@ def draw_pause():
     screen.blit(surface, (0,0))
     return resume_btn.clicked, choice_commits, quit_btn.clicked
 
+def draw_result():
+    global missed_words, score, high_score
+
+    surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+    pygame.draw.rect(surface, (0, 0, 0, 180), [100, 80, 800, 600], 0, 20)
+    pygame.draw.rect(surface, (255, 255, 255), [100, 80, 800, 600], 5, 20)
+
+    # Titles
+    title = header_font.render("ゲームオーバー", True, 'white')
+    surface.blit(title, (WIDTH//2 - title.get_width()//2, 100))
+    score_text = banner_font.render(f"スコア: {score}", True, 'white')
+    high_text = banner_font.render(f"最高点: {high_score}", True, 'white')
+    surface.blit(score_text, (WIDTH//2 - score_text.get_width()//2, 170))
+    surface.blit(high_text, (WIDTH//2 - high_text.get_width()//2, 210))
+
+    # Missed words section
+    surface.blit(banner_font.render("打てなかった言葉:", True, 'white'), (150, 260))
+    y = 300
+    for i, word in enumerate(missed_words[-6:]):  # show last 6 missed words
+        entry = f"{i+1}. {word['kanji']} ({word['reading']}) - {word['meaning']}"
+        surface.blit(notosans.render(entry, True, 'white'), (160, y))
+        y += 40
+
+    # Buttons
+    play_btn = Button(WIDTH//2 - 100, 620, '>', False, surface)
+    quit_btn = Button(WIDTH//2 + 100, 620, 'X', False, surface)
+    play_btn.draw()
+    quit_btn.draw()
+
+    # Labels
+    surface.blit(notosans.render("PLAY AGAIN", True, 'white'), (WIDTH//2 - 160, 540))
+    surface.blit(notosans.render("QUIT", True, 'white'), (WIDTH//2 + 50, 540))
+
+    screen.blit(surface, (0, 0))
+    return play_btn.clicked, quit_btn.clicked
+
 def check_answer(scor):
     for wrd in word_objects:
         if wrd.romaji == submit:
@@ -184,7 +222,7 @@ def generate_level():
     #     available_words = words
 
     for i in range(level):
-        speed = level
+        speed = level + 10
         y_pos = random.randint(10 + (i * vertical_spacing), (i + 1) * vertical_spacing)
         x_pos = random.randint(WIDTH, WIDTH )
 
@@ -248,6 +286,11 @@ while run:
                 w.update()
             if w.x_pos <-200:
                 word_objects.remove(w)
+                missed_words.append({
+                    "kanji": w.kanji,
+                    "reading": w.kana,
+                    "meaning": w.meaning
+                })
                 lives -= 1
     
     if len(word_objects)<=0 and not paused:
@@ -292,14 +335,32 @@ while run:
     if pause_btn:
         paused = True
 
-    if lives <=0:
-        paused = True
-        level = 1
-        lives = 5
-        word_objects = []
-        new_level = True
+    if lives <= 0:
         check_high_score()
-        score = 0
+        game_over = True
+        while game_over:
+            screen.fill('gray')
+            play_again, quit_game = draw_result()
+            pygame.display.flip()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    run = False
+                    game_over = False
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if play_again:
+                        missed_words.clear()
+                        level = 1
+                        lives = 5
+                        score = 0
+                        word_objects = []
+                        new_level = True
+                        paused = True  # go back to pause/start menu
+                        game_over = False
+                    if quit_game:
+                        run = False
+                        game_over = False
+
 
     if show_levelup:
         elapsed = time.time() - level_up_time
