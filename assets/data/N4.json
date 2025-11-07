@@ -1,0 +1,946 @@
+[
+  {
+    "kanji": "踏む",
+    "reading": "ふむ",
+    "romaji": "fumu",
+    "meaning": "to step on, to tread on"
+  },
+  {
+    "kanji": "～区",
+    "reading": "～く",
+    "romaji": "ku",
+    "meaning": "~ district, ~ ward, ~ borough"
+  },
+  {
+    "kanji": "盗む",
+    "reading": "ぬすむ",
+    "romaji": "nusumu",
+    "meaning": "to steal; to rob"
+  },
+  {
+    "kanji": "大抵",
+    "reading": "たいてい",
+    "romaji": "taitei",
+    "meaning": "generally, usually"
+  },
+  {
+    "kanji": "鳴る",
+    "reading": "なる",
+    "romaji": "naru",
+    "meaning": "to sound, to ring (v.i.)"
+  },
+  {
+    "kanji": "生きる",
+    "reading": "いきる",
+    "romaji": "ikiru",
+    "meaning": "to live"
+  },
+  {
+    "kanji": "苦い",
+    "reading": "にがい",
+    "romaji": "nigai",
+    "meaning": "bitter"
+  },
+  {
+    "kanji": "沸く",
+    "reading": "わく",
+    "romaji": "waku",
+    "meaning": "to boil, to grow hot"
+  },
+  {
+    "kanji": "意見",
+    "reading": "いけん",
+    "romaji": "iken",
+    "meaning": "opinion, view, idea"
+  },
+  {
+    "kanji": "漫画",
+    "reading": "まんが",
+    "romaji": "manga",
+    "meaning": "comic (book), cartoon"
+  },
+  {
+    "kanji": "医学",
+    "reading": "いがく",
+    "romaji": "igaku",
+    "meaning": "medical science"
+  },
+  {
+    "kanji": "～月",
+    "reading": "～つき",
+    "romaji": "tsuki",
+    "meaning": "month"
+  },
+  {
+    "kanji": "折る",
+    "reading": "おる",
+    "romaji": "oru",
+    "meaning": "to snap, to break; to bend"
+  },
+  {
+    "kanji": "～会",
+    "reading": "～かい",
+    "romaji": "kai",
+    "meaning": "~ meeting"
+  },
+  {
+    "kanji": "聞こえる",
+    "reading": "きこえる",
+    "romaji": "kikoeru",
+    "meaning": "to be heard, to be audible"
+  },
+  {
+    "kanji": "僕",
+    "reading": "ぼく",
+    "romaji": "boku",
+    "meaning": "I (used by men towards those of equal or lower status)"
+  },
+  {
+    "kanji": "必ず",
+    "reading": "かならず",
+    "romaji": "kanarazu",
+    "meaning": "surely, certainly"
+  },
+  {
+    "kanji": "壊す",
+    "reading": "こわす",
+    "romaji": "kowasu",
+    "meaning": "to break, to break down"
+  },
+  {
+    "kanji": "怒る",
+    "reading": "おこる",
+    "romaji": "okoru",
+    "meaning": "to get angry; to scold angrily"
+  },
+  {
+    "kanji": "床屋",
+    "reading": "とこや",
+    "romaji": "tokoya",
+    "meaning": "barber's (shop)"
+  },
+  {
+    "kanji": "運動",
+    "reading": "うんどうする",
+    "romaji": "undousuru",
+    "meaning": "exercise"
+  },
+  {
+    "kanji": "止む",
+    "reading": "やむ",
+    "romaji": "yamu",
+    "meaning": "to cease, to stop"
+  },
+  {
+    "kanji": "表",
+    "reading": "おもて",
+    "romaji": "omote",
+    "meaning": "surface; front; outside"
+  },
+  {
+    "kanji": "大学生",
+    "reading": "だいがくせい",
+    "romaji": "daigakusei",
+    "meaning": "college student, university student"
+  },
+  {
+    "kanji": "運転手",
+    "reading": "うんてんしゅ",
+    "romaji": "untenshu",
+    "meaning": "driver (by occupation)"
+  },
+  {
+    "kanji": "予習",
+    "reading": "よしゅう",
+    "romaji": "yoshuu",
+    "meaning": "preparation of lessons (for class)"
+  },
+  {
+    "kanji": "心配",
+    "reading": "しんぱいする",
+    "romaji": "shinpaisuru",
+    "meaning": "worry, concern"
+  },
+  {
+    "kanji": "別",
+    "reading": "べつ",
+    "romaji": "betsu",
+    "meaning": "distinction, different"
+  },
+  {
+    "kanji": "非常に",
+    "reading": "ひじょうに",
+    "romaji": "hijouni",
+    "meaning": "extremely; very"
+  },
+  {
+    "kanji": "お宅",
+    "reading": "おたく",
+    "romaji": "otaku",
+    "meaning": "(someone else's) house; home -- polite word for 家 (いえ) --"
+  },
+  {
+    "kanji": "柔らかい",
+    "reading": "やわらかい",
+    "romaji": "yawarakai",
+    "meaning": "soft (in reference to texture), tender"
+  },
+  {
+    "kanji": "拾う",
+    "reading": "ひろう",
+    "romaji": "hirou",
+    "meaning": "to pick up (something), to find"
+  },
+  {
+    "kanji": "気",
+    "reading": "き",
+    "romaji": "ki",
+    "meaning": "spirit, mood"
+  },
+  {
+    "kanji": "比べる",
+    "reading": "くらべる",
+    "romaji": "kuraberu",
+    "meaning": "to compare"
+  },
+  {
+    "kanji": "郊外",
+    "reading": "こうがい",
+    "romaji": "kougai",
+    "meaning": "suburb, outskirts"
+  },
+  {
+    "kanji": "売り場",
+    "reading": "うりば",
+    "romaji": "uriba",
+    "meaning": "place where things are sold"
+  },
+  {
+    "kanji": "正月",
+    "reading": "しょうがつ",
+    "romaji": "shougatsu",
+    "meaning": "New Year, New Year's Day"
+  },
+  {
+    "kanji": "規則",
+    "reading": "きそく",
+    "romaji": "kisoku",
+    "meaning": "rule, regulation"
+  },
+  {
+    "kanji": "発音",
+    "reading": "はつおん",
+    "romaji": "hatsuon",
+    "meaning": "pronunciation"
+  },
+  {
+    "kanji": "焼く",
+    "reading": "やく",
+    "romaji": "yaku",
+    "meaning": "to bake, to grill"
+  },
+  {
+    "kanji": "屋上",
+    "reading": "おくじょう",
+    "romaji": "okujou",
+    "meaning": "rooftop"
+  },
+  {
+    "kanji": "失礼",
+    "reading": "しつれい",
+    "romaji": "shitsurei",
+    "meaning": "discourtesy, impoliteness; Excuse me"
+  },
+  {
+    "kanji": "点",
+    "reading": "てん",
+    "romaji": "ten",
+    "meaning": "mark, score, grade; point, dot"
+  },
+  {
+    "kanji": "一生懸命",
+    "reading": "いっしょうけんめい",
+    "romaji": "isshoukenmei",
+    "meaning": "very hard (as in \"to work hard\"), with utmost effort"
+  },
+  {
+    "kanji": "今度",
+    "reading": "こんど",
+    "romaji": "kondo",
+    "meaning": "now, this time, near future, one of these days, next time"
+  },
+  {
+    "kanji": "機会",
+    "reading": "きかい",
+    "romaji": "kikai",
+    "meaning": "chance, opportunity"
+  },
+  {
+    "kanji": "建てる",
+    "reading": "たてる",
+    "romaji": "tateru",
+    "meaning": "to build"
+  },
+  {
+    "kanji": "複雑",
+    "reading": "ふくざつ",
+    "romaji": "fukuzatsu",
+    "meaning": "complexity, complication"
+  },
+  {
+    "kanji": "彼",
+    "reading": "かれ",
+    "romaji": "kare",
+    "meaning": "he, boyfriend"
+  },
+  {
+    "kanji": "布団",
+    "reading": "ふとん",
+    "romaji": "futon",
+    "meaning": "futon"
+  },
+  {
+    "kanji": "大事",
+    "reading": "だいじ",
+    "romaji": "daiji",
+    "meaning": "important, valuable, serious matter"
+  },
+  {
+    "kanji": "贈り物",
+    "reading": "おくりもの",
+    "romaji": "okurimono",
+    "meaning": "a gift; a present"
+  },
+  {
+    "kanji": "泥棒",
+    "reading": "どろぼう",
+    "romaji": "dorobou",
+    "meaning": "thief; burglar"
+  },
+  {
+    "kanji": "～製",
+    "reading": "～せい",
+    "romaji": "sei",
+    "meaning": "made in ~"
+  },
+  {
+    "kanji": "注意",
+    "reading": "ちゅうい",
+    "romaji": "chuui",
+    "meaning": "caution, attention"
+  },
+  {
+    "kanji": "台風",
+    "reading": "たいふう",
+    "romaji": "taifuu",
+    "meaning": "typhoon"
+  },
+  {
+    "kanji": "日",
+    "reading": "ひ",
+    "romaji": "hi",
+    "meaning": "sun, sunshine, day"
+  },
+  {
+    "kanji": "～軒",
+    "reading": "～けん",
+    "romaji": "ken",
+    "meaning": "counter for houses"
+  },
+  {
+    "kanji": "通る",
+    "reading": "とおる",
+    "romaji": "tooru",
+    "meaning": "to pass (by), to go through"
+  },
+  {
+    "kanji": "過ぎる",
+    "reading": "すぎる",
+    "romaji": "sugiru",
+    "meaning": "to exceed, to go beyond"
+  },
+  {
+    "kanji": "葉",
+    "reading": "は",
+    "romaji": "ha",
+    "meaning": "leaf"
+  },
+  {
+    "kanji": "必要",
+    "reading": "ひつよう",
+    "romaji": "hitsuyou",
+    "meaning": "necessary"
+  },
+  {
+    "kanji": "課長",
+    "reading": "かちょう",
+    "romaji": "kachou",
+    "meaning": "section manager"
+  },
+  {
+    "kanji": "地震",
+    "reading": "じしん",
+    "romaji": "jishin",
+    "meaning": "earthquake"
+  },
+  {
+    "kanji": "止める",
+    "reading": "やめる",
+    "romaji": "yameru",
+    "meaning": "to end, to stop"
+  },
+  {
+    "kanji": "～学部",
+    "reading": "～がくぶ",
+    "romaji": "gakubu",
+    "meaning": "department of a university"
+  },
+  {
+    "kanji": "厳しい",
+    "reading": "きびしい",
+    "romaji": "kibishii",
+    "meaning": "hard; rigorous; strict"
+  },
+  {
+    "kanji": "人口",
+    "reading": "じんこう",
+    "romaji": "jinkou",
+    "meaning": "population"
+  },
+  {
+    "kanji": "月",
+    "reading": "つき",
+    "romaji": "tsuki",
+    "meaning": "moon"
+  },
+  {
+    "kanji": "絹",
+    "reading": "きぬ",
+    "romaji": "kinu",
+    "meaning": "silk"
+  },
+  {
+    "kanji": "深い",
+    "reading": "ふかい",
+    "romaji": "fukai",
+    "meaning": "deep, profound"
+  },
+  {
+    "kanji": "壊れる",
+    "reading": "こわれる",
+    "romaji": "kowareru",
+    "meaning": "to be broken, to break"
+  },
+  {
+    "kanji": "揺れる",
+    "reading": "ゆれる",
+    "romaji": "yureru",
+    "meaning": "to shake, to sway"
+  },
+  {
+    "kanji": "落る",
+    "reading": "おちる",
+    "romaji": "ochiru",
+    "meaning": "to fall, to drop"
+  },
+  {
+    "kanji": "悲しい",
+    "reading": "かなしい",
+    "romaji": "kanashii",
+    "meaning": "sad, sorrowful"
+  },
+  {
+    "kanji": "中学校",
+    "reading": "ちゅうがっこう",
+    "romaji": "chuugakkou",
+    "meaning": "junior high school pupil"
+  },
+  {
+    "kanji": "祈る",
+    "reading": "いのる",
+    "romaji": "inoru",
+    "meaning": "to pray; to wish"
+  },
+  {
+    "kanji": "盛ん",
+    "reading": "さかん",
+    "romaji": "sakan",
+    "meaning": "prosperous, active, thriving"
+  },
+  {
+    "kanji": "起こす",
+    "reading": "おこす",
+    "romaji": "okosu",
+    "meaning": "to wake (someone) up"
+  },
+  {
+    "kanji": "致す",
+    "reading": "いたす",
+    "romaji": "itasu",
+    "meaning": "-- extra-modest expression for する --"
+  },
+  {
+    "kanji": "噛む",
+    "reading": "かむ",
+    "romaji": "kamu",
+    "meaning": "to bite, to chew"
+  },
+  {
+    "kanji": "赤ちゃん",
+    "reading": "あかちゃん",
+    "romaji": "akachan",
+    "meaning": "baby, infant"
+  },
+  {
+    "kanji": "浅い",
+    "reading": "あさい",
+    "romaji": "asai",
+    "meaning": "shallow, superficial"
+  },
+  {
+    "kanji": "嘘",
+    "reading": "うそ",
+    "romaji": "uso",
+    "meaning": "lie"
+  },
+  {
+    "kanji": "小説",
+    "reading": "しょうせつ",
+    "romaji": "shousetsu",
+    "meaning": "novel"
+  },
+  {
+    "kanji": "親",
+    "reading": "おや",
+    "romaji": "oya",
+    "meaning": "a parent"
+  },
+  {
+    "kanji": "西洋",
+    "reading": "せいよう",
+    "romaji": "seiyou",
+    "meaning": "the West, Western countries"
+  },
+  {
+    "kanji": "思う",
+    "reading": "おもう",
+    "romaji": "omou",
+    "meaning": "to think, to feel"
+  },
+  {
+    "kanji": "時代",
+    "reading": "じだい",
+    "romaji": "jidai",
+    "meaning": "age, period, epoch, era"
+  },
+  {
+    "kanji": "申し上げる",
+    "reading": "もうしあげる",
+    "romaji": "moushiageru",
+    "meaning": "(humble)to say, to tell"
+  },
+  {
+    "kanji": "～式",
+    "reading": "～しき",
+    "romaji": "shiki",
+    "meaning": "~ ceremony; ~ style"
+  },
+  {
+    "kanji": "出席",
+    "reading": "しゅっせきする",
+    "romaji": "shusseki suru",
+    "meaning": "attendance"
+  },
+  {
+    "kanji": "～家",
+    "reading": "～か",
+    "romaji": "ka",
+    "meaning": "person who is specialized in ~"
+  },
+  {
+    "kanji": "迎える",
+    "reading": "むかえる",
+    "romaji": "mukaeru",
+    "meaning": "to welcome; to meet; to greet"
+  },
+  {
+    "kanji": "触る",
+    "reading": "さわる",
+    "romaji": "sawaru",
+    "meaning": "to touch, to feel"
+  },
+  {
+    "kanji": "建て",
+    "reading": "～だて",
+    "romaji": "date",
+    "meaning": "~ storied, separate housing"
+  },
+  {
+    "kanji": "社長",
+    "reading": "しゃちょう",
+    "romaji": "shachou",
+    "meaning": "president of a company"
+  },
+  {
+    "kanji": "動物園",
+    "reading": "どうぶつえん",
+    "romaji": "doubutsuen",
+    "meaning": "zoo"
+  },
+  {
+    "kanji": "捕まえる",
+    "reading": "つかまえる",
+    "romaji": "tsukamaeru",
+    "meaning": "to catch, to arrest"
+  },
+  {
+    "kanji": "季節",
+    "reading": "きせつ",
+    "romaji": "kisetsu",
+    "meaning": "season (in reference to weather)"
+  },
+  {
+    "kanji": "寄る",
+    "reading": "よる",
+    "romaji": "yoru",
+    "meaning": "to stop by"
+  },
+  {
+    "kanji": "決まる",
+    "reading": "きまる",
+    "romaji": "kimaru",
+    "meaning": "to be set; fixed (v.i.)"
+  },
+  {
+    "kanji": "開く",
+    "reading": "ひらく",
+    "romaji": "hiraku",
+    "meaning": "to open; to hold (an event)"
+  },
+  {
+    "kanji": "逃げる",
+    "reading": "にげる",
+    "romaji": "nigeru",
+    "meaning": "to escape, to run away"
+  },
+  {
+    "kanji": "残念",
+    "reading": "ざんねん",
+    "romaji": "zannen",
+    "meaning": "regret; regrettable"
+  },
+  {
+    "kanji": "畳",
+    "reading": "たたみ",
+    "romaji": "tatami",
+    "meaning": "tatami mat (Japanese straw mat)"
+  },
+  {
+    "kanji": "丁寧",
+    "reading": "ていねい",
+    "romaji": "teinei",
+    "meaning": "polite, courteous, careful"
+  },
+  {
+    "kanji": "地理",
+    "reading": "ちり",
+    "romaji": "chiri",
+    "meaning": "geography"
+  },
+  {
+    "kanji": "怖い",
+    "reading": "こわい",
+    "romaji": "kowai",
+    "meaning": "scary, frightening"
+  },
+  {
+    "kanji": "包む",
+    "reading": "つつむ",
+    "romaji": "tsutsumu",
+    "meaning": "to wrap, to cover"
+  },
+  {
+    "kanji": "無理",
+    "reading": "むり",
+    "romaji": "muri",
+    "meaning": "unreasonable, impossible"
+  },
+  {
+    "kanji": "会議室",
+    "reading": "かいぎしつ",
+    "romaji": "kaigishitsu",
+    "meaning": "conference room"
+  },
+  {
+    "kanji": "品物",
+    "reading": "しなもの",
+    "romaji": "shinamono",
+    "meaning": "goods"
+  },
+  {
+    "kanji": "人形",
+    "reading": "にんぎょう",
+    "romaji": "ningyou",
+    "meaning": "doll, figure"
+  },
+  {
+    "kanji": "利用",
+    "reading": "りよう",
+    "romaji": "riyou",
+    "meaning": "use, utilization"
+  },
+  {
+    "kanji": "飾る",
+    "reading": "かざる",
+    "romaji": "kazaru",
+    "meaning": "to decorate, to adorn"
+  },
+  {
+    "kanji": "止める",
+    "reading": "とめる",
+    "romaji": "tomeru",
+    "meaning": "to stop (something)"
+  },
+  {
+    "kanji": "恥ずかしい",
+    "reading": "はずかしい",
+    "romaji": "hazukashii",
+    "meaning": "ashamed, embarrassed"
+  },
+  {
+    "kanji": "用事",
+    "reading": "ようじ",
+    "romaji": "youji",
+    "meaning": "business to take care of; tasks; errands"
+  },
+  {
+    "kanji": "頑張る",
+    "reading": "がんばる",
+    "romaji": "ganbaru",
+    "meaning": "to try one's best, to try hard, to persist"
+  },
+  {
+    "kanji": "投げる",
+    "reading": "なげる",
+    "romaji": "nageru",
+    "meaning": "to pitch, to cast away"
+  },
+  {
+    "kanji": "故障",
+    "reading": "こしょう",
+    "romaji": "koshou",
+    "meaning": "breakdown"
+  },
+  {
+    "kanji": "力",
+    "reading": "ちから",
+    "romaji": "chikara",
+    "meaning": "strength, power"
+  },
+  {
+    "kanji": "受ける",
+    "reading": "うける",
+    "romaji": "ukeru",
+    "meaning": "to take (an examination, interview, etc.); to receive"
+  },
+  {
+    "kanji": "気分",
+    "reading": "きぶん",
+    "romaji": "kibun",
+    "meaning": "feeling, mood"
+  },
+  {
+    "kanji": "間違える",
+    "reading": "まちがえる",
+    "romaji": "machigaeru",
+    "meaning": "to make a mistake"
+  },
+  {
+    "kanji": "星",
+    "reading": "ほし",
+    "romaji": "hoshi",
+    "meaning": "star"
+  },
+  {
+    "kanji": "場合",
+    "reading": "ばあい",
+    "romaji": "baai",
+    "meaning": "case, situation"
+  },
+  {
+    "kanji": "足りる",
+    "reading": "たりる",
+    "romaji": "tariru",
+    "meaning": "to be sufficient; to be enough"
+  },
+  {
+    "kanji": "行う",
+    "reading": "おこなう",
+    "romaji": "okonau",
+    "meaning": "to carry out; to conduct (typically used in written language)"
+  },
+  {
+    "kanji": "無くなる",
+    "reading": "なくなる",
+    "romaji": "nakunaru",
+    "meaning": "to disappear, to get lost"
+  },
+  {
+    "kanji": "準備",
+    "reading": "じゅんび",
+    "romaji": "junbi",
+    "meaning": "prepare"
+  },
+  {
+    "kanji": "世界",
+    "reading": "せかい",
+    "romaji": "sekai",
+    "meaning": "world"
+  },
+  {
+    "kanji": "住所",
+    "reading": "じゅうしょ",
+    "romaji": "juusho",
+    "meaning": "address; place of residence"
+  },
+  {
+    "kanji": "再来月",
+    "reading": "さらいげつ",
+    "romaji": "saraigetsu",
+    "meaning": "the month after next"
+  },
+  {
+    "kanji": "林",
+    "reading": "はやし",
+    "romaji": "hayashi",
+    "meaning": "woods, forest"
+  },
+  {
+    "kanji": "倍",
+    "reading": "ばい",
+    "romaji": "bai",
+    "meaning": "double"
+  },
+  {
+    "kanji": "痩せる",
+    "reading": "やせる",
+    "romaji": "yaseru",
+    "meaning": "to lose weight"
+  },
+  {
+    "kanji": "線",
+    "reading": "せん",
+    "romaji": "sen",
+    "meaning": "line, wire"
+  },
+  {
+    "kanji": "戦争",
+    "reading": "せんそう",
+    "romaji": "sensou",
+    "meaning": "war"
+  },
+  {
+    "kanji": "決める",
+    "reading": "きめる",
+    "romaji": "kimeru",
+    "meaning": "to decide (v.t.)"
+  },
+  {
+    "kanji": "調べる",
+    "reading": "しらべる",
+    "romaji": "shiraberu",
+    "meaning": "to check; to look up; to inquire; to search"
+  },
+  {
+    "kanji": "寝坊",
+    "reading": "ねぼう",
+    "romaji": "nebou",
+    "meaning": "sleeping in late"
+  },
+  {
+    "kanji": "光る",
+    "reading": "ひかる",
+    "romaji": "hikaru",
+    "meaning": "to shine, to glitter"
+  },
+  {
+    "kanji": "夫",
+    "reading": "おっと",
+    "romaji": "otto",
+    "meaning": "husband"
+  },
+  {
+    "kanji": "雲",
+    "reading": "くも",
+    "romaji": "kumo",
+    "meaning": "cloud"
+  },
+  {
+    "kanji": "坂",
+    "reading": "さか",
+    "romaji": "saka",
+    "meaning": "slope, hill"
+  },
+  {
+    "kanji": "飛行場",
+    "reading": "ひこうじょう",
+    "romaji": "hikoujou",
+    "meaning": "airport"
+  },
+  {
+    "kanji": "柔道",
+    "reading": "じゅうどう",
+    "romaji": "juudou",
+    "meaning": "judo"
+  },
+  {
+    "kanji": "決して",
+    "reading": "けっして",
+    "romaji": "kesshite",
+    "meaning": "never"
+  },
+  {
+    "kanji": "事務所",
+    "reading": "じむしょ",
+    "romaji": "jimusho",
+    "meaning": "office"
+  },
+  {
+    "kanji": "連絡",
+    "reading": "れんらく",
+    "romaji": "renraku",
+    "meaning": "communication, contact, connection"
+  },
+  {
+    "kanji": "小学校",
+    "reading": "しょうがっこう",
+    "romaji": "shougakkou",
+    "meaning": "elementary school"
+  },
+  {
+    "kanji": "客",
+    "reading": "きゃく",
+    "romaji": "kyaku",
+    "meaning": "guest, customer"
+  },
+  {
+    "kanji": "昔",
+    "reading": "むかし",
+    "romaji": "mukashi",
+    "meaning": "old days; past"
+  },
+  {
+    "kanji": "美しい",
+    "reading": "うつくしい",
+    "romaji": "utsukushii",
+    "meaning": "beautiful, lovely"
+  },
+  {
+    "kanji": "捨てる",
+    "reading": "すてる",
+    "romaji": "suteru",
+    "meaning": "throw away (trash), dump, discard"
+  }
+ 
+]
+

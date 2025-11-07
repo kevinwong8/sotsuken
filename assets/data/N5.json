@@ -1,0 +1,334 @@
+
+[
+  {
+    "kanji": "赤",
+    "reading": "あか",
+    "romaji": "aka",
+    "meaning": "red; crimson; scarlet"
+  },
+  {
+    "kanji": "秋",
+    "reading": "あき",
+    "romaji": "aki",
+    "meaning": "autumn; fall"
+  },
+  {
+    "kanji": "雨",
+    "reading": "あめ",
+    "romaji": "ame",
+    "meaning": "rain"
+  },
+  {
+    "kanji": "飴",
+    "reading": "あめ",
+    "romaji": "ame",
+    "meaning": "candy"
+  },
+  {
+    "kanji": "姉",
+    "reading": "あね",
+    "romaji": "ane",
+    "meaning": "older sister; elder sister"
+  },
+  {
+    "kanji": "兄",
+    "reading": "あに",
+    "romaji": "ani",
+    "meaning": "elder brother; older brother"
+  },
+  {
+    "kanji": "青",
+    "reading": "あお",
+    "romaji": "ao",
+    "meaning": "blue; azure"
+  },
+  {
+    "kanji": "朝",
+    "reading": "あさ",
+    "romaji": "asa",
+    "meaning": "morning"
+  },
+  {
+    "kanji": "朝ご飯",
+    "reading": "あさごはん",
+    "romaji": "asagohan",
+    "meaning": "breakfast"
+  },
+  {
+    "kanji": "明後日",
+    "reading": "あさって",
+    "romaji": "asatte",
+    "meaning": "day after tomorrow"
+  },
+  {
+    "kanji": "足",
+    "reading": "あし",
+    "romaji": "ashi",
+    "meaning": "foot; leg; paw; arm"
+  },
+  {
+    "kanji": "明日",
+    "reading": "あした",
+    "romaji": "ashita",
+    "meaning": "tomorrow"
+  },
+  {
+    "kanji": "頭",
+    "reading": "あたま",
+    "romaji": "atama",
+    "meaning": "head"
+  },
+  {
+    "kanji": "後",
+    "reading": "あと",
+    "romaji": "ato",
+    "meaning": "behind; after; remainder; left; also"
+  },
+  {
+    "kanji": "晩ご飯",
+    "reading": "ばんごはん",
+    "romaji": "bangohan",
+    "meaning": "dinner; evening meal"
+  },
+  {
+    "kanji": "番号",
+    "reading": "ばんごう",
+    "romaji": "bangou",
+    "meaning": "number"
+  },
+  {
+    "kanji": "勉強",
+    "reading": "べんきょう",
+    "romaji": "benkyou",
+    "meaning": "to study"
+  },
+  {
+    "kanji": "帽子",
+    "reading": "ぼうし",
+    "romaji": "boushi",
+    "meaning": "hat; cap"
+  },
+  {
+    "kanji": "文章",
+    "reading": "ぶんしょう",
+    "romaji": "bunshou",
+    "meaning": "sentence"
+  },
+  {
+    "kanji": "豚肉",
+    "reading": "ぶたにく",
+    "romaji": "butaniku",
+    "meaning": "pork"
+  },
+  {
+    "kanji": "病院",
+    "reading": "びょういん",
+    "romaji": "byouin",
+    "meaning": "hospital"
+  },
+  {
+    "kanji": "病気",
+    "reading": "びょうき",
+    "romaji": "byouki",
+    "meaning": "illness; disease; sickness"
+  },
+  {
+    "kanji": "茶色",
+    "reading": "ちゃいろ",
+    "romaji": "chairo",
+    "meaning": "brown"
+  },
+  {
+    "kanji": "茶碗",
+    "reading": "ちゃわん",
+    "romaji": "chawan",
+    "meaning": "rice bowl; tea cup; teacup"
+  },
+  {
+    "kanji": "父",
+    "reading": "ちち",
+    "romaji": "chichi",
+    "meaning": "father"
+  },
+  {
+    "kanji": "地下鉄",
+    "reading": "ちかてつ",
+    "romaji": "chikatetsu",
+    "meaning": "subway; underground train"
+  },
+  {
+    "kanji": "地図",
+    "reading": "ちず",
+    "romaji": "chizu",
+    "meaning": "map"
+  },
+  {
+    "kanji": "台所",
+    "reading": "だいどころ",
+    "romaji": "daidokoro",
+    "meaning": "kitchen"
+  },
+  {
+    "kanji": "大学",
+    "reading": "だいがく",
+    "romaji": "daigaku",
+    "meaning": "university; college"
+  },
+  {
+    "kanji": "出口",
+    "reading": "でぐち",
+    "romaji": "deguchi",
+    "meaning": "exit; gateway; way out"
+  },
+  {
+    "kanji": "電気",
+    "reading": "でんき",
+    "romaji": "denki",
+    "meaning": "electricity"
+  },
+  {
+    "kanji": "電車",
+    "reading": "でんしゃ",
+    "romaji": "densha",
+    "meaning": "train; electric train"
+  },
+  {
+    "kanji": "電話",
+    "reading": "でんわ",
+    "romaji": "denwa",
+    "meaning": "telephone (call / device); phone call"
+  },
+  {
+    "kanji": "動物",
+    "reading": "どうぶつ",
+    "romaji": "doubutsu",
+    "meaning": "animal"
+  },
+  {
+    "kanji": "土曜日",
+    "reading": "どようび",
+    "romaji": "doyoubi",
+    "meaning": "Saturday"
+  },
+  {
+    "kanji": "絵",
+    "reading": "え",
+    "romaji": "e",
+    "meaning": "picture"
+  },
+  {
+    "kanji": "映画",
+    "reading": "えいが",
+    "romaji": "eiga",
+    "meaning": "movie; film"
+  },
+  {
+    "kanji": "映画館",
+    "reading": "えいがかん",
+    "romaji": "eigakan",
+    "meaning": "movie theater; cinema"
+  },
+  {
+    "kanji": "英語",
+    "reading": "えいご",
+    "romaji": "eigo",
+    "meaning": "English language"
+  },
+  {
+    "kanji": "駅",
+    "reading": "えき",
+    "romaji": "eki",
+    "meaning": "station"
+  },
+  {
+    "kanji": "鉛筆",
+    "reading": "えんぴつ",
+    "romaji": "enpitsu",
+    "meaning": "pencil"
+  },
+  {
+    "kanji": "服",
+    "reading": "ふく",
+    "romaji": "fuku",
+    "meaning": "clothes"
+  },
+  {
+    "kanji": "二人",
+    "reading": "ふたり",
+    "romaji": "futari",
+    "meaning": "two people; pair; couple"
+  },
+  {
+    "kanji": "二つ",
+    "reading": "ふたつ",
+    "romaji": "futatsu",
+    "meaning": "two; 2"
+  },
+  {
+    "kanji": "二日",
+    "reading": "ふつか",
+    "romaji": "futsuka",
+    "meaning": "the second day of the month / 2 days"
+  },
+  {
+    "kanji": "封筒",
+    "reading": "ふうとう",
+    "romaji": "fuutou",
+    "meaning": "envelope"
+  },
+  {
+    "kanji": "冬",
+    "reading": "ふゆ",
+    "romaji": "fuyu",
+    "meaning": "winter"
+  },
+  {
+    "kanji": "外国",
+    "reading": "がいこく",
+    "romaji": "gaikoku",
+    "meaning": "foreign country"
+  },
+  {
+    "kanji": "外国人",
+    "reading": "がいこくじん",
+    "romaji": "gaikokujin",
+    "meaning": "foreigner; non-Japanese"
+  },
+  {
+    "kanji": "学校",
+    "reading": "がっこう",
+    "romaji": "gakkou",
+    "meaning": "school"
+  },
+  {
+    "kanji": "学生",
+    "reading": "がくせい",
+    "romaji": "gakusei",
+    "meaning": "student"
+  },
+  {
+    "kanji": "玄関",
+    "reading": "げんかん",
+    "romaji": "genkan",
+    "meaning": "entrance"
+  },
+  {
+    "kanji": "元気",
+    "reading": "げんき",
+    "romaji": "genki",
+    "meaning": "lively;  energetic; healthy"
+  },
+  {
+    "kanji": "月曜日",
+    "reading": "げつようび",
+    "romaji": "getsuyoubi",
+    "meaning": "Monday"
+  },
+  {
+    "kanji": "銀行",
+    "reading": "ぎんこう",
+    "romaji": "ginkou",
+    "meaning": "bank"
+  }
+]
+

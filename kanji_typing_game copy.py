@@ -1,14 +1,34 @@
 #list to do:
-#timer dan tingkat kesusahan level
-#review word yang ngga berhasil diketik
-#ui dan character
+
 import pygame, random, copy, string, nltk, json, time
 pygame.init()
 
-with open("assets/data/words.json", encoding="utf-8") as f:
-    words = json.load(f)
+def load_selected_words(level_choices):
+    loaded_words = []
+    level_map = {
+        0: "N5",
+        1: "N4",
+        2: "N3",
+        3: "N2",
+        4: "N1"
+    }
 
-print(words[0]["kanji"], words[0]["reading"], words[0]["meaning"])
+    for i, chosen in enumerate(level_choices):
+        if chosen:
+            filename = f"assets/data/{level_map[i]}.json"
+            try:
+                with open(filename, encoding="utf-8") as f:
+                    level_words = json.load(f)
+                    for w in level_words:
+                        w["level"] = level_map[i][-1]  # "5" for N5, etc.
+                    loaded_words.extend(level_words)
+            except FileNotFoundError:
+                print(f"⚠️ File not found: {filename}")
+
+    return loaded_words
+
+
+
 
 #game initalization things
 WIDTH = 1000
@@ -55,6 +75,11 @@ letters = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 level_up_time = 0
 show_levelup = False
 missed_words = []
+WORDS_PER_LEVEL = 10      # number of correct words needed to level up
+words_typed = 0           # counter for correct words typed
+max_active_words = 1      # how many words can appear at once
+spawn_interval = 3       # seconds between new words
+last_spawn_time = time.time()
 
 # N5-N1 Level
 choices = [False, True, False, False, False]
@@ -75,9 +100,14 @@ class Word:
         self.romaji = romaji
         self.meaning = meaning
         self.nlevel = nlevel
+        self.spawn_time = time.time()  # for animation
+
 
 
     def draw(self):
+        elapsed = time.time() - self.spawn_time
+        slide_distance = max(0, 100 - elapsed * 200)  # slide 100px from right
+        x_draw = self.x_pos + slide_distance
         color = 'black'
         screen.blit(font.render(self.kanji, True, color), (self.x_pos, self.y_pos))
         act_len = len(active_string)
@@ -201,44 +231,52 @@ def draw_result():
     return play_btn.clicked, quit_btn.clicked
 
 def check_answer(scor):
+    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval
+
     for wrd in word_objects:
         if wrd.romaji == submit:
-            points = wrd.speed * (6-int(wrd.nlevel))* 10 * (len(wrd.romaji) / 4)
+            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
             scor += int(points)
             word_objects.remove(wrd)
-            
             whoosh.play()
+            words_typed += 1
+
+            # Level up only every 10 correct words
+            if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
+                level += 1
+                new_level = True
+                level_up_time = time.time()
+                show_levelup = True
+                spawn_interval = max(0.8, spawn_interval - 0.2)
+                if max_active_words < 5:
+                    max_active_words += 1
     return scor
 
-def generate_level():
-    word_objs = []
-    vertical_spacing = (HEIGHT - 150) // level
 
-    # convert dictionary keys to list so we can randomly pick from them
-    selected_levels = [str(5 - i) for i, chosen in enumerate(choices) if chosen]
-    available_words = [w for w in words if w["level"] in selected_levels]
 
-    # if not available_words:
-    #     available_words = words
+def generate_word():
+    if not words:
+        print("⚠️ No words loaded, defaulting to N5.json")
+        with open("assets/data/N5.json", encoding="utf-8") as f:
+            fallback = json.load(f)
+        word_data = random.choice(fallback)
+    else:
+        word_data = random.choice(words)
 
-    for i in range(level):
-        speed = level + 10
-        y_pos = random.randint(10 + (i * vertical_spacing), (i + 1) * vertical_spacing)
-        x_pos = random.randint(WIDTH, WIDTH )
+    kanji = word_data["kanji"]
+    kana = word_data["reading"]
+    romaji = word_data["romaji"]
+    meaning = word_data["meaning"]
+    nlevel = word_data.get("level", "5")
 
-        # pick a random Japanese word from dictionary
-        word_data = random.choice(available_words)
-        kanji = word_data["kanji"]
-        kana = word_data["reading"]
-        romaji = word_data["romaji"]
-        meaning = word_data["meaning"]
-        nlevel = word_data["level"]
-        
-        # show the kanji as the falling text
-        new_word = Word(kanji, speed, y_pos, x_pos, kana, romaji, meaning, nlevel)
-        word_objs.append(new_word)
+    y_pos = random.randint(80, HEIGHT - 200)
+    base_speed = 2.0 + (level - 1) * 0.4
+    speed = random.uniform(base_speed - 0.3, base_speed + 0.5)
+    x_pos = WIDTH + random.randint(0, 100)
 
-    return word_objs
+    return Word(kanji, speed, y_pos, x_pos, kana, romaji, meaning, nlevel)
+
+
 
 
 def check_high_score():
@@ -256,14 +294,7 @@ while run:
     screen.fill('gray')
     timer.tick(fps)
 
-    # ⏱ Time-based difficulty increase
-    elapsed_time = time.time() - start_time
-    if elapsed_time >= interval and not paused:
-        level += 1
-        new_level = True
-        start_time = time.time()  
-        level_up_time = time.time()
-        show_levelup = True
+
 
     #draw background screen stuff and statuses and get pause button status
     pause_btn = draw_screen()
@@ -276,22 +307,27 @@ while run:
             check_high_score()
             run = False
 
-    if new_level and not paused:
-        word_objects = generate_level()
-        new_level = False
-    else:
-        for w in word_objects:
-            w.draw()
-            if not paused:
-                w.update()
-            if w.x_pos <-200:
-                word_objects.remove(w)
-                missed_words.append({
-                    "kanji": w.kanji,
-                    "reading": w.kana,
-                    "meaning": w.meaning
-                })
-                lives -= 1
+    # spawn new word periodically if under max_active_words
+    if not paused and len(word_objects) < max_active_words:
+        if time.time() - last_spawn_time > spawn_interval:
+            word_objects.append(generate_word())
+            last_spawn_time = time.time()
+
+    # update and draw words
+    for w in word_objects:
+        w.draw()
+        if not paused:
+            w.update()
+        if w.x_pos < -200:
+            word_objects.remove(w)
+            missed_words.append({
+                "kanji": w.kanji,
+                "reading": w.kana,
+                "meaning": w.meaning
+            })
+            lives -= 1
+
+    
     
     if len(word_objects)<=0 and not paused:
         
@@ -332,6 +368,8 @@ while run:
         if event.type == pygame.MOUSEBUTTONUP and paused:
             if event.button == 1:
                 choices = changes
+                words = load_selected_words(choices)
+                print(f"{len(words)} words loaded from selected levels.")
     if pause_btn:
         paused = True
 
