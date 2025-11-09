@@ -2686,5 +2686,1216 @@
     "reading": "～にち",
     "romaji": "nichi",
     "meaning": "~ day of the month, for ~ days"
+  },
+  {
+    "id": 385,
+    "kanji": "脱ぐ",
+    "reading": "ぬぐ",
+    "romaji": "nugu",
+    "meaning": "to take off (clothes)"
+  },
+  {
+    "id": 386,
+    "kanji": "温い",
+    "reading": "ぬるい",
+    "romaji": "nurui",
+    "meaning": "lukewarm"
+  },
+  {
+    "id": 387,
+    "kanji": "猫",
+    "reading": "ねこ",
+    "romaji": "neko",
+    "meaning": "cat"
+  },
+  {
+    "id": 388,
+    "kanji": "寝る",
+    "reading": "ねる",
+    "romaji": "neru",
+    "meaning": "to sleep; to go to sleep; to go to bed"
+  },
+  {
+    "id": 389,
+    "kanji": "～年",
+    "reading": "～ねん",
+    "romaji": "nen",
+    "meaning": "~ years"
+  },
+  {
+    "id": 390,
+    "kanji": "登る",
+    "reading": "のぼる",
+    "romaji": "noboru",
+    "meaning": "to climb"
+  },
+  {
+    "id": 391,
+    "kanji": "飲み物",
+    "reading": "のみもの",
+    "romaji": "nomimono",
+    "meaning": "drink, beverage"
+  },
+  {
+    "id": 392,
+    "kanji": "飲む",
+    "reading": "のむ",
+    "romaji": "nomu",
+    "meaning": "to drink"
+  },
+  {
+    "id": 393,
+    "kanji": "乗る",
+    "reading": "のる",
+    "romaji": "noru",
+    "meaning": "to get on, to ride in, to board"
+  },
+  {
+    "id": 394,
+    "kanji": "歯",
+    "reading": "は",
+    "romaji": "ha",
+    "meaning": "tooth"
+  },
+  {
+    "id": 395,
+    "kanji": "～杯",
+    "reading": "～はい",
+    "romaji": "hai",
+    "meaning": "counter for cupfuls"
+  },
+  {
+    "id": 396,
+    "kanji": "灰皿",
+    "reading": "はいざら",
+    "romaji": "haizara",
+    "meaning": "ashtray"
+  },
+  {
+    "id": 397,
+    "kanji": "入る",
+    "reading": "はいる",
+    "romaji": "hairu",
+    "meaning": "to enter, to contain, to hold"
+  },
+  {
+    "id": 398,
+    "kanji": "葉書",
+    "reading": "はがき",
+    "romaji": "hagaki",
+    "meaning": "postcard"
+  },
+  {
+    "id": 399,
+    "kanji": "箱",
+    "reading": "はこ",
+    "romaji": "hako",
+    "meaning": "box"
+  },
+  {
+    "id": 400,
+    "kanji": "橋",
+    "reading": "はし",
+    "romaji": "hashi",
+    "meaning": "bridge"
+  },
+  {
+    "id": 401,
+    "kanji": "箸",
+    "reading": "はし",
+    "romaji": "hashi",
+    "meaning": "chopsticks"
+  },
+  {
+    "id": 402,
+    "kanji": "始まる",
+    "reading": "はじまる",
+    "romaji": "hajimaru",
+    "meaning": "(something) begins"
+  },
+  {
+    "id": 403,
+    "kanji": "初め; 始め",
+    "reading": "はじめ",
+    "romaji": "hajime",
+    "meaning": "beginning, start"
+  },
+  {
+    "id": 404,
+    "kanji": "初めて",
+    "reading": "はじめて",
+    "romaji": "hajimete",
+    "meaning": "for the first time"
+  },
+  {
+    "id": 405,
+    "kanji": "走る",
+    "reading": "はしる",
+    "romaji": "hashiru",
+    "meaning": "to run"
+  },
+  {
+    "id": 406,
+    "kanji": "二十歳",
+    "reading": "はたち",
+    "romaji": "hatachi",
+    "meaning": "20 years old"
+  },
+  {
+    "id": 407,
+    "kanji": "働く",
+    "reading": "はたらく",
+    "romaji": "hataraku",
+    "meaning": "to work"
+  },
+  {
+    "id": 408,
+    "kanji": "八",
+    "reading": "はち",
+    "romaji": "hachi",
+    "meaning": "eight"
+  },
+  {
+    "id": 409,
+    "kanji": "二十日",
+    "reading": "はつか",
+    "romaji": "hatsuka",
+    "meaning": "twenty days, twentieth (day of the month)"
+  },
+  {
+    "id": 410,
+    "kanji": "花",
+    "reading": "はな",
+    "romaji": "hana",
+    "meaning": "flower"
+  },
+  {
+    "id": 411,
+    "kanji": "鼻",
+    "reading": "はな",
+    "romaji": "hana",
+    "meaning": "nose"
+  },
+  {
+    "id": 412,
+    "kanji": "話",
+    "reading": "はなし",
+    "romaji": "hanashi",
+    "meaning": "talk (chat), story"
+  },
+  {
+    "id": 413,
+    "kanji": "話す",
+    "reading": "はなす",
+    "romaji": "hanasu",
+    "meaning": "to speak"
+  },
+  {
+    "id": 414,
+    "kanji": "母",
+    "reading": "はは",
+    "romaji": "haha",
+    "meaning": "(my) mother"
+  },
+  {
+    "id": 415,
+    "kanji": "早い",
+    "reading": "はやい",
+    "romaji": "hayai",
+    "meaning": "early"
+  },
+  {
+    "id": 416,
+    "kanji": "速い",
+    "reading": "はやい",
+    "romaji": "hayai",
+    "meaning": "fast, quick"
+  },
+  {
+    "id": 417,
+    "kanji": "春",
+    "reading": "はる",
+    "romaji": "haru",
+    "meaning": "spring"
+  },
+  {
+    "id": 418,
+    "kanji": "貼る",
+    "reading": "はる",
+    "romaji": "haru",
+    "meaning": "to post; to paste; to attach"
+  },
+  {
+    "id": 419,
+    "kanji": "晴れ",
+    "reading": "はれ",
+    "romaji": "hare",
+    "meaning": "clear (sunny) weather"
+  },
+  {
+    "id": 420,
+    "kanji": "晴れる",
+    "reading": "はれる",
+    "romaji": "hareru",
+    "meaning": "to be sunny"
+  },
+  {
+    "id": 421,
+    "kanji": "半",
+    "reading": "はん",
+    "romaji": "han",
+    "meaning": "half (e.g., にじはん | half-past two)"
+  },
+  {
+    "id": 422,
+    "kanji": "晩",
+    "reading": "ばん",
+    "romaji": "ban",
+    "meaning": "evening"
+  },
+  {
+    "id": 423,
+    "kanji": "～番",
+    "reading": "～ばん",
+    "romaji": "ban",
+    "meaning": "~st; ~th best"
+  },
+  {
+    "id": 424,
+    "kanji": "番号",
+    "reading": "ばんごう",
+    "romaji": "bangou",
+    "meaning": "number, series of digits"
+  },
+  {
+    "id": 425,
+    "kanji": "晩御飯",
+    "reading": "ばんごはん",
+    "romaji": "bangohan",
+    "meaning": "dinner, evening meal"
+  },
+  {
+    "id": 426,
+    "kanji": "半分",
+    "reading": "はんぶん",
+    "romaji": "hanbun",
+    "meaning": "half"
+  },
+  {
+    "id": 427,
+    "kanji": "東",
+    "reading": "ひがし",
+    "romaji": "higashi",
+    "meaning": "east"
+  },
+  {
+    "id": 428,
+    "kanji": "～匹",
+    "reading": "～ひき",
+    "romaji": "hiki",
+    "meaning": "counter for small animals"
+  },
+  {
+    "id": 429,
+    "kanji": "引く",
+    "reading": "ひく",
+    "romaji": "hiku",
+    "meaning": "to pull, to draw; subtract"
+  },
+  {
+    "id": 430,
+    "kanji": "弾く",
+    "reading": "ひく",
+    "romaji": "hiku",
+    "meaning": "to play (a string instrument or piano)"
+  },
+  {
+    "id": 431,
+    "kanji": "低い",
+    "reading": "ひくい",
+    "romaji": "hikui",
+    "meaning": "short, low"
+  },
+  {
+    "id": 432,
+    "kanji": "飛行機",
+    "reading": "ひこうき",
+    "romaji": "hikouki",
+    "meaning": "airplane"
+  },
+  {
+    "id": 433,
+    "kanji": "左",
+    "reading": "ひだり",
+    "romaji": "hidari",
+    "meaning": "left hand side"
+  },
+  {
+    "id": 434,
+    "kanji": "人",
+    "reading": "ひと",
+    "romaji": "hito",
+    "meaning": "man, person"
+  },
+  {
+    "id": 435,
+    "kanji": "一つ",
+    "reading": "ひとつ",
+    "romaji": "hitotsu",
+    "meaning": "one thing"
+  },
+  {
+    "id": 436,
+    "kanji": "一月",
+    "reading": "ひとつき",
+    "romaji": "hitotsuki",
+    "meaning": "one month"
+  },
+  {
+    "id": 437,
+    "kanji": "一人",
+    "reading": "ひとり",
+    "romaji": "hitori",
+    "meaning": "one person"
+  },
+  {
+    "id": 438,
+    "kanji": "暇",
+    "reading": "ひま",
+    "romaji": "hima",
+    "meaning": "free time, leisure"
+  },
+  {
+    "id": 439,
+    "kanji": "百",
+    "reading": "ひゃく",
+    "romaji": "hyaku",
+    "meaning": "hundred"
+  },
+  {
+    "id": 440,
+    "kanji": "病院",
+    "reading": "びょういん",
+    "romaji": "byouin",
+    "meaning": "hospital"
+  },
+  {
+    "id": 441,
+    "kanji": "病気",
+    "reading": "びょうき",
+    "romaji": "byouki",
+    "meaning": "illness; sickness"
+  },
+  {
+    "id": 442,
+    "kanji": "平仮名",
+    "reading": "ひらがな",
+    "romaji": "hiragana",
+    "meaning": "hiragana"
+  },
+  {
+    "id": 443,
+    "kanji": "昼",
+    "reading": "ひる",
+    "romaji": "hiru",
+    "meaning": "noon, daytime"
+  },
+  {
+    "id": 444,
+    "kanji": "昼御飯",
+    "reading": "ひるごはん",
+    "romaji": "hirugohan",
+    "meaning": "lunch, midday meal"
+  },
+  {
+    "id": 445,
+    "kanji": "広い",
+    "reading": "ひろい",
+    "romaji": "hiroi",
+    "meaning": "spacious; wide; broad"
+  },
+  {
+    "id": 446,
+    "kanji": "封筒",
+    "reading": "ふうとう",
+    "romaji": "fuutou",
+    "meaning": "envelope"
+  },
+  {
+    "id": 447,
+    "kanji": "吹く",
+    "reading": "ふく",
+    "romaji": "fuku",
+    "meaning": "to blow (wind, etc.)"
+  },
+  {
+    "id": 448,
+    "kanji": "服",
+    "reading": "ふく",
+    "romaji": "fuku",
+    "meaning": "clothes"
+  },
+  {
+    "id": 449,
+    "kanji": "二つ",
+    "reading": "ふたつ",
+    "romaji": "futatsu",
+    "meaning": "two things"
+  },
+  {
+    "id": 450,
+    "kanji": "豚肉",
+    "reading": "ぶたにく",
+    "romaji": "butaniku",
+    "meaning": "pork"
+  },
+  {
+    "id": 451,
+    "kanji": "二人",
+    "reading": "ふたり",
+    "romaji": "futari",
+    "meaning": "two people"
+  },
+  {
+    "id": 452,
+    "kanji": "二日",
+    "reading": "ふつか",
+    "romaji": "futsuka",
+    "meaning": "two days; second day of the month"
+  },
+  {
+    "id": 453,
+    "kanji": "太い",
+    "reading": "ふとい",
+    "romaji": "futoi",
+    "meaning": "fat, thick"
+  },
+  {
+    "id": 454,
+    "kanji": "冬",
+    "reading": "ふゆ",
+    "romaji": "fuyu",
+    "meaning": "winter"
+  },
+  {
+    "id": 455,
+    "kanji": "降る",
+    "reading": "ふる",
+    "romaji": "furu",
+    "meaning": "to precipitate, to fall (e.g., rain, snow, etc.)"
+  },
+  {
+    "id": 456,
+    "kanji": "古い",
+    "reading": "ふるい",
+    "romaji": "furui",
+    "meaning": "old (in reference to objects, not people), aged, ancient"
+  },
+  {
+    "id": 457,
+    "kanji": "～分",
+    "reading": "～ふん",
+    "romaji": "fun",
+    "meaning": "~ minutes"
+  },
+  {
+    "id": 458,
+    "kanji": "文章",
+    "reading": "ぶんしょう",
+    "romaji": "bunshou",
+    "meaning": "sentence, text"
+  },
+  {
+    "id": 459,
+    "kanji": "下手",
+    "reading": "へた",
+    "romaji": "heta",
+    "meaning": "unskillful, poor"
+  },
+  {
+    "id": 460,
+    "kanji": "部屋",
+    "reading": "へや",
+    "romaji": "heya",
+    "meaning": "a room"
+  },
+  {
+    "id": 461,
+    "kanji": "辺",
+    "reading": "へん",
+    "romaji": "hen",
+    "meaning": "area, vicinity"
+  },
+  {
+    "id": 462,
+    "kanji": "勉強",
+    "reading": "べんきょう",
+    "romaji": "benkyou",
+    "meaning": "study"
+  },
+  {
+    "id": 463,
+    "kanji": "便利",
+    "reading": "べんり",
+    "romaji": "benri",
+    "meaning": "convenient, handy"
+  },
+  {
+    "id": 464,
+    "kanji": "帽子",
+    "reading": "ぼうし",
+    "romaji": "boushi",
+    "meaning": "hat; cap"
+  },
+  {
+    "id": 465,
+    "kanji": "外",
+    "reading": "ほか",
+    "romaji": "hoka",
+    "meaning": "other, the rest"
+  },
+  {
+    "id": 466,
+    "kanji": "欲しい",
+    "reading": "ほしい",
+    "romaji": "hoshii",
+    "meaning": "to want, in need of"
+  },
+  {
+    "id": 467,
+    "kanji": "細い",
+    "reading": "ほそい",
+    "romaji": "hosoi",
+    "meaning": "thin, slender, fine"
+  },
+  {
+    "id": 468,
+    "kanji": "本",
+    "reading": "ほん",
+    "romaji": "hon",
+    "meaning": "book"
+  },
+  {
+    "id": 469,
+    "kanji": "～本",
+    "reading": "～ほん",
+    "romaji": "hon",
+    "meaning": "counter for long cylindrical things"
+  },
+  {
+    "id": 470,
+    "kanji": "本棚",
+    "reading": "ほんだな",
+    "romaji": "hondana",
+    "meaning": "bookshelf"
+  },
+  {
+    "id": 471,
+    "kanji": "本当",
+    "reading": "ほんとう",
+    "romaji": "hontou",
+    "meaning": "real, true"
+  },
+  {
+    "id": 472,
+    "kanji": "～枚",
+    "reading": "～まい",
+    "romaji": "mai",
+    "meaning": "counter for flat things"
+  },
+  {
+    "id": 473,
+    "kanji": "毎朝",
+    "reading": "まいあさ",
+    "romaji": "maiasa",
+    "meaning": "every morning"
+  },
+  {
+    "id": 474,
+    "kanji": "毎月",
+    "reading": "まいげつ; まいつき",
+    "romaji": "maitsuki",
+    "meaning": "every month, monthly"
+  },
+  {
+    "id": 475,
+    "kanji": "毎週",
+    "reading": "まいしゅう",
+    "romaji": "maishuu",
+    "meaning": "every week"
+  },
+  {
+    "id": 476,
+    "kanji": "毎日",
+    "reading": "まいにち",
+    "romaji": "mainichi",
+    "meaning": "every day"
+  },
+  {
+    "id": 477,
+    "kanji": "毎年",
+    "reading": "まいねん; まいとし",
+    "romaji": "maitoshi",
+    "meaning": "every year, yearly, annually"
+  },
+  {
+    "id": 478,
+    "kanji": "毎晩",
+    "reading": "まいばん",
+    "romaji": "maiban",
+    "meaning": "every night"
+  },
+  {
+    "id": 479,
+    "kanji": "前",
+    "reading": "まえ",
+    "romaji": "mae",
+    "meaning": "before, in front"
+  },
+  {
+    "id": 480,
+    "kanji": "～前",
+    "reading": "～まえ",
+    "romaji": "mae",
+    "meaning": "in front of ~"
+  },
+  {
+    "id": 481,
+    "kanji": "曲る",
+    "reading": "まがる",
+    "romaji": "magaru",
+    "meaning": "to turn, to bend"
+  },
+  {
+    "id": 482,
+    "kanji": "町",
+    "reading": "まち",
+    "romaji": "machi",
+    "meaning": "town; city"
+  },
+  {
+    "id": 483,
+    "kanji": "待つ",
+    "reading": "まつ",
+    "romaji": "matsu",
+    "meaning": "to wait"
+  },
+  {
+    "id": 484,
+    "kanji": "窓",
+    "reading": "まど",
+    "romaji": "mado",
+    "meaning": "window"
+  },
+  {
+    "id": 485,
+    "kanji": "丸い; 円い",
+    "reading": "まるい",
+    "romaji": "marui",
+    "meaning": "round, circular"
+  },
+  {
+    "id": 486,
+    "kanji": "万",
+    "reading": "まん",
+    "romaji": "man",
+    "meaning": "ten thousand"
+  },
+  {
+    "id": 487,
+    "kanji": "万年筆",
+    "reading": "まんねんひつ",
+    "romaji": "mannenhitsu",
+    "meaning": "fountain pen"
+  },
+  {
+    "id": 488,
+    "kanji": "磨く",
+    "reading": "みがく",
+    "romaji": "migaku",
+    "meaning": "to brush (teeth); to polish"
+  },
+  {
+    "id": 489,
+    "kanji": "右",
+    "reading": "みぎ",
+    "romaji": "migi",
+    "meaning": "right hand side"
+  },
+  {
+    "id": 490,
+    "kanji": "短い",
+    "reading": "みじかい",
+    "romaji": "mijikai",
+    "meaning": "short (length)"
+  },
+  {
+    "id": 491,
+    "kanji": "水",
+    "reading": "みず",
+    "romaji": "mizu",
+    "meaning": "water"
+  },
+  {
+    "id": 492,
+    "kanji": "店",
+    "reading": "みせ",
+    "romaji": "mise",
+    "meaning": "store, shop"
+  },
+  {
+    "id": 493,
+    "kanji": "見せる",
+    "reading": "みせる",
+    "romaji": "miseru",
+    "meaning": "to show, to display"
+  },
+  {
+    "id": 494,
+    "kanji": "道",
+    "reading": "みち",
+    "romaji": "michi",
+    "meaning": "road, street; way, directions"
+  },
+  {
+    "id": 495,
+    "kanji": "三日",
+    "reading": "みっか",
+    "romaji": "mikka",
+    "meaning": "three days, third day of the month"
+  },
+  {
+    "id": 496,
+    "kanji": "三つ",
+    "reading": "みっつ",
+    "romaji": "mittsu",
+    "meaning": "three things"
+  },
+  {
+    "id": 497,
+    "kanji": "緑",
+    "reading": "みどり",
+    "romaji": "midori",
+    "meaning": "green"
+  },
+  {
+    "id": 498,
+    "kanji": "皆さん",
+    "reading": "みなさん",
+    "romaji": "minasan",
+    "meaning": "all of you, everyone"
+  },
+  {
+    "id": 499,
+    "kanji": "南",
+    "reading": "みなみ",
+    "romaji": "minami",
+    "meaning": "South"
+  },
+  {
+    "id": 500,
+    "kanji": "耳",
+    "reading": "みみ",
+    "romaji": "mimi",
+    "meaning": "ear"
+  },
+  {
+    "id": 501,
+    "kanji": "見る",
+    "reading": "みる",
+    "romaji": "miru",
+    "meaning": "to see, to look"
+  },
+  {
+    "id": 502,
+    "kanji": "六日",
+    "reading": "むいか",
+    "romaji": "muika",
+    "meaning": "six days; sixth day of month"
+  },
+  {
+    "id": 503,
+    "kanji": "向こう",
+    "reading": "むこう",
+    "romaji": "mukou",
+    "meaning": "beyond, over there"
+  },
+  {
+    "id": 504,
+    "kanji": "難しい",
+    "reading": "むずかしい",
+    "romaji": "muzukashii",
+    "meaning": "difficult"
+  },
+  {
+    "id": 505,
+    "kanji": "六つ",
+    "reading": "むっつ",
+    "romaji": "muttsu",
+    "meaning": "six things"
+  },
+  {
+    "id": 506,
+    "kanji": "村",
+    "reading": "むら",
+    "romaji": "mura",
+    "meaning": "village"
+  },
+  {
+    "id": 507,
+    "kanji": "目",
+    "reading": "め",
+    "romaji": "me",
+    "meaning": "eye(s)"
+  },
+  {
+    "id": 508,
+    "kanji": "眼鏡",
+    "reading": "めがね",
+    "romaji": "megane",
+    "meaning": "eye glasses"
+  },
+  {
+    "id": 509,
+    "kanji": "木曜日",
+    "reading": "もくようび",
+    "romaji": "mokuyoubi",
+    "meaning": "Thursday"
+  },
+  {
+    "id": 510,
+    "kanji": "持つ",
+    "reading": "もつ",
+    "romaji": "motsu",
+    "meaning": "to hold, to carry; to possess"
+  },
+  {
+    "id": 511,
+    "kanji": "物",
+    "reading": "もの",
+    "romaji": "mono",
+    "meaning": "thing (concrete object)"
+  },
+  {
+    "id": 512,
+    "kanji": "門",
+    "reading": "もん",
+    "romaji": "mon",
+    "meaning": "gate"
+  },
+  {
+    "id": 513,
+    "kanji": "問題",
+    "reading": "もんだい",
+    "romaji": "mondai",
+    "meaning": "a problem"
+  },
+  {
+    "id": 514,
+    "kanji": "～屋",
+    "reading": "～や",
+    "romaji": "ya",
+    "meaning": "~ shop"
+  },
+  {
+    "id": 515,
+    "kanji": "八百屋",
+    "reading": "やおや",
+    "romaji": "yaoya",
+    "meaning": "greengrocer"
+  },
+  {
+    "id": 516,
+    "kanji": "野菜",
+    "reading": "やさい",
+    "romaji": "yasai",
+    "meaning": "vegetable"
+  },
+  {
+    "id": 517,
+    "kanji": "易しい",
+    "reading": "やさしい",
+    "romaji": "yasashii",
+    "meaning": "easy, plain, simple"
+  },
+  {
+    "id": 518,
+    "kanji": "安い",
+    "reading": "やすい",
+    "romaji": "yasui",
+    "meaning": "inexpensive; cheap (things)"
+  },
+  {
+    "id": 519,
+    "kanji": "休み",
+    "reading": "やすみ",
+    "romaji": "yasumi",
+    "meaning": "holiday; day off; absence"
+  },
+  {
+    "id": 520,
+    "kanji": "休む",
+    "reading": "やすむ",
+    "romaji": "yasumu",
+    "meaning": "to rest, to have a break, to get time off"
+  },
+  {
+    "id": 521,
+    "kanji": "八つ",
+    "reading": "やっつ",
+    "romaji": "yattsu",
+    "meaning": "eight things"
+  },
+  {
+    "id": 522,
+    "kanji": "山",
+    "reading": "やま",
+    "romaji": "yama",
+    "meaning": "mountain"
+  },
+  {
+    "id": 523,
+    "kanji": "夕方",
+    "reading": "ゆうがた",
+    "romaji": "yuugata",
+    "meaning": "late afternoon (typically just before dinner time), evening"
+  },
+  {
+    "id": 524,
+    "kanji": "夕飯",
+    "reading": "ゆうはん",
+    "romaji": "yuuhan",
+    "meaning": "dinner, supper, evening meal"
+  },
+  {
+    "id": 525,
+    "kanji": "郵便局",
+    "reading": "ゆうびんきょく",
+    "romaji": "yuubinkyoku",
+    "meaning": "post office"
+  },
+  {
+    "id": 526,
+    "kanji": "昨夜",
+    "reading": "ゆうべ",
+    "romaji": "yuube",
+    "meaning": "last night"
+  },
+  {
+    "id": 527,
+    "kanji": "有名",
+    "reading": "ゆうめい",
+    "romaji": "yuumei",
+    "meaning": "famous"
+  },
+  {
+    "id": 528,
+    "kanji": "雪",
+    "reading": "ゆき",
+    "romaji": "yuki",
+    "meaning": "snow"
+  },
+  {
+    "id": 529,
+    "kanji": "八日",
+    "reading": "ようか",
+    "romaji": "youka",
+    "meaning": "eight days; eighth day of the month"
+  },
+  {
+    "id": 530,
+    "kanji": "洋服",
+    "reading": "ようふく",
+    "romaji": "youfuku",
+    "meaning": "Western-style clothes"
+  },
+  {
+    "id": 531,
+    "kanji": "横",
+    "reading": "よこ",
+    "romaji": "yoko",
+    "meaning": "beside; side; width"
+  },
+  {
+    "id": 532,
+    "kanji": "四日",
+    "reading": "よっか",
+    "romaji": "yokka",
+    "meaning": "four days; fourth day of the month"
+  },
+  {
+    "id": 533,
+    "kanji": "四つ",
+    "reading": "よっつ",
+    "romaji": "yottsu",
+    "meaning": "four things"
+  },
+  {
+    "id": 534,
+    "kanji": "呼ぶ",
+    "reading": "よぶ",
+    "romaji": "yobu",
+    "meaning": "to call (one's name); to invite"
+  },
+  {
+    "id": 535,
+    "kanji": "読む",
+    "reading": "よむ",
+    "romaji": "yomu",
+    "meaning": "to read"
+  },
+  {
+    "id": 536,
+    "kanji": "夜",
+    "reading": "よる",
+    "romaji": "yoru",
+    "meaning": "evening, night"
+  },
+  {
+    "id": 537,
+    "kanji": "弱い",
+    "reading": "よわい",
+    "romaji": "yowai",
+    "meaning": "weak"
+  },
+  {
+    "id": 538,
+    "kanji": "来月",
+    "reading": "らいげつ",
+    "romaji": "raigetsu",
+    "meaning": "next month"
+  },
+  {
+    "id": 539,
+    "kanji": "来週",
+    "reading": "らいしゅう",
+    "romaji": "raishuu",
+    "meaning": "next week"
+  },
+  {
+    "id": 540,
+    "kanji": "来年",
+    "reading": "らいねん",
+    "romaji": "rainen",
+    "meaning": "next year"
+  },
+  {
+    "id": 541,
+    "kanji": "留学生",
+    "reading": "りゅうがくせい",
+    "romaji": "ryuugakusei",
+    "meaning": "international student"
+  },
+  {
+    "id": 542,
+    "kanji": "両親",
+    "reading": "りょうしん",
+    "romaji": "ryoushin",
+    "meaning": "parents (lit., both parents)"
+  },
+  {
+    "id": 543,
+    "kanji": "料理",
+    "reading": "りょうり",
+    "romaji": "ryouri",
+    "meaning": "cooking; cuisine"
+  },
+  {
+    "id": 544,
+    "kanji": "旅行",
+    "reading": "りょこう",
+    "romaji": "ryokou",
+    "meaning": "travel, trip"
+  },
+  {
+    "id": 545,
+    "kanji": "零",
+    "reading": "れい",
+    "romaji": "rei",
+    "meaning": "zero, nought"
+  },
+  {
+    "id": 546,
+    "kanji": "冷蔵庫",
+    "reading": "れいぞうこ",
+    "romaji": "reizouko",
+    "meaning": "refrigerator"
+  },
+  {
+    "id": 547,
+    "kanji": "練習",
+    "reading": "れんしゅう",
+    "romaji": "renshuu",
+    "meaning": "(to) practice"
+  },
+  {
+    "id": 548,
+    "kanji": "廊下",
+    "reading": "ろうか",
+    "romaji": "rouka",
+    "meaning": "corridor"
+  },
+  {
+    "id": 549,
+    "kanji": "六",
+    "reading": "ろく",
+    "romaji": "roku",
+    "meaning": "six"
+  },
+  {
+    "id": 550,
+    "kanji": "若い",
+    "reading": "わかい",
+    "romaji": "wakai",
+    "meaning": "young"
+  },
+  {
+    "id": 551,
+    "kanji": "分かる",
+    "reading": "わかる",
+    "romaji": "wakaru",
+    "meaning": "to understand"
+  },
+  {
+    "id": 552,
+    "kanji": "忘れる",
+    "reading": "わすれる",
+    "romaji": "wasureru",
+    "meaning": "to forget"
+  },
+  {
+    "id": 553,
+    "kanji": "私",
+    "reading": "わたし",
+    "romaji": "watashi",
+    "meaning": "I, myself"
+  },
+  {
+    "id": 554,
+    "kanji": "私",
+    "reading": "わたくし",
+    "romaji": "watakushi",
+    "meaning": "I (formal), myself, private affairs"
+  },
+  {
+    "id": 555,
+    "kanji": "渡す",
+    "reading": "わたす",
+    "romaji": "watasu",
+    "meaning": "to hand (something) over (v.t.); to get across"
+  },
+  {
+    "id": 556,
+    "kanji": "渡る",
+    "reading": "わたる",
+    "romaji": "wataru",
+    "meaning": "to cross over, to go across"
+  },
+  {
+    "id": 557,
+    "kanji": "悪い",
+    "reading": "わるい",
+    "romaji": "warui",
+    "meaning": "bad, sinful; inferior"
   }
 ]
