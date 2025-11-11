@@ -27,12 +27,9 @@ def load_selected_words(level_choices):
 
     return loaded_words
 
-
-
-
 #game initalization things
 WIDTH = 1000
-HEIGHT = 800
+HEIGHT = 600
 screen = pygame.display.set_mode([WIDTH,HEIGHT])
 pygame.display.set_caption('Typing Racer in Python')
 surface = pygame.Surface((WIDTH, HEIGHT),pygame.SRCALPHA)
