@@ -51,11 +51,11 @@ pygame.mixer.music.load('assets/sound/natsunoyoru.mp3')
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 click = pygame.mixer.Sound('assets/sound/click.mp3')
-whoosh = pygame.mixer.Sound('assets/sound/Swoosh.mp3')
+success = pygame.mixer.Sound('assets/sound/success.mp3')
 wrong = pygame.mixer.Sound('assets/sound/Instrument Strum.mp3')
 
 click.set_volume(0.3)
-whoosh.set_volume(0.3)
+success.set_volume(0.6)
 wrong.set_volume(0.3)
 
 #game variables
@@ -235,7 +235,7 @@ def check_answer(scor):
             points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
             scor += int(points)
             word_objects.remove(wrd)
-            whoosh.play()
+            success.play()
             words_typed += 1
 
             # Level up only every 10 correct words
