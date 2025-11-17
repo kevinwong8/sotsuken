@@ -8,7 +8,7 @@
 # - Uses Pygame for all rendering
 # ------------------------------------------------------------
 
-import pygame, random, copy, json, time, spritesheet
+import pygame, random, copy, json, time, spritesheet,math
 pygame.init()
 
 # ============================================================
@@ -63,7 +63,7 @@ FPS = 60
 header_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 50)
 pause_font = pygame.font.Font('assets/fonts/notosans.ttf', 38)
 banner_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 28)
-font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 48)
+font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 32)
 romaji_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
 notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
 
@@ -80,6 +80,8 @@ click.set_volume(0.3)
 success.set_volume(0.6)
 wrong.set_volume(0.3)
 
+bg = pygame.image.load("assets/pictures/bgnq.png").convert()
+bg_width = bg.get_width()
 # ============================================================
 #  Global Variables
 # ============================================================
@@ -96,12 +98,14 @@ letters = list('abcdefghijklmnopqrstuvwxyz')
 level_up_time = 0
 show_levelup = False
 missed_words = []
-WORDS_PER_LEVEL = 2
+WORDS_PER_LEVEL = 10
 words_typed = 0
 max_active_words = 1
 spawn_interval = 3
 last_spawn_time = time.time()
 active_fireworks = []
+tiles = math.ceil(screen_width/bg_width)+1
+scroll = 0
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -260,13 +264,13 @@ class Button:
 
 def draw_screen():
     """Draws main UI (bottom bar, score, lives, etc.)."""
-    pygame.draw.rect(screen, (32, 42, 68), [0, HEIGHT - 100, WIDTH, 100])
+    pygame.draw.rect(screen, (42,24,12), [0, HEIGHT - 100, WIDTH, 100])
     pygame.draw.rect(screen, 'white', [0, 0, WIDTH, HEIGHT], 5)
 
     # Lines and dividers
     pygame.draw.line(screen, 'white', (250, HEIGHT - 100), (250, HEIGHT))
     pygame.draw.line(screen, 'white', (700, HEIGHT - 100), (700, HEIGHT))
-    pygame.draw.line(screen, 'white', (0, HEIGHT - 100), (WIDTH, HEIGHT - 100))
+    pygame.draw.rect(screen, (19,109,21), [0, HEIGHT-100, WIDTH, 10])
     pygame.draw.rect(screen, 'black', [0, 0, WIDTH, HEIGHT], 2)
 
     # Status Text
@@ -493,7 +497,14 @@ for x in range(animation_steps):
 
 run = True
 while run:
-    screen.fill('navy')
+    screen.fill((22, 2, 103))   # ← fill black bars with a background color
+
+    for i in range(0,tiles):
+        screen.blit(bg,(i*bg_width+ scroll,0))
+
+    scroll-= 1
+    if abs(scroll) > bg_width:
+        scroll = 0
     timer.tick(FPS)
 
     pause_btn = draw_screen()
