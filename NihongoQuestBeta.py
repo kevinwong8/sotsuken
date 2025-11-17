@@ -8,7 +8,7 @@
 # - Uses Pygame for all rendering
 # ------------------------------------------------------------
 
-import pygame, random, copy, json, time
+import pygame, random, copy, json, time, spritesheet
 pygame.init()
 
 # ============================================================
@@ -62,7 +62,7 @@ FPS = 60
 
 header_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 50)
 pause_font = pygame.font.Font('assets/fonts/notosans.ttf', 38)
-banner_font = pygame.font.Font('assets/fonts/notosans.ttf', 28)
+banner_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 28)
 font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 48)
 romaji_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
 notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
@@ -96,11 +96,12 @@ letters = list('abcdefghijklmnopqrstuvwxyz')
 level_up_time = 0
 show_levelup = False
 missed_words = []
-WORDS_PER_LEVEL = 10
+WORDS_PER_LEVEL = 2
 words_typed = 0
 max_active_words = 1
 spawn_interval = 3
 last_spawn_time = time.time()
+active_fireworks = []
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -114,6 +115,36 @@ with open('high.txt', 'r') as f:
 # ============================================================
 #  Classes
 # ============================================================
+    def __init__(self, pos, sheet_path, frame_width, frame_height, frame_count, speed=0.3):
+        super().__init__()
+
+        self.frames = []
+        self.speed = speed
+        self.current_frame = 0
+
+        # Load the full spritesheet
+        sheet = pygame.image.load(sheet_path).convert_alpha()
+
+        # Automatically cut spritesheet into frames
+        for i in range(frame_count):
+            frame = sheet.subsurface(pygame.Rect(
+                i * frame_width, 0, frame_width, frame_height
+            ))
+            self.frames.append(frame)
+
+        self.image = self.frames[0]
+        self.rect = self.image.get_rect(center=pos)
+
+    def update(self):
+        self.current_frame += self.speed
+
+        if self.current_frame >= len(self.frames):
+            self.kill()  # Firework disappears after finishing
+            return
+        
+        self.image = self.frames[int(self.current_frame)]
+
+
 
 class Word:
     """Represents a falling Japanese word."""
@@ -134,44 +165,94 @@ class Word:
         slide_distance = max(0, 100 - elapsed * 200)
         x_draw = self.x_pos + slide_distance
 
-        color = 'black'
+        color = 'white'
         screen.blit(font.render(self.kanji, True, color), (x_draw, self.y_pos))
 
         # Highlight typed romaji
         act_len = len(active_string)
         if active_string == self.romaji[:act_len] and active_string:
-            screen.blit(romaji_font.render(active_string, True, 'maroon'), (x_draw, self.y_pos + 60))
+            screen.blit(romaji_font.render(active_string, True, 'red'), (x_draw, self.y_pos + 60))
             screen.blit(font.render(self.kanji, True, 'green'), (x_draw, self.y_pos))
 
     def update(self):
         """Move word leftward each frame."""
         self.x_pos -= self.speed
 
-
-class Button:
-    """Circular button component."""
-    def __init__(self, x, y, text, clicked, surf, radius=35):
+class Firework:
+    def __init__(self, animation_list, cooldown, x, y):
+        self.animation = animation_list
+        self.cooldown = cooldown
         self.x = x
         self.y = y
+        self.frame = 0
+        self.last_update = pygame.time.get_ticks()
+        self.finished = False
+
+    def update(self, screen):
+        if self.finished:
+            return
+
+        now = pygame.time.get_ticks()
+
+        # advance animation
+        if now - self.last_update >= self.cooldown:
+            self.frame += 1
+            self.last_update = now
+
+            if self.frame >= len(self.animation):
+                self.finished = True
+                return
+
+        # draw current frame
+        screen.blit(self.animation[self.frame], (self.x, self.y))
+
+
+class Button:
+    """Lantern-like rectangular button with hover and click glow."""
+    def __init__(self, x, y, w, h, text, font, surf, color=(200, 0, 0)):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
         self.text = text
-        self.clicked = clicked
+        self.font = font
         self.surf = surf
-        self.radius = radius
+        self.color = color
+        self.clicked = False
 
     def draw(self):
-        """Draw button and handle click states."""
-        circle = pygame.draw.circle(self.surf, (45, 89, 135), (self.x, self.y), self.radius)
         mouse_pos = pygame.mouse.get_pos()
-        pressed = pygame.mouse.get_pressed()
+        mouse_pressed = pygame.mouse.get_pressed()
 
-        if circle.collidepoint(mouse_pos):
-            color = (190, 35, 35) if pressed[0] else (190, 89, 135)
-            pygame.draw.circle(self.surf, color, (self.x, self.y), self.radius)
-            if pressed[0]:
+        # Base button rectangle
+        button_rect = pygame.Rect(self.x, self.y, self.w, self.h)
+
+        # Determine outline color
+        outline_color = "black"
+        if button_rect.collidepoint(mouse_pos):
+            if mouse_pressed[0]:  # Clicked
+                outline_color = "white"
                 self.clicked = True
+            else:  # Hover
+                outline_color = "yellow"
+        else:
+            self.clicked = False
 
-        pygame.draw.circle(self.surf, 'white', (self.x, self.y), self.radius, 3)
-        self.surf.blit(pause_font.render(self.text, True, 'white'), (self.x - 15, self.y - 25))
+        # Draw outline (glow)
+        pygame.draw.rect(self.surf, outline_color, button_rect.inflate(8, 8), border_radius=12)
+
+        # Draw main red body
+        pygame.draw.rect(self.surf, self.color, button_rect, border_radius=10)
+
+        # Draw black border
+        pygame.draw.rect(self.surf, "black", button_rect, width=3, border_radius=10)
+
+        # Render centered text
+        text_surf = self.font.render(self.text, True, "white")
+        text_rect = text_surf.get_rect(center=button_rect.center)
+        self.surf.blit(text_surf, text_rect)
+
+        return self.clicked
 
 # ============================================================
 #  Drawing Functions
@@ -193,12 +274,12 @@ def draw_screen():
     screen.blit(header_font.render(f'"{active_string}"', True, 'white'), (270, HEIGHT - 75))
 
     # Pause button
-    pause_btn = Button(748, HEIGHT - 52, 'II', False, screen)
+    pause_btn = Button(740, HEIGHT - 80, 60, 60, "II", header_font, screen)
     pause_btn.draw()
 
-    screen.blit(banner_font.render(f'点数: {score}', True, 'black'), (250, 10))
-    screen.blit(banner_font.render(f'最高点: {high_score}', True, 'black'), (550, 10))
-    screen.blit(banner_font.render(f'命: {lives}', True, 'black'), (10, 10))
+    screen.blit(banner_font.render(f'点数: {score}', True, 'white'), (250, 10))
+    screen.blit(banner_font.render(f'最高点: {high_score}', True, 'white'), (550, 10))
+    screen.blit(banner_font.render(f'命: {lives}', True, 'white'), (10, 10))
 
     return pause_btn.clicked
 
@@ -220,36 +301,47 @@ def draw_pause():
     pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h], 8, border_radius=20)
 
     # Title
-    title = header_font.render("⛩ メニュー ⛩", True, (255, 220, 180))
+    title = header_font.render("メニュー", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 30))
 
     # Buttons (lantern-style)
-    resume_btn = Button(WIDTH // 2 - 150, box_y + box_h * 0.4, '▶', False, surface)
-    quit_btn   = Button(WIDTH // 2 + 150, box_y + box_h * 0.4, '✖', False, surface)
+    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, "▶", header_font, surface)
+    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "✖", header_font, surface)
     resume_btn.draw()
     quit_btn.draw()
 
-    # Labels
-    play_label = notosans.render("再開 (Resume)", True, (255, 230, 200))
-    quit_label = notosans.render("やめる (Quit)", True, (255, 230, 200))
-    surface.blit(play_label, (WIDTH // 2 - 220, box_y + box_h * 0.55))
-    surface.blit(quit_label, (WIDTH // 2 + 70, box_y + box_h * 0.55))
+    # Labels — automatically centered below buttons
+    play_label = notosans.render("Resume", True, (255, 230, 200))
+    quit_label = notosans.render("Quit", True, (255, 230, 200))
+
+    # === key trick: get_rect(center=...) ===
+    play_rect = play_label.get_rect(center=(resume_btn.x + resume_btn.w / 2,
+                                            resume_btn.y + resume_btn.h + 25))
+    quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2,
+                                            quit_btn.y + quit_btn.h + 25))
+
+    surface.blit(play_label, play_rect)
+    surface.blit(quit_label, quit_rect)
 
     # Level selector section
-    surface.blit(header_font.render("レベルを選んでください:", True, (255, 220, 180)),
-                 (WIDTH // 2 - 200, box_y + box_h * 0.68))
+    level_label = pause_font.render("レベルを選んでください:", True, (255, 220, 180))
+    level_rect = level_label.get_rect(center=(WIDTH // 2, quit_rect.bottom + 60))
+    surface.blit(level_label, level_rect)
 
+    # Level buttons
     temp_choices = copy.deepcopy(choices)
     spacing = 100
     base_x = WIDTH // 2 - ((len(choices) - 1) * spacing) // 2
     for i in range(len(choices)):
         btn_x = base_x + i * spacing
-        btn = Button(btn_x, int(box_y + box_h * 0.85), f"N{5 - i}", False, surface, 45)
-        btn.draw()
-        if btn.clicked:
+        btn_y = level_rect.bottom + 40
+        btn = Button(btn_x - 40, btn_y, 80, 80, f"N{5 - i}", pause_font, surface)
+        if btn.draw():
             temp_choices[i] = not temp_choices[i]
+
         if choices[i]:
-            pygame.draw.circle(surface, (255, 100, 100), (btn_x, int(box_y + box_h * 0.85)), 45, 5)
+            pygame.draw.rect(surface, "yellow",
+                            (btn_x - 42, btn_y - 2, 84, 84), 5, border_radius=12)
 
     screen.blit(surface, (0, 0))
     return resume_btn.clicked, temp_choices, quit_btn.clicked
@@ -268,11 +360,12 @@ def draw_result():
     box_x, box_y = (WIDTH - box_w) // 2, (HEIGHT - box_h) // 2
 
     # Wooden-style background
-    pygame.draw.rect(surface, (90, 45, 25, 240), [box_x, box_y, box_w, box_h], border_radius=25)
-    pygame.draw.rect(surface, (255, 80, 80), [box_x, box_y, box_w, box_h], 8, border_radius=25)
+    pygame.draw.rect(surface, (80, 40, 20, 230), [box_x, box_y, box_w, box_h], border_radius=20)
+    pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h], 8, border_radius=20)
+
 
     # Header
-    title = header_font.render("🎆 ゲームオーバー 🎆", True, (255, 220, 180))
+    title = header_font.render("ゲームオーバー", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 40))
 
     # Scores
@@ -291,19 +384,25 @@ def draw_result():
         y += 35
 
     # Buttons
-    play_btn = Button(WIDTH // 2 - 120, int(box_y + box_h - 80), '▶', False, surface)
-    quit_btn = Button(WIDTH // 2 + 120, int(box_y + box_h - 80), '✖', False, surface)
+    play_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.8), 80, 80, ">", header_font, surface)
+    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.8), 80, 80, "X", header_font, surface)
     play_btn.draw()
     quit_btn.draw()
 
-    surface.blit(notosans.render("もう一度 (Play Again)", True, (255, 240, 210)),
-                 (WIDTH // 2 - 250, int(box_y + box_h - 150)))
-    surface.blit(notosans.render("やめる (Quit)", True, (255, 240, 210)),
-                 (WIDTH // 2 + 40, int(box_y + box_h - 150)))
+    play_label = notosans.render("Play Again", True, (255, 230, 200))
+    quit_label = notosans.render("Quit", True, (255, 230, 200))
+
+    # === key trick: get_rect(center=...) ===
+    play_rect = play_label.get_rect(center=(play_btn.x + play_btn.w / 2,
+                                            play_btn.y + play_btn.h + 25))
+    quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2,
+                                            quit_btn.y + quit_btn.h + 25))
+
+    surface.blit(play_label, play_rect)
+    surface.blit(quit_label, quit_rect)
 
     screen.blit(surface, (0, 0))
     return play_btn.clicked, quit_btn.clicked
-
 
 # ============================================================
 #  Game Logic Functions
@@ -311,12 +410,13 @@ def draw_result():
 
 def check_answer(current_score):
     """Check typed word, update score and handle level-ups."""
-    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval
-
+    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives
+    solved_word = None
     for wrd in word_objects[:]:
         if wrd.romaji == submit:
             points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
             current_score += int(points)
+            solved_word = wrd
             word_objects.remove(wrd)
             success.play()
             words_typed += 1
@@ -324,13 +424,14 @@ def check_answer(current_score):
             # Level-up after every 10 correct words
             if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
                 level += 1
+                lives += 1
                 new_level = True
                 show_levelup = True
                 level_up_time = time.time()
                 spawn_interval = max(0.8, spawn_interval - 0.2)
                 if max_active_words < 5:
                     max_active_words += 1
-    return current_score
+    return current_score, solved_word
 
 
 def generate_word():
@@ -357,16 +458,46 @@ def check_high_score():
         with open('high.txt', 'w') as f:
             f.write(str(high_score))
 
+def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown, pos_x, pos_y):
+    frame = 0
+    current_time = pygame.time.get_ticks()
+    if (current_time -last_update) >= animation_cooldown:
+        frame += 1
+        last_update = current_time
+        if frame >= len(animation_list):
+            return
+    #show frame image
+
+    screen.blit(animation_list[frame], (pos_x,pos_y))
+# ============================================================
+#  Sprites
+# ============================================================
+
+
 # ============================================================
 #  Main Game Loop
 # ============================================================
+sprite_sheet_image = pygame.image.load('assets/pictures/fireworks/Explosion_Crystals_Blue-sheet.png').convert_alpha()
+sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
+
+BG = (50, 50, 50)
+BLACK = (0, 0, 0)
+
+
+animation_list = []
+animation_steps = 100
+animation_cooldown = 10
+
+for x in range(animation_steps):
+	animation_list.append(sprite_sheet.get_image(x,88,86,3,'black'))
 
 run = True
 while run:
-    screen.fill('gray')
+    screen.fill('navy')
     timer.tick(FPS)
 
     pause_btn = draw_screen()
+  
 
     # ----- Pause Menu -----
     if paused:
@@ -397,10 +528,14 @@ while run:
     # ----- Input Checking -----
     if submit:
         old_score = score
-        score = check_answer(score)
+        score, solved = check_answer(score)
         submit = ''
-        if old_score == score:
+        if solved is None:
             wrong.play()
+        else:
+            active_fireworks.append(
+            Firework(animation_list, animation_cooldown, solved.x_pos-90, solved.y_pos-50)
+    )
 
     # ----- Events -----
     for event in pygame.event.get():
@@ -435,7 +570,7 @@ while run:
         check_high_score()
         game_over = True
         while game_over:
-            screen.fill('gray')
+            screen.fill('navy')
             play_again, quit_now = draw_result()
             pygame.display.flip()
 
@@ -461,6 +596,11 @@ while run:
             screen.blit(msg, (WIDTH // 2 - 150, HEIGHT // 2 - 50))
         else:
             show_levelup = False
+
+    for fw in active_fireworks[:]:
+        fw.update(screen)
+        if fw.finished:
+            active_fireworks.remove(fw)
 
     pygame.display.flip()
 
