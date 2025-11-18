@@ -98,7 +98,7 @@ letters = list('abcdefghijklmnopqrstuvwxyz')
 level_up_time = 0
 show_levelup = False
 missed_words = []
-WORDS_PER_LEVEL = 10
+WORDS_PER_LEVEL = 2
 words_typed = 0
 max_active_words = 1
 spawn_interval = 3
@@ -106,6 +106,9 @@ last_spawn_time = time.time()
 active_fireworks = []
 tiles = math.ceil(screen_width/bg_width)+1
 scroll = 0
+scroll_offset = 0
+SCROLL_SPEED = 30
+max_scroll =0 
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -309,8 +312,8 @@ def draw_pause():
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 30))
 
     # Buttons (lantern-style)
-    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, "▶", header_font, surface)
-    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "✖", header_font, surface)
+    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, ">", header_font, surface)
+    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "X", header_font, surface)
     resume_btn.draw()
     quit_btn.draw()
 
@@ -354,7 +357,7 @@ def draw_pause():
 
 def draw_result():
     """Draws Matsuri-themed result (game-over) screen, centered and flexible."""
-    global missed_words, score, high_score
+    global missed_words, score, high_score, scroll_offset, max_scroll
 
     surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
     pygame.draw.rect(surface, (0, 0, 0, 180), [0, 0, WIDTH, HEIGHT])
@@ -367,46 +370,70 @@ def draw_result():
     pygame.draw.rect(surface, (80, 40, 20, 230), [box_x, box_y, box_w, box_h], border_radius=20)
     pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h], 8, border_radius=20)
 
-
     # Header
     title = header_font.render("ゲームオーバー", True, (255, 220, 180))
-    surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 40))
+    surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 20))
 
     # Scores
     surface.blit(banner_font.render(f"スコア: {score}", True, (255, 240, 210)),
-                 (WIDTH // 2 - 80, box_y + 120))
+                 (WIDTH // 2 - 80, box_y + 80))
     surface.blit(banner_font.render(f"最高点: {high_score}", True, (255, 240, 210)),
-                 (WIDTH // 2 - 100, box_y + 160))
+                 (WIDTH // 2 - 100, box_y + 120))
 
-    # Missed words section
-    y = box_y + 220
-    surface.blit(banner_font.render("打てなかった言葉:", True, (255, 220, 200)), (box_x + 60, y))
-    y += 40
-    for i, word in enumerate(missed_words[-6:]):
+    # Scrollable missed words area (compute reliably)
+    list_x = box_x + 40
+    list_y = box_y + 160
+    list_w = box_w - 80
+
+    # Make list_h flexible but never too small
+    min_list_h = 120
+    list_h = max(min_list_h, box_h - 320)   # ensure a sensible minimum
+
+    # Label
+    label = banner_font.render("Missed words:", True, (255,220,200))
+    surface.blit(label, (list_x, list_y))
+
+    # Render list items into a taller surface (height at least list_h)
+    line_height = 36
+    content_h = max(list_h, len(missed_words) * line_height)
+    list_surface = pygame.Surface((int(list_w), int(content_h)), pygame.SRCALPHA)
+    list_surface.fill((0,0,0,0))  # transparent
+
+    y_offset = 0
+    for i, word in enumerate(missed_words):
         entry = f"{i+1}. {word['kanji']} ({word['reading']}) - {word['meaning']}"
-        surface.blit(notosans.render(entry, True, (255, 230, 230)), (box_x + 70, y))
-        y += 35
+        txt = notosans.render(entry, True, (255,230,230))
+        list_surface.blit(txt, (8, y_offset))
+        y_offset += line_height
 
-    # Buttons
-    play_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.8), 80, 80, ">", header_font, surface)
-    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.8), 80, 80, "X", header_font, surface)
-    play_btn.draw()
-    quit_btn.draw()
+    # clamp scroll_offset
+    max_scroll = max(0, content_h - list_h)
+    scroll_offset = max(0, min(scroll_offset, max_scroll))
 
+    # Blit visible part
+    surface.blit(list_surface, (list_x, list_y + 30), pygame.Rect(0, scroll_offset, list_w, list_h))
+
+    # Buttons (position relative to box_y)
+    btn_size = int(min(WIDTH * 0.12, 100))  # keep buttons reasonable
+    btn_y = int(box_y + box_h - btn_size - 25)   # use box_y (was bug: box_x)
+    play_btn = Button(int(WIDTH // 2 - btn_size - 20), btn_y, btn_size, btn_size, ">", header_font, surface)
+    quit_btn = Button(int(WIDTH // 2 + 20), btn_y, btn_size, btn_size, "X", header_font, surface)
+    play_clicked = play_btn.draw()
+    quit_clicked = quit_btn.draw()
+
+    # Button labels
     play_label = notosans.render("Play Again", True, (255, 230, 200))
-    quit_label = notosans.render("Quit", True, (255, 230, 200))
-
-    # === key trick: get_rect(center=...) ===
-    play_rect = play_label.get_rect(center=(play_btn.x + play_btn.w / 2,
-                                            play_btn.y + play_btn.h + 25))
-    quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2,
-                                            quit_btn.y + quit_btn.h + 25))
-
+    play_rect = play_label.get_rect(center=(play_btn.x + play_btn.w / 2, play_btn.y + play_btn.h + 22))
     surface.blit(play_label, play_rect)
+
+    quit_label = notosans.render("Quit", True, (255, 230, 200))
+    quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2, quit_btn.y + quit_btn.h + 22))
     surface.blit(quit_label, quit_rect)
 
+    # Draw composed surface to screen
     screen.blit(surface, (0, 0))
-    return play_btn.clicked, quit_btn.clicked
+    return play_clicked, quit_clicked
+
 
 # ============================================================
 #  Game Logic Functions
@@ -573,6 +600,8 @@ while run:
             words = load_selected_words(choices)
             print(f"{len(words)} words loaded from selected levels.")
 
+       
+
     if pause_btn:
         paused = True
 
@@ -588,6 +617,19 @@ while run:
             for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                     run, game_over = False, False
+
+                # modern wheel (mouse wheel / touchpad)
+                elif e.type == pygame.MOUSEWHEEL:
+                    # e.y: +1 = wheel up, -1 = wheel down (most systems)
+                    scroll_offset = max(0, min(scroll_offset - e.y * 30, max_scroll))
+
+                # older event types on some platforms (mouse buttons 4/5)
+                elif e.type == pygame.MOUSEBUTTONDOWN:
+                    if e.button == 4:   # wheel up
+                        scroll_offset = max(0, min(scroll_offset - 30, max_scroll))
+                    elif e.button == 5: # wheel down
+                        scroll_offset = max(0, min(scroll_offset + 30, max_scroll))
+
                 elif e.type == pygame.MOUSEBUTTONUP:
                     if play_again:
                         missed_words.clear()
@@ -596,6 +638,7 @@ while run:
                         paused, game_over = True, False
                     elif quit_now:
                         run, game_over = False, False
+
 
     # ----- Level-Up Message -----
     if show_levelup:
