@@ -17,8 +17,8 @@ pygame.init()
 
 def load_selected_words(level_choices):
     """Load vocabulary lists based on selected JLPT levels."""
-    
-    level_map = {0: "N5", 1: "N4", 2: "N3", 3: "N2", 4: "N1"}
+    loaded_words = []
+    level_map = {0: "HSK1", 1: "HSK2", 2: "HSK3", 3: "HSK4", 4: "HSK5"}
 
     for i, chosen in enumerate(level_choices):
         if chosen:
@@ -60,11 +60,10 @@ FPS = 60
 #  Load Fonts & Sounds
 # ============================================================
 
-header_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 50)
-pause_font = pygame.font.Font('assets/fonts/notosans.ttf', 38)
-banner_font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 28)
-font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 32)
-romaji_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
+header_font = pygame.font.Font('assets/fonts/hanzi.ttf', 50)
+banner_font = pygame.font.Font('assets/fonts/hanzi.ttf', 28)
+hanzi_font = pygame.font.Font('assets/fonts/hanzi.ttf', 32)
+reading_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
 notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
 
 pygame.mixer.init()
@@ -81,14 +80,11 @@ success.set_volume(0.6)
 wrong.set_volume(0.3)
 
 bg = pygame.image.load("assets/pictures/bgnq.png").convert()
-heart = pygame.image.load("assets/pictures/heart32x32.png").convert_alpha()
 bg_width = bg.get_width()
-freeze_potion_pic = pygame.image.load("assets/pictures/freeze_potion.png").convert_alpha()
-freeze_potion_pic = pygame.transform.scale(freeze_potion_pic, (48, 48))
 # ============================================================
 #  Global Variables
 # ============================================================
-loaded_words = []
+
 level = 1
 active_string = ""
 score = 0
@@ -101,7 +97,7 @@ letters = list('abcdefghijklmnopqrstuvwxyz')
 level_up_time = 0
 show_levelup = False
 missed_words = []
-WORDS_PER_LEVEL = 5
+WORDS_PER_LEVEL = 10
 words_typed = 0
 max_active_words = 1
 spawn_interval = 3
@@ -112,10 +108,6 @@ scroll = 0
 scroll_offset = 0
 SCROLL_SPEED = 30
 max_scroll =0 
-
-#potions
-freeze_potion = 3
-
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -162,10 +154,9 @@ with open('high.txt', 'r') as f:
 
 class Word:
     """Represents a falling Japanese word."""
-    def __init__(self, kanji, speed, y_pos, x_pos, kana, romaji, meaning, nlevel):
-        self.kanji = kanji
-        self.kana = kana
-        self.romaji = romaji
+    def __init__(self, hanzi, speed, y_pos, x_pos, reading, meaning, nlevel):
+        self.hanzi = hanzi
+        self.reading = reading
         self.meaning = meaning
         self.nlevel = nlevel
         self.speed = speed
@@ -173,42 +164,23 @@ class Word:
         self.y_pos = y_pos
         self.spawn_time = time.time()
 
-        # freeze-related attributes
-        self.frozen = False
-        self.frozen_until = 0.0
-        self.saved_speed = None
-
     def draw(self):
-        # If frozen, render ice-blue; otherwise white (or green when matched)
-        if self.frozen and time.time() < self.frozen_until:
-            color = (180, 220, 255)  # ice-blue
-            romaji_color = (120, 200, 255)
-        else:
-            color = 'white'
-            romaji_color = 'red'
+        """Render the word and highlight correct partial input."""
+        elapsed = time.time() - self.spawn_time
+        slide_distance = max(0, 100 - elapsed * 200)
+        x_draw = self.x_pos + slide_distance
 
-        screen.blit(font.render(self.kanji, True, color), (self.x_pos, self.y_pos))
+        color = 'white'
+        screen.blit(hanzi_font.render(self.hanzi, True, color), (x_draw, self.y_pos))
 
-        # Highlight typed romaji
+        # Highlight typed reading
         act_len = len(active_string)
-        if active_string == self.romaji[:act_len] and active_string:
-            screen.blit(romaji_font.render(active_string, True, romaji_color), (self.x_pos, self.y_pos + 60))
-            screen.blit(font.render(self.kanji, True, 'green'), (self.x_pos, self.y_pos))
-
+        if active_string == self.reading[:act_len] and active_string:
+            screen.blit(reading_font.render(active_string, True, 'red'), (x_draw, self.y_pos + 60))
+            screen.blit(hanzi_font.render(self.hanzi, True, 'green'), (x_draw, self.y_pos))
 
     def update(self):
         """Move word leftward each frame."""
-        if self.frozen:
-            if time.time() >= self.frozen_until:
-                # unfreeze
-                self.frozen = False
-                if self.saved_speed is not None:
-                    self.speed = self.saved_speed
-                    self.saved_speed = None
-            else:
-                # still frozen → don't move
-                return
-
         self.x_pos -= self.speed
 
 class Firework:
@@ -303,28 +275,18 @@ def draw_screen():
     pygame.draw.rect(screen, 'black', [0, 0, WIDTH, HEIGHT], 2)
 
     # Status Text
-    screen.blit(header_font.render(f'レベル: {level}', True, 'white'), (10, HEIGHT - 85))
+    screen.blit(header_font.render(f'LEVEL: {level}', True, 'white'), (10, HEIGHT - 85))
     screen.blit(header_font.render(f'"{active_string}"', True, 'white'), (270, HEIGHT - 75))
 
     # Pause button
     pause_btn = Button(740, HEIGHT - 80, 60, 60, "II", header_font, screen)
     pause_btn.draw()
 
-    screen.blit(banner_font.render(f'点数: {score}', True, 'white'), (250, 10))
-    screen.blit(banner_font.render(f'最高点: {high_score}', True, 'white'), (550, 10))
-    screen.blit(banner_font.render(f'  x{lives}', True, 'white'), (20, 5))
-    screen.blit(heart, (10, 10))
-
-    # Freeze potion icon + count
-    potion_x = 800
-    potion_y = HEIGHT - 100
-    screen.blit(freeze_potion_pic, (potion_x, potion_y))
-    # show count
-    count_text = banner_font.render(f"x{freeze_potion}", True, 'white')
-    screen.blit(count_text, (potion_x + freeze_potion_pic.get_width() + 8, potion_y + 8))
+    screen.blit(banner_font.render(f'SCORE: {score}', True, 'white'), (250, 10))
+    screen.blit(banner_font.render(f'HIGHSCORE: {high_score}', True, 'white'), (550, 10))
+    screen.blit(banner_font.render(f'LIVES: {lives}', True, 'white'), (10, 10))
 
     return pause_btn.clicked
-
 
 
 def draw_pause():
@@ -367,7 +329,7 @@ def draw_pause():
     surface.blit(quit_label, quit_rect)
 
     # Level selector section
-    level_label = pause_font.render("レベルを選んでください:", True, (255, 220, 180))
+    level_label = hanzi_font.render("Choose Level:", True, (255, 220, 180))
     level_rect = level_label.get_rect(center=(WIDTH // 2, quit_rect.bottom + 60))
     surface.blit(level_label, level_rect)
 
@@ -378,7 +340,7 @@ def draw_pause():
     for i in range(len(choices)):
         btn_x = base_x + i * spacing
         btn_y = level_rect.bottom + 40
-        btn = Button(btn_x - 40, btn_y, 80, 80, f"N{5 - i}", pause_font, surface)
+        btn = Button(btn_x - 40, btn_y, 80, 80, f"HSK{i+1}", hanzi_font, surface)
         if btn.draw():
             temp_choices[i] = not temp_choices[i]
 
@@ -407,13 +369,13 @@ def draw_result():
     pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h+20], 8, border_radius=20)
 
     # Header
-    title = header_font.render("ゲームオーバー", True, (255, 220, 180))
+    title = header_font.render("Game Over", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 20))
 
     # Scores
-    surface.blit(banner_font.render(f"スコア: {score}", True, (255, 240, 210)),
+    surface.blit(hanzi_font.render(f"Score: {score}", True, (255, 240, 210)),
                  (WIDTH // 2 - 80, box_y + 80))
-    surface.blit(banner_font.render(f"最高点: {high_score}", True, (255, 240, 210)),
+    surface.blit(hanzi_font.render(f"最高点: {high_score}", True, (255, 240, 210)),
                  (WIDTH // 2 - 100, box_y + 120))
 
     # Scrollable missed words area (compute reliably)
@@ -426,7 +388,7 @@ def draw_result():
     list_h = max(min_list_h, box_h - 320)   # ensure a sensible minimum
 
     # Label
-    label = banner_font.render("Missed words:", True, (255,220,200))
+    label = hanzi_font.render("Missed words:", True, (255,220,200))
     surface.blit(label, (list_x, list_y))
 
     # Render list items into a taller surface (height at least list_h)
@@ -437,8 +399,8 @@ def draw_result():
 
     y_offset = 0
     for i, word in enumerate(missed_words):
-        entry = f"{i+1}. {word['kanji']} ({word['reading']}) - {word['meaning']}"
-        txt = notosans.render(entry, True, (255,230,230))
+        entry = f"{i+1}. {word['hanzi']} ({word['reading']}) - {word['meaning']}"
+        txt = hanzi_font.render(entry, True, (255,230,230))
         list_surface.blit(txt, (8, y_offset))
         y_offset += line_height
 
@@ -475,32 +437,47 @@ def draw_result():
 #  Game Logic Functions
 # ============================================================
 
+# ---------------------------
+# check_answer (returns solved_word or None)
+# ---------------------------
 def check_answer(current_score):
     """Check typed word, update score and handle level-ups."""
-    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives
+    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval,lives
+
     solved_word = None
+
     for wrd in word_objects[:]:
-        if wrd.romaji == submit:
-            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
+        # compare typed reading (romaji/reading) with the target reading
+        # active submission variable is `submit` in your game
+        if wrd.reading and wrd.reading == submit:
+            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.reading) / 4)
             current_score += int(points)
+
             solved_word = wrd
-            word_objects.remove(wrd)
-            if wrd in loaded_words:
-                loaded_words.remove(wrd)
+            # remove right away to prevent double-hit
+            try:
+                word_objects.remove(wrd)
+            except ValueError:
+                pass
+
             success.play()
             words_typed += 1
 
-            # Level-up after every 10 correct words
+            # Level-up after every WORDS_PER_LEVEL correct words
             if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
                 level += 1
-                lives += 1
+                lives+=1
                 new_level = True
                 show_levelup = True
                 level_up_time = time.time()
                 spawn_interval = max(0.8, spawn_interval - 0.2)
                 if max_active_words < 5:
                     max_active_words += 1
+
+            break  # stop searching after correct word found
+
     return current_score, solved_word
+
 
 
 def generate_word():
@@ -508,15 +485,15 @@ def generate_word():
     global words
 
     if not words:
-        with open("assets/data/N5.json", encoding="utf-8") as f:
+        with open("assets/data/HSK4.json", encoding="utf-8") as f:
             words = json.load(f)
             print("⚠️ Defaulted to N5.json")
 
     data = random.choice(words)
     y = random.randint(80, HEIGHT - 200)
-    speed = random.uniform(2.0 + (level - 1) * 0.4 - 0.3, 2.0 + (level - 1) * 0.4 + 0.5)
+    speed = random.uniform(2.0 + (level - 1) * 0.2 - 0.3, 2.0 + (level - 1) * 0.2 + 0.5)
     x = WIDTH + random.randint(0, 100)
-    return Word(data["kanji"], speed, y, x, data["reading"], data["romaji"], data["meaning"], data.get("level", "5"))
+    return Word(data["hanzi"], speed, y, x, data["reading"], data["meaning"], data.get("level", "5"))
 
 
 def check_high_score():
@@ -598,42 +575,25 @@ while run:
             w.update()
         if w.x_pos < -200:
             word_objects.remove(w)
-            missed_words.append({"kanji": w.kanji, "reading": w.kana, "meaning": w.meaning})
+            # ensure keys are consistent for missed_words list
+            missed_words.append({
+                "hanzi": getattr(w, "hanzi", getattr(w, "kanji", "")),
+                "reading": getattr(w, "reading", getattr(w, "romaji", "")),
+                "meaning": getattr(w, "meaning", "")
+            })
             lives -= 1
 
     # ----- Input Checking -----
     if submit:
-        # special power: freeze when player types "ice"
-        if submit.lower() == "ice":
-            if freeze_potion > 0:
-                freeze_duration = 5.0  # seconds the words stay frozen
-                now = time.time()
-                for w in word_objects:
-                    # don't double-apply (refresh timer if already frozen)
-                    if not getattr(w, "frozen", False):
-                        w.saved_speed = w.speed
-                        w.speed = 0
-                    w.frozen = True
-                    w.frozen_until = now + freeze_duration
-
-                freeze_potion -= 1
-                # optional: play a sound to indicate potion used (reuse click/success/wrong or add new)
-                success.play()
-            else:
-                # give feedback: no potion
-                wrong.play()
-            submit = ''
+        old_score = score
+        score, solved = check_answer(score)
+        submit = ''
+        if solved is None:
+            wrong.play()
         else:
-            old_score = score
-            score, solved = check_answer(score)
-            submit = ''
-            if solved is None:
-                wrong.play()
-            else:
-                active_fireworks.append(
-                    Firework(animation_list, animation_cooldown, solved.x_pos-90, solved.y_pos-50)
-                )
-
+            active_fireworks.append(
+            Firework(animation_list, animation_cooldown, solved.x_pos-90, solved.y_pos-50)
+    )
 
     # ----- Events -----
     for event in pygame.event.get():

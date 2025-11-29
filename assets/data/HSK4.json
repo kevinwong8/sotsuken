@@ -1,0 +1,1544 @@
+[
+  {
+    "id": 1,
+    "hanzi": "爱情",
+    "reading": "aiqing",
+    "meaning": "love (romantic)"
+  },
+  {
+    "id": 2,
+    "hanzi": "安排",
+    "reading": "anpai",
+    "meaning": "arrangement"
+  },
+  {
+    "id": 3,
+    "hanzi": "安全",
+    "reading": "anquan",
+    "meaning": "safety"
+  },
+  {
+    "id": 4,
+    "hanzi": "包子",
+    "reading": "baozi",
+    "meaning": "steamed (stuffed) bun"
+  },
+  {
+    "id": 5,
+    "hanzi": "表格",
+    "reading": "biaoge",
+    "meaning": "form, table"
+  },
+  {
+    "id": 6,
+    "hanzi": "表演",
+    "reading": "biaoyan",
+    "meaning": "play; show; performance; exhibition; to perform; to act; to demonstrate"
+  },
+  {
+    "id": 7,
+    "hanzi": "标准",
+    "reading": "biaozhun",
+    "meaning": "standard"
+  },
+  {
+    "id": 8,
+    "hanzi": "饼干",
+    "reading": "binggan",
+    "meaning": "cracker, cookie"
+  },
+  {
+    "id": 9,
+    "hanzi": "博士",
+    "reading": "boshi",
+    "meaning": "Ph.D. (degree); doctor"
+  },
+  {
+    "id": 10,
+    "hanzi": "部分",
+    "reading": "bufen",
+    "meaning": "part, section"
+  },
+  {
+    "id": 11,
+    "hanzi": "材料",
+    "reading": "cailiao",
+    "meaning": "material"
+  },
+  {
+    "id": 12,
+    "hanzi": "餐厅",
+    "reading": "canting",
+    "meaning": "restaurant"
+  },
+  {
+    "id": 13,
+    "hanzi": "厕所",
+    "reading": "cesuo",
+    "meaning": "toilet, restroom"
+  },
+  {
+    "id": 14,
+    "hanzi": "长城",
+    "reading": "Changcheng",
+    "meaning": "the Great Wall of China"
+  },
+  {
+    "id": 15,
+    "hanzi": "长江",
+    "reading": "Chang Jiang",
+    "meaning": "the Yangtze River"
+  },
+  {
+    "id": 16,
+    "hanzi": "成功",
+    "reading": "chenggong",
+    "meaning": "success"
+  },
+  {
+    "id": 17,
+    "hanzi": "窗户",
+    "reading": "chuanghu",
+    "meaning": "window"
+  },
+  {
+    "id": 18,
+    "hanzi": "厨房",
+    "reading": "chufang",
+    "meaning": "kitchen"
+  },
+  {
+    "id": 19,
+    "hanzi": "词语",
+    "reading": "ciyu",
+    "meaning": "word, expression"
+  },
+  {
+    "id": 20,
+    "hanzi": "错误",
+    "reading": "cuowu",
+    "meaning": "error, mistake; mistaken"
+  },
+  {
+    "id": 21,
+    "hanzi": "答案",
+    "reading": "daan",
+    "meaning": "answer"
+  },
+  {
+    "id": 22,
+    "hanzi": "大夫",
+    "reading": "daifu",
+    "meaning": "doctor"
+  },
+  {
+    "id": 23,
+    "hanzi": "当时",
+    "reading": "dangshi",
+    "meaning": "at that time"
+  },
+  {
+    "id": 24,
+    "hanzi": "刀",
+    "reading": "dao",
+    "meaning": "knife"
+  },
+  {
+    "id": 25,
+    "hanzi": "导游",
+    "reading": "daoyou",
+    "meaning": "tour guide"
+  },
+  {
+    "id": 26,
+    "hanzi": "大使馆",
+    "reading": "dashiguan",
+    "meaning": "embassy"
+  },
+  {
+    "id": 27,
+    "hanzi": "登机牌",
+    "reading": "dengjipai",
+    "meaning": "boarding pass"
+  },
+  {
+    "id": 28,
+    "hanzi": "底",
+    "reading": "di",
+    "meaning": "bottom, base"
+  },
+  {
+    "id": 29,
+    "hanzi": "调查",
+    "reading": "diaocha",
+    "meaning": "survey"
+  },
+  {
+    "id": 30,
+    "hanzi": "地点",
+    "reading": "didian",
+    "meaning": "site, location"
+  },
+  {
+    "id": 31,
+    "hanzi": "地球",
+    "reading": "diqiu",
+    "meaning": "the Earth"
+  },
+  {
+    "id": 32,
+    "hanzi": "地址",
+    "reading": "dizhi",
+    "meaning": "address"
+  },
+  {
+    "id": 33,
+    "hanzi": "动作",
+    "reading": "dongzuo",
+    "meaning": "movement"
+  },
+  {
+    "id": 34,
+    "hanzi": "短信",
+    "reading": "duanxin",
+    "meaning": "text message"
+  },
+  {
+    "id": 35,
+    "hanzi": "对话",
+    "reading": "duihua",
+    "meaning": "dialog"
+  },
+  {
+    "id": 36,
+    "hanzi": "对面",
+    "reading": "duimian",
+    "meaning": "opposite to, across from"
+  },
+  {
+    "id": 37,
+    "hanzi": "肚子",
+    "reading": "duzi",
+    "meaning": "belly, abdomen"
+  },
+  {
+    "id": 38,
+    "hanzi": "儿童",
+    "reading": "ertong",
+    "meaning": "children"
+  },
+  {
+    "id": 39,
+    "hanzi": "法律",
+    "reading": "falv",
+    "meaning": "law"
+  },
+  {
+    "id": 40,
+    "hanzi": "房东",
+    "reading": "fangdong",
+    "meaning": "landlord"
+  },
+  {
+    "id": 41,
+    "hanzi": "方法",
+    "reading": "fangfa",
+    "meaning": "method"
+  },
+  {
+    "id": 42,
+    "hanzi": "方面",
+    "reading": "fangmian",
+    "meaning": "aspect"
+  },
+  {
+    "id": 43,
+    "hanzi": "方向",
+    "reading": "fangxiang",
+    "meaning": "direction"
+  },
+  {
+    "id": 44,
+    "hanzi": "翻译",
+    "reading": "fanyi",
+    "meaning": "translation, translator"
+  },
+  {
+    "id": 45,
+    "hanzi": "付款",
+    "reading": "fukuan",
+    "meaning": "payment"
+  },
+  {
+    "id": 46,
+    "hanzi": "父亲",
+    "reading": "fuqin",
+    "meaning": "father"
+  },
+  {
+    "id": 47,
+    "hanzi": "感觉",
+    "reading": "ganjue",
+    "meaning": "sense perception; sensation, feeling"
+  },
+  {
+    "id": 48,
+    "hanzi": "感情",
+    "reading": "ganqing",
+    "meaning": "deep affection for sb or sth; relationship (i.e. love affair)"
+  },
+  {
+    "id": 49,
+    "hanzi": "高速公路",
+    "reading": "gaosugonglu",
+    "meaning": "expressway"
+  },
+  {
+    "id": 50,
+    "hanzi": "胳膊",
+    "reading": "gebo",
+    "meaning": "arm"
+  },
+  {
+    "id": 51,
+    "hanzi": "功夫",
+    "reading": "gongfu",
+    "meaning": "kung fu; effort"
+  },
+  {
+    "id": 52,
+    "hanzi": "工资",
+    "reading": "gongzi",
+    "meaning": "wages, pay"
+  },
+  {
+    "id": 53,
+    "hanzi": "广播",
+    "reading": "guangbo",
+    "meaning": "broadcast; to broadcast"
+  },
+  {
+    "id": 54,
+    "hanzi": "广告",
+    "reading": "guanggao",
+    "meaning": "advertisement"
+  },
+  {
+    "id": 55,
+    "hanzi": "关键",
+    "reading": "guanjian",
+    "meaning": "key (issue)"
+  },
+  {
+    "id": 56,
+    "hanzi": "管理",
+    "reading": "guanli",
+    "meaning": "management"
+  },
+  {
+    "id": 57,
+    "hanzi": "观众",
+    "reading": "guanzhong",
+    "meaning": "audience (of a stage performance or visual media)"
+  },
+  {
+    "id": 58,
+    "hanzi": "规定",
+    "reading": "guiding",
+    "meaning": "regulation, rule"
+  },
+  {
+    "id": 59,
+    "hanzi": "顾客",
+    "reading": "guke",
+    "meaning": "customer"
+  },
+  {
+    "id": 60,
+    "hanzi": "鼓励",
+    "reading": "guli",
+    "meaning": "encouragement"
+  },
+  {
+    "id": 61,
+    "hanzi": "过程",
+    "reading": "guocheng",
+    "meaning": "course; process"
+  },
+  {
+    "id": 62,
+    "hanzi": "国籍",
+    "reading": "guoji",
+    "meaning": "nationality"
+  },
+  {
+    "id": 63,
+    "hanzi": "国际",
+    "reading": "guoji",
+    "meaning": "international"
+  },
+  {
+    "id": 64,
+    "hanzi": "果汁",
+    "reading": "guozhi",
+    "meaning": "fruit juice"
+  },
+  {
+    "id": 65,
+    "hanzi": "海洋",
+    "reading": "haiyang",
+    "meaning": "ocean"
+  },
+  {
+    "id": 66,
+    "hanzi": "汗",
+    "reading": "han",
+    "meaning": "sweat, perspiration"
+  },
+  {
+    "id": 67,
+    "hanzi": "航班",
+    "reading": "hangban",
+    "meaning": "flight"
+  },
+  {
+    "id": 68,
+    "hanzi": "寒假",
+    "reading": "hanjia",
+    "meaning": "winter vacation"
+  },
+  {
+    "id": 69,
+    "hanzi": "好处",
+    "reading": "haochu",
+    "meaning": "benefit"
+  },
+  {
+    "id": 70,
+    "hanzi": "号码",
+    "reading": "haoma",
+    "meaning": "number"
+  },
+  {
+    "id": 71,
+    "hanzi": "盒子",
+    "reading": "hezi",
+    "meaning": "box, case"
+  },
+  {
+    "id": 72,
+    "hanzi": "互联网",
+    "reading": "Hulianwang",
+    "meaning": "the Internet"
+  },
+  {
+    "id": 73,
+    "hanzi": "活动",
+    "reading": "huodong",
+    "meaning": "activity, event"
+  },
+  {
+    "id": 74,
+    "hanzi": "护士",
+    "reading": "hushi",
+    "meaning": "nurse"
+  },
+  {
+    "id": 75,
+    "hanzi": "价格",
+    "reading": "jiage",
+    "meaning": "price"
+  },
+  {
+    "id": 76,
+    "hanzi": "家具",
+    "reading": "jiaju",
+    "meaning": "furniture"
+  },
+  {
+    "id": 77,
+    "hanzi": "奖金",
+    "reading": "jiangjin",
+    "meaning": "bonus"
+  },
+  {
+    "id": 78,
+    "hanzi": "将来",
+    "reading": "jianglai",
+    "meaning": "in the future"
+  },
+  {
+    "id": 79,
+    "hanzi": "建议",
+    "reading": "jianyi",
+    "meaning": "suggestion, recommendation"
+  },
+  {
+    "id": 80,
+    "hanzi": "郊区",
+    "reading": "jiaoqu",
+    "meaning": "suburbs, area on the outskirts of the city"
+  },
+  {
+    "id": 81,
+    "hanzi": "教授",
+    "reading": "jiaoshou",
+    "meaning": "professor"
+  },
+  {
+    "id": 82,
+    "hanzi": "交通",
+    "reading": "jiaotong",
+    "meaning": "traffic"
+  },
+  {
+    "id": 83,
+    "hanzi": "教育",
+    "reading": "jiaoyu",
+    "meaning": "education"
+  },
+  {
+    "id": 84,
+    "hanzi": "饺子",
+    "reading": "jiaozi",
+    "meaning": "dumpling"
+  },
+  {
+    "id": 85,
+    "hanzi": "加油站",
+    "reading": "jiayouzhan",
+    "meaning": "gas station"
+  },
+  {
+    "id": 86,
+    "hanzi": "基础",
+    "reading": "jichu",
+    "meaning": "base; foundation"
+  },
+  {
+    "id": 87,
+    "hanzi": "节",
+    "reading": "jie",
+    "meaning": "festival, holiday"
+  },
+  {
+    "id": 88,
+    "hanzi": "结果",
+    "reading": "jieguo",
+    "meaning": "result; in the end, as a result"
+  },
+  {
+    "id": 89,
+    "hanzi": "解释",
+    "reading": "jieshi",
+    "meaning": "explanation"
+  },
+  {
+    "id": 90,
+    "hanzi": "计划",
+    "reading": "jihua",
+    "meaning": "plan; project; program"
+  },
+  {
+    "id": 91,
+    "hanzi": "警察",
+    "reading": "jingcha",
+    "meaning": "police, policeman, policewoman"
+  },
+  {
+    "id": 92,
+    "hanzi": "经济",
+    "reading": "jingji",
+    "meaning": "economy"
+  },
+  {
+    "id": 93,
+    "hanzi": "京剧",
+    "reading": "jingju",
+    "meaning": "Beijing opera"
+  },
+  {
+    "id": 94,
+    "hanzi": "经历",
+    "reading": "jingli",
+    "meaning": "an experience"
+  },
+  {
+    "id": 95,
+    "hanzi": "景色",
+    "reading": "jingse",
+    "meaning": "scenery, landscape"
+  },
+  {
+    "id": 96,
+    "hanzi": "经验",
+    "reading": "jingyan",
+    "meaning": "(accumulated) experience"
+  },
+  {
+    "id": 97,
+    "hanzi": "竞争",
+    "reading": "jingzheng",
+    "meaning": "competition"
+  },
+  {
+    "id": 98,
+    "hanzi": "技术",
+    "reading": "jishu",
+    "meaning": "technology; skill, technique"
+  },
+  {
+    "id": 99,
+    "hanzi": "记者",
+    "reading": "jizhe",
+    "meaning": "journalist"
+  },
+  {
+    "id": 100,
+    "hanzi": "聚会",
+    "reading": "juhui",
+    "meaning": "party, gathering"
+  },
+  {
+    "id": 101,
+    "hanzi": "距离",
+    "reading": "juli",
+    "meaning": "distance"
+  },
+  {
+    "id": 102,
+    "hanzi": "看法",
+    "reading": "kanfa",
+    "meaning": "point of view"
+  },
+  {
+    "id": 103,
+    "hanzi": "烤鸭",
+    "reading": "kaoya",
+    "meaning": "roast duck"
+  },
+  {
+    "id": 104,
+    "hanzi": "客厅",
+    "reading": "keting",
+    "meaning": "living room (in one's home)"
+  },
+  {
+    "id": 105,
+    "hanzi": "科学",
+    "reading": "kexue",
+    "meaning": "science; scientific"
+  },
+  {
+    "id": 106,
+    "hanzi": "空气",
+    "reading": "kongqi",
+    "meaning": "air"
+  },
+  {
+    "id": 107,
+    "hanzi": "空儿",
+    "reading": "kongr",
+    "meaning": "free time"
+  },
+  {
+    "id": 108,
+    "hanzi": "矿泉水",
+    "reading": "kuangquanshui",
+    "meaning": "mineral spring water"
+  },
+  {
+    "id": 109,
+    "hanzi": "困难",
+    "reading": "kunnan",
+    "meaning": "difficulty"
+  },
+  {
+    "id": 110,
+    "hanzi": "垃圾桶",
+    "reading": "lajitong",
+    "meaning": "trash can"
+  },
+  {
+    "id": 111,
+    "hanzi": "老虎",
+    "reading": "laohu",
+    "meaning": "tiger"
+  },
+  {
+    "id": 112,
+    "hanzi": "联系",
+    "reading": "lianxi",
+    "meaning": "contact"
+  },
+  {
+    "id": 113,
+    "hanzi": "礼拜天",
+    "reading": "libaitian",
+    "meaning": "Sunday"
+  },
+  {
+    "id": 114,
+    "hanzi": "礼貌",
+    "reading": "limao",
+    "meaning": "politeness, manners"
+  },
+  {
+    "id": 115,
+    "hanzi": "零钱",
+    "reading": "lingqian",
+    "meaning": "(small) change"
+  },
+  {
+    "id": 116,
+    "hanzi": "力气",
+    "reading": "liqi",
+    "meaning": "strength"
+  },
+  {
+    "id": 117,
+    "hanzi": "理想",
+    "reading": "lixiang",
+    "meaning": "ideal"
+  },
+  {
+    "id": 118,
+    "hanzi": "律师",
+    "reading": "lvshi",
+    "meaning": "lawyer"
+  },
+  {
+    "id": 119,
+    "hanzi": "旅行",
+    "reading": "lvxing",
+    "meaning": "trip"
+  },
+  {
+    "id": 120,
+    "hanzi": "麻烦",
+    "reading": "mafan",
+    "meaning": "hassle, trouble"
+  },
+  {
+    "id": 121,
+    "hanzi": "毛",
+    "reading": "mao",
+    "meaning": "hair, fur"
+  },
+  {
+    "id": 122,
+    "hanzi": "毛巾",
+    "reading": "maojin",
+    "meaning": "towel"
+  },
+  {
+    "id": 123,
+    "hanzi": "梦",
+    "reading": "meng",
+    "meaning": "dream"
+  },
+  {
+    "id": 124,
+    "hanzi": "密码",
+    "reading": "mima",
+    "meaning": "password, PIN"
+  },
+  {
+    "id": 125,
+    "hanzi": "民族",
+    "reading": "minzu",
+    "meaning": "nationality, ethnic group"
+  },
+  {
+    "id": 126,
+    "hanzi": "目的",
+    "reading": "mudi",
+    "meaning": "purpose, aim, goal"
+  },
+  {
+    "id": 127,
+    "hanzi": "母亲",
+    "reading": "muqin",
+    "meaning": "mother"
+  },
+  {
+    "id": 128,
+    "hanzi": "耐心",
+    "reading": "naixin",
+    "meaning": "patience"
+  },
+  {
+    "id": 129,
+    "hanzi": "内",
+    "reading": "nei",
+    "meaning": "in, within"
+  },
+  {
+    "id": 130,
+    "hanzi": "内容",
+    "reading": "neirong",
+    "meaning": "content"
+  },
+  {
+    "id": 131,
+    "hanzi": "能力",
+    "reading": "nengli",
+    "meaning": "ability"
+  },
+  {
+    "id": 132,
+    "hanzi": "年龄",
+    "reading": "nianling",
+    "meaning": "(a person's) age"
+  },
+  {
+    "id": 133,
+    "hanzi": "判断",
+    "reading": "panduan",
+    "meaning": "judgement"
+  },
+  {
+    "id": 134,
+    "hanzi": "皮肤",
+    "reading": "pifu",
+    "meaning": "skin"
+  },
+  {
+    "id": 135,
+    "hanzi": "乒乓球",
+    "reading": "pingpangqiu",
+    "meaning": "table tennis"
+  },
+  {
+    "id": 136,
+    "hanzi": "平时",
+    "reading": "pingshi",
+    "meaning": "usually"
+  },
+  {
+    "id": 137,
+    "hanzi": "批评",
+    "reading": "piping",
+    "meaning": "criticism"
+  },
+  {
+    "id": 138,
+    "hanzi": "脾气",
+    "reading": "piqi",
+    "meaning": "temper, temperament"
+  },
+  {
+    "id": 139,
+    "hanzi": "葡萄",
+    "reading": "putao",
+    "meaning": "grape(s)"
+  },
+  {
+    "id": 140,
+    "hanzi": "普通话",
+    "reading": "putonghua",
+    "meaning": "Mandarin (lit. common speech)"
+  },
+  {
+    "id": 141,
+    "hanzi": "签证",
+    "reading": "qianzheng",
+    "meaning": "visa (in a passport)"
+  },
+  {
+    "id": 142,
+    "hanzi": "桥",
+    "reading": "qiao",
+    "meaning": "bridge"
+  },
+  {
+    "id": 143,
+    "hanzi": "巧克力",
+    "reading": "qiaokeli",
+    "meaning": "chocolate"
+  },
+  {
+    "id": 144,
+    "hanzi": "气候",
+    "reading": "qihou",
+    "meaning": "climate"
+  },
+  {
+    "id": 145,
+    "hanzi": "情况",
+    "reading": "qingkuang",
+    "meaning": "situation, circumstances"
+  },
+  {
+    "id": 146,
+    "hanzi": "亲戚",
+    "reading": "qinqi",
+    "meaning": "relatives"
+  },
+  {
+    "id": 147,
+    "hanzi": "其中",
+    "reading": "qizhong",
+    "meaning": "among"
+  },
+  {
+    "id": 148,
+    "hanzi": "全部",
+    "reading": "quanbu",
+    "meaning": "whole, entire"
+  },
+  {
+    "id": 149,
+    "hanzi": "区别",
+    "reading": "qubie",
+    "meaning": "difference"
+  },
+  {
+    "id": 150,
+    "hanzi": "缺点",
+    "reading": "quedian",
+    "meaning": "weak point, weakness"
+  },
+  {
+    "id": 151,
+    "hanzi": "任务",
+    "reading": "renwu",
+    "meaning": "task, assignment"
+  },
+  {
+    "id": 152,
+    "hanzi": "日记",
+    "reading": "riji",
+    "meaning": "diary"
+  },
+  {
+    "id": 153,
+    "hanzi": "入口",
+    "reading": "rukou",
+    "meaning": "entrance"
+  },
+  {
+    "id": 154,
+    "hanzi": "森林",
+    "reading": "senlin",
+    "meaning": "forest"
+  },
+  {
+    "id": 155,
+    "hanzi": "沙发",
+    "reading": "shafa",
+    "meaning": "sofa"
+  },
+  {
+    "id": 156,
+    "hanzi": "勺子",
+    "reading": "shaozi",
+    "meaning": "spoon, ladle"
+  },
+  {
+    "id": 157,
+    "hanzi": "社会",
+    "reading": "shehui",
+    "meaning": "society"
+  },
+  {
+    "id": 158,
+    "hanzi": "省",
+    "reading": "sheng",
+    "meaning": "province"
+  },
+  {
+    "id": 159,
+    "hanzi": "生活",
+    "reading": "shenghuo",
+    "meaning": "life"
+  },
+  {
+    "id": 160,
+    "hanzi": "生命",
+    "reading": "shengming",
+    "meaning": "(a) life (which you lose when you die)"
+  },
+  {
+    "id": 161,
+    "hanzi": "生意",
+    "reading": "shengyi",
+    "meaning": "business"
+  },
+  {
+    "id": 162,
+    "hanzi": "申请",
+    "reading": "shenqing",
+    "meaning": "application"
+  },
+  {
+    "id": 163,
+    "hanzi": "失败",
+    "reading": "shibai",
+    "meaning": "failure"
+  },
+  {
+    "id": 164,
+    "hanzi": "师傅",
+    "reading": "shifu",
+    "meaning": "master; qualified worker"
+  },
+  {
+    "id": 165,
+    "hanzi": "实际",
+    "reading": "shiji",
+    "meaning": "actual"
+  },
+  {
+    "id": 166,
+    "hanzi": "世纪",
+    "reading": "shiji",
+    "meaning": "century"
+  },
+  {
+    "id": 167,
+    "hanzi": "首都",
+    "reading": "shoudu",
+    "meaning": "capital (city)"
+  },
+  {
+    "id": 168,
+    "hanzi": "售货员",
+    "reading": "shouhuoyuan",
+    "meaning": "salesperson"
+  },
+  {
+    "id": 169,
+    "hanzi": "收入",
+    "reading": "shouru",
+    "meaning": "revenue"
+  },
+  {
+    "id": 170,
+    "hanzi": "数量",
+    "reading": "shuliang",
+    "meaning": "amount, quantity"
+  },
+  {
+    "id": 171,
+    "hanzi": "顺序",
+    "reading": "shunxu",
+    "meaning": "order, sequence"
+  },
+  {
+    "id": 172,
+    "hanzi": "说明",
+    "reading": "shuoming",
+    "meaning": "explanation, directions"
+  },
+  {
+    "id": 173,
+    "hanzi": "硕士",
+    "reading": "shuoshi",
+    "meaning": "master's degree, M.A."
+  },
+  {
+    "id": 174,
+    "hanzi": "数字",
+    "reading": "shuzi",
+    "meaning": "number"
+  },
+  {
+    "id": 175,
+    "hanzi": "速度",
+    "reading": "sudu",
+    "meaning": "speed; rate; velocity"
+  },
+  {
+    "id": 176,
+    "hanzi": "塑料袋",
+    "reading": "suliaodai",
+    "meaning": "plastic bag"
+  },
+  {
+    "id": 177,
+    "hanzi": "孙子",
+    "reading": "sunzi",
+    "meaning": "grandson"
+  },
+  {
+    "id": 178,
+    "hanzi": "态度",
+    "reading": "taidu",
+    "meaning": "attitude"
+  },
+  {
+    "id": 179,
+    "hanzi": "汤",
+    "reading": "tang",
+    "meaning": "soup, broth"
+  },
+  {
+    "id": 180,
+    "hanzi": "糖",
+    "reading": "tang",
+    "meaning": "sugar; candy"
+  },
+  {
+    "id": 181,
+    "hanzi": "讨论",
+    "reading": "taolun",
+    "meaning": "discussion"
+  },
+  {
+    "id": 182,
+    "hanzi": "特点",
+    "reading": "tedian",
+    "meaning": "characteristic, special trait"
+  },
+  {
+    "id": 183,
+    "hanzi": "条件",
+    "reading": "tiaojian",
+    "meaning": "conditions, circumstances, qualifications"
+  },
+  {
+    "id": 184,
+    "hanzi": "同情",
+    "reading": "tongqing",
+    "meaning": "sympathy, compassion"
+  },
+  {
+    "id": 185,
+    "hanzi": "通知",
+    "reading": "tongzhi",
+    "meaning": "a notice"
+  },
+  {
+    "id": 186,
+    "hanzi": "网球",
+    "reading": "wangqiu",
+    "meaning": "tennis"
+  },
+  {
+    "id": 187,
+    "hanzi": "网站",
+    "reading": "wangzhan",
+    "meaning": "website"
+  },
+  {
+    "id": 188,
+    "hanzi": "袜子",
+    "reading": "wazi",
+    "meaning": "socks"
+  },
+  {
+    "id": 189,
+    "hanzi": "味道",
+    "reading": "weidao",
+    "meaning": "flavor, smell, taste"
+  },
+  {
+    "id": 190,
+    "hanzi": "卫生间",
+    "reading": "weishengjian",
+    "meaning": "restroom"
+  },
+  {
+    "id": 191,
+    "hanzi": "危险",
+    "reading": "weixian",
+    "meaning": "danger"
+  },
+  {
+    "id": 192,
+    "hanzi": "温度",
+    "reading": "wendu",
+    "meaning": "temperature"
+  },
+  {
+    "id": 193,
+    "hanzi": "文章",
+    "reading": "wenzhang",
+    "meaning": "essay, article"
+  },
+  {
+    "id": 194,
+    "hanzi": "误会",
+    "reading": "wuhui",
+    "meaning": "misunderstanding"
+  },
+  {
+    "id": 195,
+    "hanzi": "污染",
+    "reading": "wuran",
+    "meaning": "pollution; contamination"
+  },
+  {
+    "id": 196,
+    "hanzi": "橡皮",
+    "reading": "xiangpi",
+    "meaning": "rubber, an eraser"
+  },
+  {
+    "id": 197,
+    "hanzi": "现金",
+    "reading": "xianjin",
+    "meaning": "cash"
+  },
+  {
+    "id": 198,
+    "hanzi": "小吃",
+    "reading": "xiaochi",
+    "meaning": "snack; refreshments"
+  },
+  {
+    "id": 199,
+    "hanzi": "效果",
+    "reading": "xiaoguo",
+    "meaning": "positive result"
+  },
+  {
+    "id": 200,
+    "hanzi": "笑话",
+    "reading": "xiaohua",
+    "meaning": "joke"
+  },
+  {
+    "id": 201,
+    "hanzi": "小伙子",
+    "reading": "xiaohuozi",
+    "meaning": "young guy"
+  },
+  {
+    "id": 202,
+    "hanzi": "小说",
+    "reading": "xiaoshuo",
+    "meaning": "a novel"
+  },
+  {
+    "id": 203,
+    "hanzi": "消息",
+    "reading": "xiaoxi",
+    "meaning": "news"
+  },
+  {
+    "id": 204,
+    "hanzi": "西红柿",
+    "reading": "xihongshi",
+    "meaning": "tomato"
+  },
+  {
+    "id": 205,
+    "hanzi": "信封",
+    "reading": "xinfeng",
+    "meaning": "envelope"
+  },
+  {
+    "id": 206,
+    "hanzi": "性别",
+    "reading": "xingbie",
+    "meaning": "gender"
+  },
+  {
+    "id": 207,
+    "hanzi": "幸福",
+    "reading": "xingfu",
+    "meaning": "happiness"
+  },
+  {
+    "id": 208,
+    "hanzi": "性格",
+    "reading": "xingge",
+    "meaning": "personality, character"
+  },
+  {
+    "id": 209,
+    "hanzi": "心情",
+    "reading": "xinqing",
+    "meaning": "mood"
+  },
+  {
+    "id": 210,
+    "hanzi": "信息",
+    "reading": "xinxi",
+    "meaning": "information; news; message"
+  },
+  {
+    "id": 211,
+    "hanzi": "信心",
+    "reading": "xinxin",
+    "meaning": "confidence"
+  },
+  {
+    "id": 212,
+    "hanzi": "学期",
+    "reading": "xueqi",
+    "meaning": "(school) semester"
+  },
+  {
+    "id": 213,
+    "hanzi": "牙膏",
+    "reading": "yagao",
+    "meaning": "toothpaste"
+  },
+  {
+    "id": 214,
+    "hanzi": "压力",
+    "reading": "yali",
+    "meaning": "pressure"
+  },
+  {
+    "id": 215,
+    "hanzi": "亚洲",
+    "reading": "yazhou",
+    "meaning": "Asia"
+  },
+  {
+    "id": 216,
+    "hanzi": "盐",
+    "reading": "yan",
+    "meaning": "salt"
+  },
+  {
+    "id": 217,
+    "hanzi": "演出",
+    "reading": "yanchu",
+    "meaning": "performance, concert"
+  },
+  {
+    "id": 218,
+    "hanzi": "样子",
+    "reading": "yangzi",
+    "meaning": "appearance"
+  },
+  {
+    "id": 219,
+    "hanzi": "眼镜",
+    "reading": "yanjing",
+    "meaning": "glasses"
+  },
+  {
+    "id": 220,
+    "hanzi": "研究",
+    "reading": "yanjiu",
+    "meaning": "research"
+  },
+  {
+    "id": 221,
+    "hanzi": "演员",
+    "reading": "yanyuan",
+    "meaning": "actor or actress"
+  },
+  {
+    "id": 222,
+    "hanzi": "钥匙",
+    "reading": "yaoshi",
+    "meaning": "key"
+  },
+  {
+    "id": 223,
+    "hanzi": "叶子",
+    "reading": "yezi",
+    "meaning": "leaf"
+  },
+  {
+    "id": 224,
+    "hanzi": "意见",
+    "reading": "yijian",
+    "meaning": "opinion"
+  },
+  {
+    "id": 225,
+    "hanzi": "印象",
+    "reading": "yinxiang",
+    "meaning": "impression"
+  },
+  {
+    "id": 226,
+    "hanzi": "艺术",
+    "reading": "yishu",
+    "meaning": "art"
+  },
+  {
+    "id": 227,
+    "hanzi": "优点",
+    "reading": "youdian",
+    "meaning": "strong point, strength"
+  },
+  {
+    "id": 228,
+    "hanzi": "邮局",
+    "reading": "youju",
+    "meaning": "post office"
+  },
+  {
+    "id": 229,
+    "hanzi": "友谊",
+    "reading": "youyi",
+    "meaning": "friendship"
+  },
+  {
+    "id": 230,
+    "hanzi": "原因",
+    "reading": "yuanyin",
+    "meaning": "cause, reason"
+  },
+  {
+    "id": 231,
+    "hanzi": "约会",
+    "reading": "yuehui",
+    "meaning": "appointment; engagement; date"
+  },
+  {
+    "id": 232,
+    "hanzi": "语法",
+    "reading": "yufa",
+    "meaning": "grammar"
+  },
+  {
+    "id": 233,
+    "hanzi": "羽毛球",
+    "reading": "yumaoqiu",
+    "meaning": "badminton, shuttlecock"
+  },
+  {
+    "id": 234,
+    "hanzi": "云",
+    "reading": "yun",
+    "meaning": "cloud"
+  },
+  {
+    "id": 235,
+    "hanzi": "语言",
+    "reading": "yuyan",
+    "meaning": "language"
+  },
+  {
+    "id": 236,
+    "hanzi": "暂时",
+    "reading": "zanshi",
+    "meaning": "temporary; temporarily"
+  },
+  {
+    "id": 237,
+    "hanzi": "杂志",
+    "reading": "zazhi",
+    "meaning": "magazine"
+  },
+  {
+    "id": 238,
+    "hanzi": "责任",
+    "reading": "zeren",
+    "meaning": "responsibility"
+  },
+  {
+    "id": 239,
+    "hanzi": "招聘",
+    "reading": "zhaopin",
+    "meaning": "recruitment"
+  },
+  {
+    "id": 240,
+    "hanzi": "证明",
+    "reading": "zhengming",
+    "meaning": "proof"
+  },
+  {
+    "id": 241,
+    "hanzi": "支持",
+    "reading": "zhichi",
+    "meaning": "support"
+  },
+  {
+    "id": 242,
+    "hanzi": "纸袋",
+    "reading": "zhidai",
+    "meaning": "paper bag"
+  },
+  {
+    "id": 243,
+    "hanzi": "质量",
+    "reading": "zhiliang",
+    "meaning": "quality; mass (in physics)"
+  },
+  {
+    "id": 244,
+    "hanzi": "知识",
+    "reading": "zhishi",
+    "meaning": "knowledge"
+  },
+  {
+    "id": 245,
+    "hanzi": "植物",
+    "reading": "zhiwu",
+    "meaning": "plant"
+  },
+  {
+    "id": 246,
+    "hanzi": "职业",
+    "reading": "zhiye",
+    "meaning": "occupation"
+  },
+  {
+    "id": 247,
+    "hanzi": "重点",
+    "reading": "zhongdian",
+    "meaning": "emphasis; focal point"
+  },
+  {
+    "id": 248,
+    "hanzi": "周围",
+    "reading": "zhouwei",
+    "meaning": "surroundings, environment"
+  },
+  {
+    "id": 249,
+    "hanzi": "专业",
+    "reading": "zhuanye",
+    "meaning": "specialty, major"
+  },
+  {
+    "id": 250,
+    "hanzi": "主意",
+    "reading": "zhuyi",
+    "meaning": "idea"
+  },
+  {
+    "id": 251,
+    "hanzi": "自然",
+    "reading": "ziran",
+    "meaning": "natural"
+  },
+  {
+    "id": 252,
+    "hanzi": "总结",
+    "reading": "zongjie",
+    "meaning": "summary"
+  },
+  {
+    "id": 253,
+    "hanzi": "作家",
+    "reading": "zuojia",
+    "meaning": "writer"
+  },
+  {
+    "id": 254,
+    "hanzi": "座位",
+    "reading": "zuowei",
+    "meaning": "seat"
+  },
+  {
+    "id": 255,
+    "hanzi": "作用",
+    "reading": "zuoyong",
+    "meaning": "action; function; activity; impact"
+  },
+  {
+    "id": 256,
+    "hanzi": "左右",
+    "reading": "zuoyou",
+    "meaning": "left and right; approximately"
+  },
+  {
+    "id": 257,
+    "hanzi": "作者",
+    "reading": "zuozhe",
+    "meaning": "author, writer"
+  }
+]
