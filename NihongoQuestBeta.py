@@ -15,24 +15,31 @@ pygame.init()
 #  Utility Functions
 # ============================================================
 
-def load_selected_words(level_choices):
-    """Load vocabulary lists based on selected JLPT levels."""
-    
-    level_map = {0: "N5", 1: "N4", 2: "N3", 3: "N2", 4: "N1"}
+def load_selected_words(choices):
+    selected_words = []
 
-    for i, chosen in enumerate(level_choices):
-        if chosen:
-            filename = f"assets/data/{level_map[i]}.json"
-            try:
-                with open(filename, encoding="utf-8") as f:
-                    data = json.load(f)
-                    for w in data:
-                        w["level"] = level_map[i][-1]  # add level metadata (e.g. "5" for N5)
-                    loaded_words.extend(data)
-            except FileNotFoundError:
-                print(f"⚠️ Missing file: {filename}")
+    if choices[0]:  # N5
+        with open("assets/data/N5.json", encoding="utf-8") as f:
+            selected_words.extend(json.load(f))
 
-    return loaded_words
+    if choices[1]:  # N4
+        with open("assets/data/N4.json", encoding="utf-8") as f:
+            selected_words.extend(json.load(f))
+
+    if choices[2]:  # N3
+        with open("assets/data/N3.json", encoding="utf-8") as f:
+            selected_words.extend(json.load(f))
+
+    if choices[3]:  # N2
+        with open("assets/data/N2.json", encoding="utf-8") as f:
+            selected_words.extend(json.load(f))
+
+    if choices[4]:  # N1
+        with open("assets/data/N1.json", encoding="utf-8") as f:
+            selected_words.extend(json.load(f))
+
+    return selected_words
+
 
 # ============================================================
 #  Pygame Initialization
@@ -112,10 +119,11 @@ scroll = 0
 scroll_offset = 0
 SCROLL_SPEED = 30
 max_scroll =0 
-
+combo = 0
+show_howto = False
 #potions
-freeze_potion = 3
-
+freeze_potion = 0
+last_choices = None
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -347,30 +355,43 @@ def draw_pause():
     title = header_font.render("メニュー", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 30))
 
-    # Buttons (lantern-style)
-    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, ">", header_font, surface)
-    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "X", header_font, surface)
-    resume_btn.draw()
-    quit_btn.draw()
+    # Buttons 
+    resume_btn = Button(WIDTH // 2 - 180, int((box_y + box_h) * 0.45), 80, 80, ">", header_font, surface)
+    howto_btn  = Button(WIDTH // 2 - 40,  int((box_y + box_h) * 0.45), 80, 80, "?", header_font, surface)
+    quit_btn   = Button(WIDTH // 2 + 100, int((box_y + box_h) * 0.45), 80, 80, "X", header_font, surface)
+
+    resume_clicked = resume_btn.draw()
+    howto_clicked  = howto_btn.draw()
+    quit_clicked   = quit_btn.draw()
 
     # Labels — automatically centered below buttons
     play_label = notosans.render("Resume", True, (255, 230, 200))
     quit_label = notosans.render("Quit", True, (255, 230, 200))
-
+    howto_label = notosans.render("How to Play", True, (255, 230, 200))
     # === key trick: get_rect(center=...) ===
-    play_rect = play_label.get_rect(center=(resume_btn.x + resume_btn.w / 2,
-                                            resume_btn.y + resume_btn.h + 25))
-    quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2,
-                                            quit_btn.y + quit_btn.h + 25))
+    surface.blit(play_label, play_label.get_rect(
+        center=(resume_btn.x + resume_btn.w / 2, resume_btn.y + resume_btn.h + 25)))
 
-    surface.blit(play_label, play_rect)
-    surface.blit(quit_label, quit_rect)
+    surface.blit(howto_label, howto_label.get_rect(
+        center=(howto_btn.x + howto_btn.w / 2, howto_btn.y + howto_btn.h + 25)))
+
+    surface.blit(quit_label, quit_label.get_rect(
+        center=(quit_btn.x + quit_btn.w / 2, quit_btn.y + quit_btn.h + 25)))
 
     # Level selector section
     level_label = pause_font.render("レベルを選んでください:", True, (255, 220, 180))
-    level_rect = level_label.get_rect(center=(WIDTH // 2, quit_rect.bottom + 60))
-    surface.blit(level_label, level_rect)
+    buttons_bottom = max(
+        resume_btn.y + resume_btn.h,
+        howto_btn.y + howto_btn.h,
+        quit_btn.y + quit_btn.h
+    )
 
+    level_rect = level_label.get_rect(
+        center=(WIDTH // 2, buttons_bottom + 60)
+    )
+    surface.blit(level_label, level_rect)
+    combo_text = banner_font.render(f"COMBO: {combo}/10", True, (255, 220, 0))
+    screen.blit(combo_text, (WIDTH - 200, HEIGHT - 85))
     # Level buttons
     temp_choices = copy.deepcopy(choices)
     spacing = 100
@@ -387,9 +408,37 @@ def draw_pause():
                             (btn_x - 42, btn_y - 2, 84, 84), 5, border_radius=12)
 
     screen.blit(surface, (0, 0))
-    return resume_btn.clicked, temp_choices, quit_btn.clicked
+    return resume_btn.clicked, temp_choices, quit_btn.clicked, howto_clicked
 
 
+def draw_howto():
+    surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+    pygame.draw.rect(surface, (0, 0, 0, 180), (0, 0, WIDTH, HEIGHT))
+
+    box_w, box_h = WIDTH * 0.65, HEIGHT * 0.65
+    box_x = (WIDTH - box_w) // 2
+    box_y = (HEIGHT - box_h) // 2
+
+    pygame.draw.rect(surface, (80, 40, 20, 230),
+                     (box_x, box_y, box_w, box_h), border_radius=20)
+    pygame.draw.rect(surface, (200, 50, 50),
+                     (box_x, box_y, box_w, box_h), 8, border_radius=20)
+
+    title = header_font.render("", True, (255, 220, 180))
+    surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 25))
+
+    # EMPTY TEXT PLACEHOLDERS
+    for i in range(6):
+        line = notosans.render("", True, (255, 240, 220))
+        surface.blit(line, (box_x + 50, box_y + 100 + i * 40))
+
+    back_btn = Button(WIDTH // 2 - 40, box_y + box_h - 90,
+                      80, 60, "<", header_font, surface)
+
+    back_clicked = back_btn.draw()
+
+    screen.blit(surface, (0, 0))
+    return back_clicked
 
 def draw_result():
     """Draws Matsuri-themed result (game-over) screen, centered and flexible."""
@@ -477,18 +526,29 @@ def draw_result():
 
 def check_answer(current_score):
     """Check typed word, update score and handle level-ups."""
-    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives
+    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives,combo, freeze_potion
     solved_word = None
     for wrd in word_objects[:]:
         if wrd.romaji == submit:
-            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
+            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4 ) * (combo/3)
             current_score += int(points)
+
             solved_word = wrd
             word_objects.remove(wrd)
             if wrd in loaded_words:
                 loaded_words.remove(wrd)
+
             success.play()
             words_typed += 1
+
+            # 🔥 COMBO SYSTEM
+            combo += 1
+            if combo >= 5:
+                freeze_potion += 1
+                combo = 0
+
+    # Level-up logic stays the same
+
 
             # Level-up after every 10 correct words
             if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
@@ -526,7 +586,8 @@ def check_high_score():
         high_score = score
         with open('high.txt', 'w') as f:
             f.write(str(high_score))
-
+def game_frozen():
+    return paused or show_howto
 def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown, pos_x, pos_y):
     frame = 0
     current_time = pygame.time.get_ticks()
@@ -548,7 +609,8 @@ def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown
 # ============================================================
 sprite_sheet_image = pygame.image.load('assets/pictures/fireworks/Explosion_Crystals_Blue-sheet.png').convert_alpha()
 sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
-
+yakitori_pic = pygame.image.load('assets/pictures/yakitori2.png').convert_alpha()
+yakitori_pic = pygame.transform.scale_by(yakitori_pic, 0.25)
 BG = (50, 50, 50)
 BLACK = (0, 0, 0)
 
@@ -571,22 +633,32 @@ while run:
     if abs(scroll) > bg_width:
         scroll = 0
     timer.tick(FPS)
-
+    screen.blit(yakitori_pic, (0,0))
     pause_btn = draw_screen()
   
 
     # ----- Pause Menu -----
-    if paused:
-        resume, new_choices, quit_game = draw_pause()
+    if show_howto:
+        if draw_howto():
+            show_howto = False
+            paused = True
+    elif paused:
+        resume, new_choices, quit_game, howto = draw_pause()
+
         if resume:
             paused = False
-            start_time = time.time()
+
+        if howto:
+            show_howto = True
+            paused = False
+
         if quit_game:
             check_high_score()
             run = False
+        
 
     # ----- Word Spawning -----
-    if not paused and len(word_objects) < max_active_words:
+    if not game_frozen() and len(word_objects) < max_active_words:
         if time.time() - last_spawn_time > spawn_interval:
             word_objects.append(generate_word())
             last_spawn_time = time.time()
@@ -594,12 +666,13 @@ while run:
     # ----- Word Updates -----
     for w in word_objects[:]:
         w.draw()
-        if not paused:
+        if not game_frozen():
             w.update()
         if w.x_pos < -200:
             word_objects.remove(w)
             missed_words.append({"kanji": w.kanji, "reading": w.kana, "meaning": w.meaning})
             lives -= 1
+            combo = 0
 
     # ----- Input Checking -----
     if submit:
@@ -642,7 +715,7 @@ while run:
             run = False
 
         if event.type == pygame.KEYDOWN:
-            if not paused:
+            if not game_frozen():
                 if event.unicode.lower() in letters:
                     active_string += event.unicode.lower()
                     click.play()
@@ -656,9 +729,17 @@ while run:
                 paused = not paused
 
         if event.type == pygame.MOUSEBUTTONUP and paused and event.button == 1:
-            choices = new_choices
-            words = load_selected_words(choices)
-            print(f"{len(words)} words loaded from selected levels.")
+            if new_choices != choices:
+                choices = new_choices
+                words = load_selected_words(choices)
+
+                # 🔥 HARD RESET
+                word_objects.clear()
+                loaded_words.clear()
+
+                print(f"{len(words)} words loaded from selected levels.")
+
+
 
        
 
