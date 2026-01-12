@@ -1,57 +1,68 @@
-
 import pygame
-import spritesheet
+import sys
 
+# ===== Initialize =====
 pygame.init()
 
-# Window
-SCREEN_WIDTH = 700
-SCREEN_HEIGHT = 500
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Sprite Test')
+WIDTH, HEIGHT = 1280, 720
+BOTTOM_BAR_HEIGHT = 100
 
-# Load the 3-frame horizontal sprite sheet we created
-sprite_sheet_image = pygame.image.load('assets/pictures/yakitori.png').convert_alpha()
-sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Kingyo Animation Example")
+clock = pygame.time.Clock()
 
-# Colors
-BG = (50, 50, 50)
+# ===== Load Images =====
+kingyo_imgs = [
+    pygame.image.load("assets/pictures/kingyo.png").convert_alpha(),
+    pygame.image.load("assets/pictures/kingyo2.png").convert_alpha()
+]
 
-# Animation setup
-animation_list = []
-animation_steps = 3  # we have 3 frames
-frame_w, frame_h = 1024, 1024  # each frame size in the generated sheet
-scale = 0.5  # scale down to fit window; adjust as needed
-animation_cooldown = 200  # milliseconds per frame
-last_update = pygame.time.get_ticks()
-frame = 0
+# Optional: scale images (recommended)
+KINGYO_SIZE = (256, 256)
+kingyo_imgs = [
+    pygame.transform.scale(img, KINGYO_SIZE) for img in kingyo_imgs
+]
 
-# Build frames (index 0..2)
-for i in range(animation_steps):
-    # get_image(index, frame_w, frame_h, scale, colorkey)
-    # if your get_image expects 'black' string, use it; otherwise use a tuple like (0,0,0)
-    animation_list.append(sprite_sheet.get_image(i, frame_w, frame_h, scale, 'black'))
+# ===== Animation State =====
+kingyo_index = 0
+KINGYO_SWAP_TIME = 1000  # milliseconds (1 second)
+last_kingyo_switch = pygame.time.get_ticks()
 
-run = True
-while run:
-    # Events
+# ===== Main Loop =====
+running = True
+while running:
+    clock.tick(60)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
+            running = False
 
-    # Update
+    # ===== Update Animation =====
     current_time = pygame.time.get_ticks()
-    if (current_time - last_update) >= animation_cooldown:
-        frame = (frame + 1) % len(animation_list)
-        last_update = current_time
+    if current_time - last_kingyo_switch >= KINGYO_SWAP_TIME:
+        kingyo_index = (kingyo_index + 1) % len(kingyo_imgs)
+        last_kingyo_switch = current_time
 
-    # Draw
-    screen.fill(BG)
-    # Center it a bit
-    img = animation_list[frame]
-    img_rect = img.get_rect()
-    screen.blit(img, ((SCREEN_WIDTH - img_rect.width) // 2, (SCREEN_HEIGHT - img_rect.height) // 2))
+    # ===== Draw =====
+    screen.fill((30, 30, 30))
 
-    pygame.display.update()
+    # Bottom UI bar (visual reference)
+    pygame.draw.rect(
+        screen,
+        (50, 50, 50),
+        (0, HEIGHT - BOTTOM_BAR_HEIGHT, WIDTH, BOTTOM_BAR_HEIGHT)
+    )
 
+    # Draw kingyo ABOVE bottom bar
+    kingyo_pic = kingyo_imgs[kingyo_index]
+
+    kingyo_x = 300
+    kingyo_y = HEIGHT - BOTTOM_BAR_HEIGHT - kingyo_pic.get_height() + 25
+
+    screen.blit(kingyo_pic, (kingyo_x, kingyo_y))
+
+    pygame.display.flip()
+
+# ===== Quit =====
 pygame.quit()
+sys.exit()

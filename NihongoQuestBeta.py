@@ -82,7 +82,9 @@ pygame.mixer.music.play(-1)
 click = pygame.mixer.Sound('assets/sound/click.mp3')
 success = pygame.mixer.Sound('assets/sound/success.mp3')
 wrong = pygame.mixer.Sound('assets/sound/Instrument Strum.mp3')
-
+level_up = pygame.mixer.Sound('assets/sound/level_up.mp3')
+life_minus = pygame.mixer.Sound('assets/sound/life_minus.mp3')
+ice = pygame.mixer.Sound('assets/sound/ice.mp3')
 click.set_volume(0.3)
 success.set_volume(0.6)
 wrong.set_volume(0.3)
@@ -91,7 +93,35 @@ bg = pygame.image.load("assets/pictures/bgnq.png").convert()
 heart = pygame.image.load("assets/pictures/heart32x32.png").convert_alpha()
 bg_width = bg.get_width()
 freeze_potion_pic = pygame.image.load("assets/pictures/freeze_potion.png").convert_alpha()
-freeze_potion_pic = pygame.transform.scale(freeze_potion_pic, (48, 48))
+freeze_potion_pic = pygame.transform.scale(freeze_potion_pic, (64,64))
+bottom_tile = pygame.image.load("assets/pictures/grass/0.png").convert()
+sprite_sheet_image = pygame.image.load('assets/pictures/fireworks/Explosion_Crystals_Blue-sheet.png').convert_alpha()
+sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
+# ===== Load Animated Sprites =====
+kingyo_frames = [
+    pygame.image.load('assets/pictures/kingyo.png').convert_alpha(),
+    pygame.image.load('assets/pictures/kingyo2.png').convert_alpha()
+]
+
+yakitori_frames = [
+    pygame.image.load('assets/pictures/yakitori2.png').convert_alpha(),
+    pygame.image.load('assets/pictures/yakitori2.png').convert_alpha()
+]
+
+yakisoba_frames = [
+    pygame.image.load('assets/pictures/yakisoba.png').convert_alpha(),
+    pygame.image.load('assets/pictures/yakisoba2.png').convert_alpha()
+]
+
+# Scale them
+kingyo_frames = [pygame.transform.scale_by(img, 0.25) for img in kingyo_frames]
+yakitori_frames = [pygame.transform.scale_by(img, 0.25) for img in yakitori_frames]
+yakisoba_frames = [pygame.transform.scale_by(img, 0.25) for img in yakisoba_frames]
+# ===== Animation States =====
+kingyo_anim = {"index": 0, "last": pygame.time.get_ticks()}
+yakitori_anim = {"index": 0, "last": pygame.time.get_ticks()}
+yakisoba_anim = {"index": 0, "last": pygame.time.get_ticks()}
+ANIM_INTERVAL = 1000 
 # ============================================================
 #  Global Variables
 # ============================================================
@@ -121,6 +151,7 @@ SCROLL_SPEED = 30
 max_scroll =0 
 combo = 0
 show_howto = False
+levelup_sound_played = False
 #potions
 freeze_potion = 0
 last_choices = None
@@ -298,42 +329,86 @@ class Button:
 # ============================================================
 #  Drawing Functions
 # ============================================================
+def animate_sprite(frames, anim_state, interval):
+    current_time = pygame.time.get_ticks()
+
+    if current_time - anim_state["last"] >= interval:
+        anim_state["index"] = (anim_state["index"] + 1) % len(frames)
+        anim_state["last"] = current_time
+
+    return frames[anim_state["index"]]
 
 def draw_screen():
-    """Draws main UI (bottom bar, score, lives, etc.)."""
-    pygame.draw.rect(screen, (42,24,12), [0, HEIGHT - 100, WIDTH, 100])
-    pygame.draw.rect(screen, 'white', [0, 0, WIDTH, HEIGHT], 5)
+    # ===== Constants =====
+    BOTTOM_BAR_HEIGHT = 100
+    scale_factor = BOTTOM_BAR_HEIGHT // bottom_tile.get_height()
 
-    # Lines and dividers
-    pygame.draw.line(screen, 'white', (250, HEIGHT - 100), (250, HEIGHT))
-    pygame.draw.line(screen, 'white', (700, HEIGHT - 100), (700, HEIGHT))
-    pygame.draw.rect(screen, (19,109,21), [0, HEIGHT-100, WIDTH, 10])
-    pygame.draw.rect(screen, 'black', [0, 0, WIDTH, HEIGHT], 2)
+    bottom_tile_scaled = pygame.transform.scale_by(bottom_tile, scale_factor)
+    tile_width = bottom_tile_scaled.get_width()
 
-    # Status Text
-    screen.blit(header_font.render(f'レベル: {level}', True, 'white'), (10, HEIGHT - 85))
-    screen.blit(header_font.render(f'"{active_string}"', True, 'white'), (270, HEIGHT - 75))
+    # ===== Bottom Bar Tiles =====
+    for x in range(0, WIDTH, tile_width):
+        screen.blit(bottom_tile_scaled, (x, HEIGHT - BOTTOM_BAR_HEIGHT))
 
-    # Pause button
-    pause_btn = Button(740, HEIGHT - 80, 60, 60, "II", header_font, screen)
+    # ===== Divider Lines =====
+    pygame.draw.line(screen, 'white', (250, HEIGHT - BOTTOM_BAR_HEIGHT), (250, HEIGHT))
+    pygame.draw.line(screen, 'white', (700, HEIGHT - BOTTOM_BAR_HEIGHT), (700, HEIGHT))
+
+    # ===== Status Text =====
+    screen.blit(
+        header_font.render(f'レベル: {level}', True, 'white'),
+        (10, HEIGHT - BOTTOM_BAR_HEIGHT + 15)
+    )
+
+    screen.blit(
+        header_font.render(f'"{active_string}"', True, 'white'),
+        (270, HEIGHT - BOTTOM_BAR_HEIGHT + 25)
+    )
+
+    # ===== Pause Button =====
+    pause_btn = Button(
+        740,
+        HEIGHT - BOTTOM_BAR_HEIGHT + 20,
+        60,
+        60,
+        "II",
+        header_font,
+        screen
+    )
     pause_btn.draw()
 
+    # ===== Top UI =====
     screen.blit(banner_font.render(f'点数: {score}', True, 'white'), (250, 10))
     screen.blit(banner_font.render(f'最高点: {high_score}', True, 'white'), (550, 10))
     screen.blit(banner_font.render(f'  x{lives}', True, 'white'), (20, 5))
     screen.blit(heart, (10, 10))
 
-    # Freeze potion icon + count
+    combo_text = banner_font.render(f"COMBO: {combo}/10", True, (255, 220, 0))
+    screen.blit(combo_text, (1000, 10))
+
+    # ===== Animated Stalls =====
+    yakitori_pic = animate_sprite(yakitori_frames, yakitori_anim, ANIM_INTERVAL)
+    kingyo_pic = animate_sprite(kingyo_frames, kingyo_anim, ANIM_INTERVAL)
+    yakisoba_pic = animate_sprite(yakisoba_frames, yakisoba_anim, ANIM_INTERVAL)
+    
+    yakitori_y = HEIGHT - BOTTOM_BAR_HEIGHT - yakitori_pic.get_height() + 30
+    kingyo_y = HEIGHT - BOTTOM_BAR_HEIGHT - kingyo_pic.get_height() + 30
+    yakisoba_y = HEIGHT - BOTTOM_BAR_HEIGHT - yakisoba_pic.get_height() + 50
+
+    screen.blit(yakitori_pic, (0, yakitori_y))
+    screen.blit(kingyo_pic, (300, kingyo_y))
+    screen.blit(yakisoba_pic, (550, yakisoba_y))
+
+    # ===== Freeze Potion =====
     potion_x = 800
-    potion_y = HEIGHT - 100
+    potion_y = HEIGHT - BOTTOM_BAR_HEIGHT + 10
+
     screen.blit(freeze_potion_pic, (potion_x, potion_y))
-    # show count
+
     count_text = banner_font.render(f"x{freeze_potion}", True, 'white')
     screen.blit(count_text, (potion_x + freeze_potion_pic.get_width() + 8, potion_y + 8))
 
     return pause_btn.clicked
-
-
 
 def draw_pause():
     """Draws a Matsuri-themed pause menu, centered and flexible."""
@@ -390,8 +465,7 @@ def draw_pause():
         center=(WIDTH // 2, buttons_bottom + 60)
     )
     surface.blit(level_label, level_rect)
-    combo_text = banner_font.render(f"COMBO: {combo}/10", True, (255, 220, 0))
-    screen.blit(combo_text, (WIDTH - 200, HEIGHT - 85))
+   
     # Level buttons
     temp_choices = copy.deepcopy(choices)
     spacing = 100
@@ -410,7 +484,6 @@ def draw_pause():
     screen.blit(surface, (0, 0))
     return resume_btn.clicked, temp_choices, quit_btn.clicked, howto_clicked
 
-
 def draw_howto():
     surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
     pygame.draw.rect(surface, (0, 0, 0, 180), (0, 0, WIDTH, HEIGHT))
@@ -419,21 +492,56 @@ def draw_howto():
     box_x = (WIDTH - box_w) // 2
     box_y = (HEIGHT - box_h) // 2
 
-    pygame.draw.rect(surface, (80, 40, 20, 230),
-                     (box_x, box_y, box_w, box_h), border_radius=20)
-    pygame.draw.rect(surface, (200, 50, 50),
-                     (box_x, box_y, box_w, box_h), 8, border_radius=20)
+    # Background box
+    pygame.draw.rect(
+        surface,
+        (80, 40, 20, 230),
+        (box_x, box_y, box_w, box_h),
+        border_radius=20
+    )
+    pygame.draw.rect(
+        surface,
+        (200, 50, 50),
+        (box_x, box_y, box_w, box_h),
+        8,
+        border_radius=20
+    )
 
-    title = header_font.render("", True, (255, 220, 180))
-    surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 25))
+    # ===== Title =====
+    title = header_font.render("HOW TO PLAY", True, (255, 220, 180))
+    surface.blit(
+        title,
+        (WIDTH // 2 - title.get_width() // 2, box_y + 25)
+    )
 
-    # EMPTY TEXT PLACEHOLDERS
-    for i in range(6):
-        line = notosans.render("", True, (255, 240, 220))
-        surface.blit(line, (box_x + 50, box_y + 100 + i * 40))
+    # ===== Instructions =====
+    instructions = [
+        "• Type the reading of the kanji shown on the screen.",
+        "• If a kanji has multiple readings, choose the most appropriate one.",
+        "• Each correct answer increases your score.",
+        "• Level up = +1 live",
+        "• Answer correctly 10 times in a row to earn 1 Ice Potion.",
+        "• Type 'ice' to freeze all moving words for a few seconds.",
+        "• Input reminder: しょう = shou   じょう = jou   づ = zu"
+    ]
 
-    back_btn = Button(WIDTH // 2 - 40, box_y + box_h - 90,
-                      80, 60, "<", header_font, surface)
+    for i, text in enumerate(instructions):
+        line = notosans.render(text, True, (255, 240, 220))
+        surface.blit(
+            line,
+            (box_x + 50, box_y + 100 + i * 40)
+        )
+
+    # ===== Back Button =====
+    back_btn = Button(
+        WIDTH // 2 - 40,
+        box_y + box_h - 90,
+        80,
+        60,
+        "<",
+        header_font,
+        surface
+    )
 
     back_clicked = back_btn.draw()
 
@@ -547,16 +655,15 @@ def check_answer(current_score):
                 freeze_potion += 1
                 combo = 0
 
-    # Level-up logic stays the same
-
-
-            # Level-up after every 10 correct words
             if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
                 level += 1
                 lives += 1
+                
                 new_level = True
                 show_levelup = True
                 level_up_time = time.time()
+                level_up.play()  
+                levelup_sound_played = False 
                 spawn_interval = max(0.8, spawn_interval - 0.2)
                 if max_active_words < 5:
                     max_active_words += 1
@@ -587,7 +694,7 @@ def check_high_score():
         with open('high.txt', 'w') as f:
             f.write(str(high_score))
 def game_frozen():
-    return paused or show_howto
+    return paused or show_howto or show_levelup
 def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown, pos_x, pos_y):
     frame = 0
     current_time = pygame.time.get_ticks()
@@ -607,10 +714,7 @@ def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown
 # ============================================================
 #  Main Game Loop
 # ============================================================
-sprite_sheet_image = pygame.image.load('assets/pictures/fireworks/Explosion_Crystals_Blue-sheet.png').convert_alpha()
-sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
-yakitori_pic = pygame.image.load('assets/pictures/yakitori2.png').convert_alpha()
-yakitori_pic = pygame.transform.scale_by(yakitori_pic, 0.25)
+
 BG = (50, 50, 50)
 BLACK = (0, 0, 0)
 
@@ -633,7 +737,7 @@ while run:
     if abs(scroll) > bg_width:
         scroll = 0
     timer.tick(FPS)
-    screen.blit(yakitori_pic, (0,0))
+   
     pause_btn = draw_screen()
   
 
@@ -668,10 +772,11 @@ while run:
         w.draw()
         if not game_frozen():
             w.update()
-        if w.x_pos < -200:
+        if w.x_pos < -100:
             word_objects.remove(w)
             missed_words.append({"kanji": w.kanji, "reading": w.kana, "meaning": w.meaning})
             lives -= 1
+            life_minus.play()
             combo = 0
 
     # ----- Input Checking -----
@@ -681,6 +786,7 @@ while run:
             if freeze_potion > 0:
                 freeze_duration = 5.0  # seconds the words stay frozen
                 now = time.time()
+                ice.play()
                 for w in word_objects:
                     # don't double-apply (refresh timer if already frozen)
                     if not getattr(w, "frozen", False):
@@ -749,6 +855,7 @@ while run:
     # ----- Game Over -----
     if lives <= 0:
         check_high_score()
+        freeze_potion = 0
         game_over = True
         while game_over:
             screen.fill('navy')
@@ -784,11 +891,42 @@ while run:
     # ----- Level-Up Message -----
     if show_levelup:
         elapsed = time.time() - level_up_time
-        if elapsed < 2:
-            alpha = max(0, 255 - int((elapsed / 2) * 255))
+        if not levelup_sound_played:
+            level_up.play()
+            levelup_sound_played = True
+
+        if elapsed >= 3.0:
+            level_up.stop()
+            show_levelup = False
+
+        if elapsed < 2.5:
+            # Fade effect
+            alpha = max(0, 255 - int((elapsed / 2.5) * 255))
+
+            # LEVEL UP TEXT
             msg = header_font.render('レベルアップ！', True, (255, 255, 255))
             msg.set_alpha(alpha)
-            screen.blit(msg, (WIDTH // 2 - 150, HEIGHT // 2 - 50))
+            screen.blit(
+                msg,
+                msg.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 80))
+            )
+
+            # HEART +1
+            heart_img = heart.copy()
+            heart_img.set_alpha(alpha)
+
+            heart_x = WIDTH // 2 - heart_img.get_width() - 10
+            heart_y = HEIGHT // 2
+
+            screen.blit(heart_img, (heart_x, heart_y))
+
+            plus_text = header_font.render("+1", True, (255, 80, 80))
+            plus_text.set_alpha(alpha)
+            screen.blit(
+                plus_text,
+                (heart_x + heart_img.get_width() + 10, heart_y - 5)
+            )
+
         else:
             show_levelup = False
 
