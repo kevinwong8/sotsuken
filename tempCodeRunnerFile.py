@@ -1,1 +1,1 @@
-dirt
+active_fire

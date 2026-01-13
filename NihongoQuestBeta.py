@@ -112,15 +112,28 @@ yakisoba_frames = [
     pygame.image.load('assets/pictures/yakisoba.png').convert_alpha(),
     pygame.image.load('assets/pictures/yakisoba2.png').convert_alpha()
 ]
+kakigori_frames = [
+    pygame.image.load('assets/pictures/kakigori.png').convert_alpha(),
+    pygame.image.load('assets/pictures/kakigori2.png').convert_alpha()
+]
+
+takoyaki_frames = [
+    pygame.image.load('assets/pictures/takoyaki.png').convert_alpha(),
+    pygame.image.load('assets/pictures/takoyaki2.png').convert_alpha()
+]
 
 # Scale them
 kingyo_frames = [pygame.transform.scale_by(img, 0.25) for img in kingyo_frames]
 yakitori_frames = [pygame.transform.scale_by(img, 0.25) for img in yakitori_frames]
 yakisoba_frames = [pygame.transform.scale_by(img, 0.25) for img in yakisoba_frames]
+kakigori_frames = [pygame.transform.scale_by(img, 0.25) for img in kakigori_frames]
+takoyaki_frames = [pygame.transform.scale_by(img, 0.25) for img in takoyaki_frames]
 # ===== Animation States =====
 kingyo_anim = {"index": 0, "last": pygame.time.get_ticks()}
 yakitori_anim = {"index": 0, "last": pygame.time.get_ticks()}
 yakisoba_anim = {"index": 0, "last": pygame.time.get_ticks()}
+kakigori_anim = {"index": 0, "last": pygame.time.get_ticks()}
+takoyaki_anim = {"index": 0, "last": pygame.time.get_ticks()}
 ANIM_INTERVAL = 1000 
 # ============================================================
 #  Global Variables
@@ -152,9 +165,13 @@ max_scroll =0
 combo = 0
 show_howto = False
 levelup_sound_played = False
+above_stalls = 0
 #potions
-freeze_potion = 0
+freeze_potion = 3
 last_choices = None
+ice_active = False
+ice_end_time = 0
+ICE_DURATION = 5.0
 
 # Default Level Choices (N5 active)
 choices = [True, False, False, False, False]
@@ -342,6 +359,7 @@ def draw_screen():
     # ===== Constants =====
     BOTTOM_BAR_HEIGHT = 100
     scale_factor = BOTTOM_BAR_HEIGHT // bottom_tile.get_height()
+    global above_stalls
 
     bottom_tile_scaled = pygame.transform.scale_by(bottom_tile, scale_factor)
     tile_width = bottom_tile_scaled.get_width()
@@ -390,14 +408,20 @@ def draw_screen():
     yakitori_pic = animate_sprite(yakitori_frames, yakitori_anim, ANIM_INTERVAL)
     kingyo_pic = animate_sprite(kingyo_frames, kingyo_anim, ANIM_INTERVAL)
     yakisoba_pic = animate_sprite(yakisoba_frames, yakisoba_anim, ANIM_INTERVAL)
+    kakigori_pic = animate_sprite(kakigori_frames, kakigori_anim, ANIM_INTERVAL)
+    takoyaki_pic = animate_sprite(takoyaki_frames, takoyaki_anim, ANIM_INTERVAL)
     
     yakitori_y = HEIGHT - BOTTOM_BAR_HEIGHT - yakitori_pic.get_height() + 30
     kingyo_y = HEIGHT - BOTTOM_BAR_HEIGHT - kingyo_pic.get_height() + 30
     yakisoba_y = HEIGHT - BOTTOM_BAR_HEIGHT - yakisoba_pic.get_height() + 50
-
+    kakigori_y = HEIGHT - BOTTOM_BAR_HEIGHT - kakigori_pic.get_height() + 30
+    takoyaki_y = HEIGHT - BOTTOM_BAR_HEIGHT - takoyaki_pic.get_height() +10
+    above_stalls = takoyaki_y
     screen.blit(yakitori_pic, (0, yakitori_y))
     screen.blit(kingyo_pic, (300, kingyo_y))
     screen.blit(yakisoba_pic, (550, yakisoba_y))
+    screen.blit(kakigori_pic, (800, kakigori_y))
+    screen.blit(takoyaki_pic, (1050, takoyaki_y))
 
     # ===== Freeze Potion =====
     potion_x = 800
@@ -408,6 +432,13 @@ def draw_screen():
     count_text = banner_font.render(f"x{freeze_potion}", True, 'white')
     screen.blit(count_text, (potion_x + freeze_potion_pic.get_width() + 8, potion_y + 8))
 
+    if ice_active:
+        remaining = max(0, int(ice_end_time - time.time()) + 1)
+        ice_text = header_font.render(f"FREEZE {remaining}", True, (180, 220, 255))
+        screen.blit(
+            ice_text,
+            ice_text.get_rect(center=(potion_x+300, potion_y+30))
+        )
     return pause_btn.clicked
 
 def draw_pause():
@@ -522,7 +553,8 @@ def draw_howto():
         "• Level up = +1 live",
         "• Answer correctly 10 times in a row to earn 1 Ice Potion.",
         "• Type 'ice' to freeze all moving words for a few seconds.",
-        "• Input reminder: しょう = shou   じょう = jou   づ = zu"
+        "• Input reminder: しょう = shou, じょう = jou, づ = zu",
+        "• っ (Small Tsu) = Double the next consonant. Example: 鉄板 (teppan)"
     ]
 
     for i, text in enumerate(instructions):
@@ -638,7 +670,10 @@ def check_answer(current_score):
     solved_word = None
     for wrd in word_objects[:]:
         if wrd.romaji == submit:
-            points = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4 ) * (combo/3)
+            base_score = wrd.speed * (6 - int(wrd.nlevel)) * 10 * (len(wrd.romaji) / 4)
+            combo_bonus = 1 + (combo * 0.1) 
+
+            points = base_score * combo_bonus
             current_score += int(points)
 
             solved_word = wrd
@@ -680,7 +715,7 @@ def generate_word():
             print("⚠️ Defaulted to N5.json")
 
     data = random.choice(words)
-    y = random.randint(80, HEIGHT - 200)
+    y = random.randint(80, above_stalls)
     speed = random.uniform(2.0 + (level - 1) * 0.4 - 0.3, 2.0 + (level - 1) * 0.4 + 0.5)
     x = WIDTH + random.randint(0, 100)
     return Word(data["kanji"], speed, y, x, data["reading"], data["romaji"], data["meaning"], data.get("level", "5"))
@@ -759,10 +794,17 @@ while run:
         if quit_game:
             check_high_score()
             run = False
-        
 
+
+    if ice_active and time.time() >= ice_end_time:
+        ice_active = False
+        for w in word_objects:
+            if w.saved_speed is not None:
+                w.speed = w.saved_speed
+                w.saved_speed = None
+            w.frozen = False
     # ----- Word Spawning -----
-    if not game_frozen() and len(word_objects) < max_active_words:
+    if not game_frozen() and not ice_active and len(word_objects) < max_active_words:
         if time.time() - last_spawn_time > spawn_interval:
             word_objects.append(generate_word())
             last_spawn_time = time.time()
@@ -783,21 +825,18 @@ while run:
     if submit:
         # special power: freeze when player types "ice"
         if submit.lower() == "ice":
-            if freeze_potion > 0:
-                freeze_duration = 5.0  # seconds the words stay frozen
-                now = time.time()
-                ice.play()
-                for w in word_objects:
-                    # don't double-apply (refresh timer if already frozen)
-                    if not getattr(w, "frozen", False):
-                        w.saved_speed = w.speed
-                        w.speed = 0
-                    w.frozen = True
-                    w.frozen_until = now + freeze_duration
-
+            if freeze_potion > 0 and not ice_active:
+                ice_active = True
+                ice_end_time = time.time() + ICE_DURATION
                 freeze_potion -= 1
-                # optional: play a sound to indicate potion used (reuse click/success/wrong or add new)
-                success.play()
+                ice.play()
+                now = time.time()
+                for w in word_objects: # don't double-apply (refresh timer if already frozen) 
+                    if not getattr(w, "frozen", False): 
+                        w.saved_speed = w.speed 
+                        w.speed = 0 
+                        w.frozen = True 
+                        w.frozen_until = now + ICE_DURATION
             else:
                 # give feedback: no potion
                 wrong.play()
@@ -812,7 +851,6 @@ while run:
                 active_fireworks.append(
                     Firework(animation_list, animation_cooldown, solved.x_pos-90, solved.y_pos-50)
                 )
-
 
     # ----- Events -----
     for event in pygame.event.get():
