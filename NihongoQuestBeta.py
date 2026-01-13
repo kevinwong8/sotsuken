@@ -1,16 +1,8 @@
-# Typing Racer in Python
 # ------------------------------------------------------------
-# Features:
-# - Multiple JLPT levels (N5–N1)
-# - Pause / Resume system
-# - Level-up every 10 correct words
-# - Tracks high score & missed words
-# - Uses Pygame for all rendering
+# NIHONGO QUEST MAIN PROGRAM
 # ------------------------------------------------------------
-
 import pygame, random, copy, json, time, spritesheet,math
 pygame.init()
-
 # ============================================================
 #  Utility Functions
 # ============================================================
@@ -74,10 +66,20 @@ font = pygame.font.Font('assets/fonts/RocknRollOne-Regular.ttf', 32)
 romaji_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
 notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
 
+bgm_list = [
+    'assets/sound/natsunoyoru.mp3',
+    'assets/sound/okinawa.mp3'
+]
+
+current_bgm = 0
 pygame.mixer.init()
-pygame.mixer.music.load('assets/sound/natsunoyoru.mp3')
+
+MUSIC_END = pygame.USEREVENT + 1
+pygame.mixer.music.set_endevent(MUSIC_END)
+
+pygame.mixer.music.load(bgm_list[current_bgm])
 pygame.mixer.music.set_volume(0.2)
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play()
 
 click = pygame.mixer.Sound('assets/sound/click.mp3')
 success = pygame.mixer.Sound('assets/sound/success.mp3')
@@ -166,6 +168,8 @@ combo = 0
 show_howto = False
 levelup_sound_played = False
 above_stalls = 0
+combo_target = 5
+combo_interval = 10
 #potions
 freeze_potion = 3
 last_choices = None
@@ -213,7 +217,6 @@ with open('high.txt', 'r') as f:
             return
         
         self.image = self.frames[int(self.current_frame)]
-
 
 
 class Word:
@@ -294,7 +297,6 @@ class Firework:
 
         # draw current frame
         screen.blit(self.animation[self.frame], (self.x, self.y))
-
 
 class Button:
     """Lantern-like rectangular button with hover and click glow."""
@@ -401,7 +403,7 @@ def draw_screen():
     screen.blit(banner_font.render(f'  x{lives}', True, 'white'), (20, 5))
     screen.blit(heart, (10, 10))
 
-    combo_text = banner_font.render(f"COMBO: {combo}/10", True, (255, 220, 0))
+    combo_text = banner_font.render(f"COMBO: {combo}/{combo_target}", True, (255, 220, 0))
     screen.blit(combo_text, (1000, 10))
 
     # ===== Animated Stalls =====
@@ -666,7 +668,7 @@ def draw_result():
 
 def check_answer(current_score):
     """Check typed word, update score and handle level-ups."""
-    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives,combo, freeze_potion
+    global words_typed, level, new_level, show_levelup, level_up_time, max_active_words, spawn_interval, lives,combo, freeze_potion, combo_target
     solved_word = None
     for wrd in word_objects[:]:
         if wrd.romaji == submit:
@@ -686,9 +688,9 @@ def check_answer(current_score):
 
             # 🔥 COMBO SYSTEM
             combo += 1
-            if combo >= 5:
+            if combo >= combo_target:
                 freeze_potion += 1
-                combo = 0
+                combo_target += combo_interval
 
             if words_typed % WORDS_PER_LEVEL == 0 and level < 10:
                 level += 1
@@ -820,6 +822,7 @@ while run:
             lives -= 1
             life_minus.play()
             combo = 0
+            combo_target = 5
 
     # ----- Input Checking -----
     if submit:
@@ -854,6 +857,11 @@ while run:
 
     # ----- Events -----
     for event in pygame.event.get():
+        if event.type == MUSIC_END:
+            current_bgm = (current_bgm + 1) % len(bgm_list)
+            pygame.mixer.music.fadeout(1000)  # 1 second
+            pygame.mixer.music.load(bgm_list[current_bgm])
+            pygame.mixer.music.play(fade_ms=1000)
         if event.type == pygame.QUIT:
             check_high_score()
             run = False
