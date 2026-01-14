@@ -140,8 +140,12 @@ ANIM_INTERVAL = 1000
 # ============================================================
 #  Global Variables
 # ============================================================
+MIN_SPEED = 1.8     
+MAX_SPEED = 7.0     
+SPAWN_MAX = 3.0  
+SPAWN_MIN = 1   
 loaded_words = []
-level = 1
+level = 6
 active_string = ""
 score = 0
 lives = 5
@@ -376,7 +380,7 @@ def draw_screen():
 
     # ===== Status Text =====
     screen.blit(
-        header_font.render(f'レベル: {level}', True, 'white'),
+        header_font.render(f'lvl: {level}', True, 'white'),
         (10, HEIGHT - BOTTOM_BAR_HEIGHT + 15)
     )
 
@@ -421,7 +425,7 @@ def draw_screen():
     above_stalls = takoyaki_y
     screen.blit(yakitori_pic, (0, yakitori_y))
     screen.blit(kingyo_pic, (300, kingyo_y))
-    screen.blit(yakisoba_pic, (550, yakisoba_y))
+    screen.blit(yakisoba_pic, (560, yakisoba_y))
     screen.blit(kakigori_pic, (800, kakigori_y))
     screen.blit(takoyaki_pic, (1050, takoyaki_y))
 
@@ -700,10 +704,9 @@ def check_answer(current_score):
                 show_levelup = True
                 level_up_time = time.time()
                 level_up.play()  
-                levelup_sound_played = False 
+               
                 spawn_interval = max(0.8, spawn_interval - 0.2)
-                if max_active_words < 5:
-                    max_active_words += 1
+                
     return current_score, solved_word
 
 
@@ -717,8 +720,10 @@ def generate_word():
             print("⚠️ Defaulted to N5.json")
 
     data = random.choice(words)
-    y = random.randint(80, above_stalls)
-    speed = random.uniform(2.0 + (level - 1) * 0.4 - 0.3, 2.0 + (level - 1) * 0.4 + 0.5)
+    y = random.randint(80, above_stalls-25)
+    base_speed = 2.0 + (level - 1) * 0.35
+    speed = random.uniform(base_speed * 0.7, base_speed * 1.3)
+    speed = max(MIN_SPEED, min(speed, MAX_SPEED))
     x = WIDTH + random.randint(0, 100)
     return Word(data["kanji"], speed, y, x, data["reading"], data["romaji"], data["meaning"], data.get("level", "5"))
 
@@ -743,6 +748,16 @@ def draw_sprites(last_update,animation_list, animation_steps, animation_cooldown
     #show frame image
 
     screen.blit(animation_list[frame], (pos_x,pos_y))
+def get_max_active_words(level):
+    if level <= 3:
+        return 1
+    elif level <= 6:
+        return 2
+    elif level <= 9:
+        return 3
+    else:
+        return 4   # HARD CAP
+
 # ============================================================
 #  Sprites
 # ============================================================
@@ -759,7 +774,7 @@ BLACK = (0, 0, 0)
 animation_list = []
 animation_steps = 100
 animation_cooldown = 10
-
+max_active_words = get_max_active_words(level)
 for x in range(animation_steps):
 	animation_list.append(sprite_sheet.get_image(x,88,86,3,'black'))
 
@@ -807,6 +822,14 @@ while run:
             w.frozen = False
     # ----- Word Spawning -----
     if not game_frozen() and not ice_active and len(word_objects) < max_active_words:
+     
+        base_interval = SPAWN_MAX - (level - 1) * 0.2
+        base_interval = max(base_interval, SPAWN_MIN)
+
+        spawn_interval = random.uniform(
+            base_interval * 0.7,
+            base_interval * 1.3
+        )
         if time.time() - last_spawn_time > spawn_interval:
             word_objects.append(generate_word())
             last_spawn_time = time.time()

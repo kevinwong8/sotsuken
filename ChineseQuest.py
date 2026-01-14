@@ -60,22 +60,22 @@ FPS = 60
 #  Load Fonts & Sounds
 # ============================================================
 
-header_font = pygame.font.Font('assets/fonts/hanzi.ttf', 50)
-banner_font = pygame.font.Font('assets/fonts/hanzi.ttf', 28)
+fonts["header"] = pygame.font.Font('assets/fonts/hanzi.ttf', 50)
+fonts["banner"] = pygame.font.Font('assets/fonts/hanzi.ttf', 28)
 hanzi_font = pygame.font.Font('assets/fonts/hanzi.ttf', 32)
 reading_font = pygame.font.Font('assets/fonts/Square.ttf', 25)
-notosans = pygame.font.Font('assets/fonts/notosans.ttf', 25)
+fonts["notosans"] = pygame.font.Font('assets/fonts/fonts["notosans"].ttf', 25)
 
 pygame.mixer.init()
 pygame.mixer.music.load('assets/sound/natsunoyoru.mp3')
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 
-click = pygame.mixer.Sound('assets/sound/click.mp3')
+sounds["click"] = pygame.mixer.Sound('assets/sound/sounds["click"].mp3')
 success = pygame.mixer.Sound('assets/sound/success.mp3')
 wrong = pygame.mixer.Sound('assets/sound/Instrument Strum.mp3')
 
-click.set_volume(0.3)
+sounds["click"].set_volume(0.3)
 success.set_volume(0.6)
 wrong.set_volume(0.3)
 
@@ -85,7 +85,7 @@ bg_width = bg.get_width()
 #  Global Variables
 # ============================================================
 
-level = 1
+level = 6
 active_string = ""
 score = 0
 lives = 5
@@ -213,7 +213,7 @@ class Firework:
 
 
 class Button:
-    """Lantern-like rectangular button with hover and click glow."""
+    """Lantern-like rectangular button with hover and sounds["click"] glow."""
     def __init__(self, x, y, w, h, text, font, surf, color=(200, 0, 0)):
         self.x = x
         self.y = y
@@ -223,7 +223,7 @@ class Button:
         self.font = font
         self.surf = surf
         self.color = color
-        self.clicked = False
+        self.soundsclicked = False
 
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -237,11 +237,11 @@ class Button:
         if button_rect.collidepoint(mouse_pos):
             if mouse_pressed[0]:  # Clicked
                 outline_color = "white"
-                self.clicked = True
+                self.soundsclicked = True
             else:  # Hover
                 outline_color = "yellow"
         else:
-            self.clicked = False
+            self.soundsclicked = False
 
         # Draw outline (glow)
         pygame.draw.rect(self.surf, outline_color, button_rect.inflate(8, 8), border_radius=12)
@@ -257,7 +257,7 @@ class Button:
         text_rect = text_surf.get_rect(center=button_rect.center)
         self.surf.blit(text_surf, text_rect)
 
-        return self.clicked
+        return self.soundsclicked
 
 # ============================================================
 #  Drawing Functions
@@ -275,18 +275,18 @@ def draw_screen():
     pygame.draw.rect(screen, 'black', [0, 0, WIDTH, HEIGHT], 2)
 
     # Status Text
-    screen.blit(header_font.render(f'LEVEL: {level}', True, 'white'), (10, HEIGHT - 85))
-    screen.blit(header_font.render(f'"{active_string}"', True, 'white'), (270, HEIGHT - 75))
+    screen.blit(fonts["header"].render(f'LEVEL: {level}', True, 'white'), (10, HEIGHT - 85))
+    screen.blit(fonts["header"].render(f'"{active_string}"', True, 'white'), (270, HEIGHT - 75))
 
     # Pause button
-    pause_btn = Button(740, HEIGHT - 80, 60, 60, "II", header_font, screen)
+    pause_btn = Button(740, HEIGHT - 80, 60, 60, "II", fonts["header"], screen)
     pause_btn.draw()
 
-    screen.blit(banner_font.render(f'SCORE: {score}', True, 'white'), (250, 10))
-    screen.blit(banner_font.render(f'HIGHSCORE: {high_score}', True, 'white'), (550, 10))
-    screen.blit(banner_font.render(f'LIVES: {lives}', True, 'white'), (10, 10))
+    screen.blit(fonts["banner"].render(f'SCORE: {score}', True, 'white'), (250, 10))
+    screen.blit(fonts["banner"].render(f'HIGHSCORE: {high_score}', True, 'white'), (550, 10))
+    screen.blit(fonts["banner"].render(f'LIVES: {lives}', True, 'white'), (10, 10))
 
-    return pause_btn.clicked
+    return pause_btn.soundsclicked
 
 
 def draw_pause():
@@ -306,18 +306,18 @@ def draw_pause():
     pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h], 8, border_radius=20)
 
     # Title
-    title = header_font.render("メニュー", True, (255, 220, 180))
+    title = fonts["header"].render("メニュー", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 30))
 
     # Buttons (lantern-style)
-    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, ">", header_font, surface)
-    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "X", header_font, surface)
+    resume_btn = Button(WIDTH // 2 - 150, int((box_y + box_h) * 0.45), 80, 80, ">", fonts["header"], surface)
+    quit_btn   = Button(WIDTH // 2 + 70,  int((box_y + box_h) * 0.45), 80, 80, "X", fonts["header"], surface)
     resume_btn.draw()
     quit_btn.draw()
 
     # Labels — automatically centered below buttons
-    play_label = notosans.render("Resume", True, (255, 230, 200))
-    quit_label = notosans.render("Quit", True, (255, 230, 200))
+    play_label = fonts["notosans"].render("Resume", True, (255, 230, 200))
+    quit_label = fonts["notosans"].render("Quit", True, (255, 230, 200))
 
     # === key trick: get_rect(center=...) ===
     play_rect = play_label.get_rect(center=(resume_btn.x + resume_btn.w / 2,
@@ -349,7 +349,7 @@ def draw_pause():
                             (btn_x - 42, btn_y - 2, 84, 84), 5, border_radius=12)
 
     screen.blit(surface, (0, 0))
-    return resume_btn.clicked, temp_choices, quit_btn.clicked
+    return resume_btn.soundsclicked, temp_choices, quit_btn.soundsclicked
 
 
 
@@ -369,7 +369,7 @@ def draw_result():
     pygame.draw.rect(surface, (200, 50, 50), [box_x, box_y, box_w, box_h+20], 8, border_radius=20)
 
     # Header
-    title = header_font.render("Game Over", True, (255, 220, 180))
+    title = fonts["header"].render("Game Over", True, (255, 220, 180))
     surface.blit(title, (WIDTH // 2 - title.get_width() // 2, box_y + 20))
 
     # Scores
@@ -414,23 +414,23 @@ def draw_result():
     # Buttons (position relative to box_y)
     btn_size = int(min(WIDTH * 0.09, 70))  # keep buttons reasonable
     btn_y = int(box_y + box_h - btn_size - 25)   # use box_y (was bug: box_x)
-    play_btn = Button(int(WIDTH // 2 - btn_size - 20), btn_y, btn_size, btn_size, ">", header_font, surface)
-    quit_btn = Button(int(WIDTH // 2 + 20), btn_y, btn_size, btn_size, "X", header_font, surface)
-    play_clicked = play_btn.draw()
-    quit_clicked = quit_btn.draw()
+    play_btn = Button(int(WIDTH // 2 - btn_size - 20), btn_y, btn_size, btn_size, ">", fonts["header"], surface)
+    quit_btn = Button(int(WIDTH // 2 + 20), btn_y, btn_size, btn_size, "X", fonts["header"], surface)
+    play_soundsclicked = play_btn.draw()
+    quit_soundsclicked = quit_btn.draw()
 
     # Button labels
-    play_label = notosans.render("Play Again", True, (255, 230, 200))
+    play_label = fonts["notosans"].render("Play Again", True, (255, 230, 200))
     play_rect = play_label.get_rect(center=(play_btn.x + play_btn.w / 2, play_btn.y + play_btn.h + 22))
     surface.blit(play_label, play_rect)
 
-    quit_label = notosans.render("Quit", True, (255, 230, 200))
+    quit_label = fonts["notosans"].render("Quit", True, (255, 230, 200))
     quit_rect = quit_label.get_rect(center=(quit_btn.x + quit_btn.w / 2, quit_btn.y + quit_btn.h + 22))
     surface.blit(quit_label, quit_rect)
 
     # Draw composed surface to screen
     screen.blit(surface, (0, 0))
-    return play_clicked, quit_clicked
+    return play_soundsclicked, quit_soundsclicked
 
 
 # ============================================================
@@ -589,7 +589,7 @@ while run:
         score, solved = check_answer(score)
         submit = ''
         if solved is None:
-            wrong.play()
+            sounds["wrong"].play()
         else:
             active_fireworks.append(
             Firework(animation_list, animation_cooldown, solved.x_pos-90, solved.y_pos-50)
@@ -605,10 +605,10 @@ while run:
             if not paused:
                 if event.unicode.lower() in letters:
                     active_string += event.unicode.lower()
-                    click.play()
+                    sounds["click"].play()
                 elif event.key == pygame.K_BACKSPACE:
                     active_string = active_string[:-1]
-                    click.play()
+                    sounds["click"].play()
                 elif event.key in (pygame.K_RETURN, pygame.K_SPACE):
                     submit = active_string
                     active_string = ''
@@ -665,7 +665,7 @@ while run:
         elapsed = time.time() - level_up_time
         if elapsed < 2:
             alpha = max(0, 255 - int((elapsed / 2) * 255))
-            msg = header_font.render('レベルアップ！', True, (255, 255, 255))
+            msg = fonts["header"].render('レベルアップ！', True, (255, 255, 255))
             msg.set_alpha(alpha)
             screen.blit(msg, (WIDTH // 2 - 150, HEIGHT // 2 - 50))
         else:

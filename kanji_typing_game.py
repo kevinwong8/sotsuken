@@ -29,9 +29,9 @@ fps = 60
 
 
 #load  in assets like fonts and sound effects and music
-header_font = pygame.font.Font('assets/fonts/square.ttf', 50)
+fonts["header"] = pygame.font.Font('assets/fonts/square.ttf', 50)
 pause_font= pygame.font.Font('assets/fonts/1up.ttf', 38)
-banner_font = pygame.font.Font('assets/fonts/1up.ttf', 28)
+fonts["banner"] = pygame.font.Font('assets/fonts/1up.ttf', 28)
 font= pygame.font.Font('assets/fonts/AldotheApache.ttf', 48)
 
 #sound effect
@@ -39,11 +39,11 @@ pygame.mixer.init()
 pygame.mixer.music.load('assets/sound/music.mp3')
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
-click = pygame.mixer.Sound('assets/sound/click.mp3')
+sounds["click"] = pygame.mixer.Sound('assets/sound/sounds["click"].mp3')
 whoosh = pygame.mixer.Sound('assets/sound/Swoosh.mp3')
 wrong = pygame.mixer.Sound('assets/sound/Instrument Strum.mp3')
 
-click.set_volume(0.3)
+sounds["click"].set_volume(0.3)
 whoosh.set_volume(0.3)
 wrong.set_volume(0.3)
 
@@ -89,11 +89,11 @@ class Word:
        
 
 class Button:
-    def __init__(self, x_pos, y_pos, text, clicked, surf):
+    def __init__(self, x_pos, y_pos, text, soundsclicked, surf):
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.text = text
-        self.clicked = clicked
+        self.soundsclicked = soundsclicked
         self.surf = surf
     
     def draw(self):
@@ -102,7 +102,7 @@ class Button:
             butts = pygame.mouse.get_pressed()
             if butts[0]:
                 pygame.draw.circle(self.surf, (190,35,35), (self.x_pos, self.y_pos), 35)
-                self.clicked = True
+                self.soundsclicked = True
             else:
                 pygame.draw.circle(self.surf, (190,89,135), (self.x_pos, self.y_pos), 35)
 
@@ -120,15 +120,15 @@ def draw_screen():
     pygame.draw.rect(screen,'black', [0,0,WIDTH, HEIGHT],2)
 
     #text for showing the current level, player's current input, high score, schore, lives and pause
-    screen.blit(header_font.render(f'Level: {level}', True, 'white'), (10, HEIGHT-75))
-    screen.blit(header_font.render(f'"{active_string}"', True, 'white'), (270, HEIGHT-75))
+    screen.blit(fonts["header"].render(f'Level: {level}', True, 'white'), (10, HEIGHT-75))
+    screen.blit(fonts["header"].render(f'"{active_string}"', True, 'white'), (270, HEIGHT-75))
     #pause button
     pause_btn = Button(748, HEIGHT-52, 'II', False, screen)
     pause_btn.draw()
-    screen.blit(banner_font.render(f'Score: {score}', True, 'black'), (250, 10))
-    screen.blit(banner_font.render(f'Best: {high_score}', True, 'black'), (550, 10))
-    screen.blit(banner_font.render(f'lives: {lives}', True, 'black'), (10, 10))
-    return pause_btn.clicked
+    screen.blit(fonts["banner"].render(f'Score: {score}', True, 'black'), (250, 10))
+    screen.blit(fonts["banner"].render(f'Best: {high_score}', True, 'black'), (550, 10))
+    screen.blit(fonts["banner"].render(f'lives: {lives}', True, 'black'), (10, 10))
+    return pause_btn.soundsclicked
 
 def draw_pause():
     choice_commits = copy.deepcopy(choices)
@@ -142,16 +142,16 @@ def draw_pause():
     quit_btn = Button(410,200, 'X', False, surface)
     quit_btn.draw()
     #define text for pause menu
-    surface.blit(header_font.render('MENU', True, 'white'), (110,110))
-    surface.blit(header_font.render('PLAY!', True, 'white'), (210,175))
-    surface.blit(header_font.render('QUIT', True, 'white'), (450,175))
-    surface.blit(header_font.render('Active Letter Length: ', True, 'white'), (110,250))
+    surface.blit(fonts["header"].render('MENU', True, 'white'), (110,110))
+    surface.blit(fonts["header"].render('PLAY!', True, 'white'), (210,175))
+    surface.blit(fonts["header"].render('QUIT', True, 'white'), (450,175))
+    surface.blit(fonts["header"].render('Active Letter Length: ', True, 'white'), (110,250))
 
     #define buttons for letter length selection
     for i in range(len(choices)):
         btn = Button(160+ (i*80),350, str(i+2), False, surface)
         btn.draw()
-        if btn.clicked:
+        if btn.soundsclicked:
             if choice_commits[i]:
                 choice_commits[i] = False
             else:
@@ -159,7 +159,7 @@ def draw_pause():
         if choices[i] :
             pygame.draw.circle(surface, 'green',(160+ (i*80),350),35,5 )
     screen.blit(surface, (0,0))
-    return resume_btn.clicked, choice_commits, quit_btn.clicked
+    return resume_btn.soundsclicked, choice_commits, quit_btn.soundsclicked
 
 def check_answer(scor):
     for wrd in word_objects:
@@ -234,7 +234,7 @@ while run:
         score = check_answer(score)
         submit = ''
         if init == score:
-            wrong.play()
+            sounds["wrong"].play()
             pass 
 
     for event in pygame.event.get():
@@ -246,10 +246,10 @@ while run:
             if not paused:
                 if event.unicode.lower() in letters:
                     active_string += event.unicode.lower()
-                    click.play()
+                    sounds["click"].play()
                 if event.key == pygame.K_BACKSPACE and len(active_string)> 0:
                     active_string= active_string[:-1]
-                    click.play()
+                    sounds["click"].play()
                 if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
                     submit = active_string
                     active_string = ''
